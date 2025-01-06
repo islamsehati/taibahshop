@@ -3,7 +3,7 @@
     <div class="{{ request()->is('my-account')?'hidden' : 'relative'}}  md:flex md:items-center md:justify-between">
       <div class="flex items-center justify-between">
 
-        <a class="flex-none text-xl font-oleo text-yellow-400 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
+        <a class="flex-none text-xl font-bruno text-yellow-400 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
         
         <div class="px-5 md:hidden font-medium flex items-center hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/cart">
             <label class="relative block text-center">
