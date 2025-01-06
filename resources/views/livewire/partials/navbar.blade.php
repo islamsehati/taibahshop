@@ -3,7 +3,7 @@
     <div class="{{ request()->is('my-account')?'hidden' : 'relative'}}  md:flex md:items-center md:justify-between">
       <div class="flex items-center justify-between">
 
-        <a class="flex-none text-xl font-bruno text-yellow-400 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
         
         <div class="px-5 md:hidden font-medium flex items-center hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/cart">
             <label class="relative block text-center">
@@ -186,41 +186,29 @@
   <nav class="md:hidden fixed bottom-0 left-0 z-50 w-full h-10 bg-gray-800 dark:bg-gray-700 dark:border-gray-600">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
       
-      <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <a href="/">
+      <button onclick="location.href='/';" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <div class="w-5 h-5 mb-0.5 mx-auto {{ request()->is('/')?' text-yellow-500' : 'text-gray-500'}}  dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <i class="fa fa-home scale-[175%]" aria-hidden="true"></i>
         </div>
-        </a>
-        {{-- <span class="text-sm {{ request()->is('/')?' text-yellow-500' : 'text-gray-500'}}  dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500">Home</span> --}}
       </button>
 
-      <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <a href="/categories">
+      <button onclick="location.href='/categories';" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <div class="w-5 h-5 mb-0 mx-auto {{ request()->is('categories')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <i class="fa fa-list scale-150" aria-hidden="true"></i>
         </div>
-        </a>
-        {{-- <span class="text-sm {{ request()->is('categories')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500">Category</span> --}}
       </button>
 
-      <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <a href="/products">
+      <button onclick="location.href='/products';" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <div class="w-5 h-5 mb-0 mx-auto {{ request()->is('products')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <i class="fa fa-th-large scale-150" aria-hidden="true"></i>
         </div>
-        </a>  
-        {{-- <span class="text-sm {{ request()->is('products')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500">Product</span> --}}
       </button>
 
       
-      <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-        <a href="/my-orders">
+      <button onclick="location.href='/my-orders';" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
           <div class="w-5 h-5 mb-1 mx-auto {{ request()->is('my-orders')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <i class="fa fa-envelope scale-150" aria-hidden="true"></i>
           </div>
-          {{-- <span class="text-sm {{ request()->is('my-orders')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500">Orders</span> --}}
-        </a>
       </button>
       
 
