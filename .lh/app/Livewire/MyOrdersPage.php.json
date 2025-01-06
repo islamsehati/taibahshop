@@ -1,0 +1,42 @@
+{
+    "sourceFile": "app/Livewire/MyOrdersPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1732361691554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732361757656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Livewire\\Component;\n use Livewire\\WithPagination;\n use App\\Http\\Controllers\\PrintController;\n use Illuminate\\Support\\Carbon;\n-use Illuminate\\Http\\Request;\n+use Symfony\\Component\\HttpFoundation\\Request;\n \n #[Title('My Orders')]\n class MyOrdersPage extends Component\n {\n"
+                },
+                {
+                    "date": 1732361768450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n use Livewire\\Component;\n use Livewire\\WithPagination;\n use App\\Http\\Controllers\\PrintController;\n use Illuminate\\Support\\Carbon;\n-use Symfony\\Component\\HttpFoundation\\Request;\n \n #[Title('My Orders')]\n class MyOrdersPage extends Component\n {\n"
+                },
+                {
+                    "date": 1732694372719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,13 @@\n         $my_orders_sum_today = Order::where('date_order', 'like', \"%$today%\")->sum(value('grand_total'));\n         return view('livewire.my-orders-page', [\n             'orders' => $my_orders,\n             'my_orders_sum' => $my_orders_sum,\n-            'my_orders_sum_today' => $my_orders_sum_today,\n+            'my_orders_sum_today_cash' => $my_orders_sum_today_cash,\n+            'my_orders_sum_today_transfer' => $my_orders_sum_today_transfer,\n+            'my_orders_sum_today_unpaid' => $my_orders_sum_today_unpaid,\n+            'my_orders_sum_today_unpaid_count' => $my_orders_sum_today_unpaid_count,\n             'isadmin' => $isadmin,\n+            'today' => $today,\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1732694427394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,17 +18,21 @@\n     public function render()\n     {\n         $isadmin = auth()->user()->is_admin;\n         if ($isadmin == 1) {\n-            $my_orders = Order::latest()->paginate(10);\n+            $my_orders = Order::orderBy('is_paid')->orderBy('date_order','desc')->paginate(100);\n         }\n         if ($isadmin == 0) {\n-            $my_orders = Order::where('user_id', auth()->id())->latest()->paginate(5);\n+            $my_orders = Order::where('user_id', auth()->id())->latest()->paginate(10);\n         }\n         $my_orders_all = Order::where('user_id', auth()->id());\n         $my_orders_sum = $my_orders_all->sum(value('grand_total'));\n         $today = Carbon::now()->format('Y-m-d');\n-        $my_orders_sum_today = Order::where('date_order', 'like', \"%$today%\")->sum(value('grand_total'));\n+        $my_orders_sum_today_cash = Order::where('date_order', 'like', \"%$today%\")->where('is_paid', 1)->where('payment_method', 'cash')->sum(value('grand_total'));\n+        $my_orders_sum_today_transfer = Order::where('date_order', 'like', \"%$today%\")->where('is_paid', 1)->where('payment_method', 'transfer')->sum(value('grand_total'));\n+        $my_orders_sum_today_unpaid = Order::where('is_paid', 0)->where('status', '!=', 'canceled')->sum(value('grand_total'));\n+        $my_orders_sum_today_unpaid_count = Order::where('is_paid', 0)->where('status', '!=', 'canceled')->count();\n+        \n         return view('livewire.my-orders-page', [\n             'orders' => $my_orders,\n             'my_orders_sum' => $my_orders_sum,\n             'my_orders_sum_today_cash' => $my_orders_sum_today_cash,\n"
+                },
+                {
+                    "date": 1732694562546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,18 +26,16 @@\n         }\n         $my_orders_all = Order::where('user_id', auth()->id());\n         $my_orders_sum = $my_orders_all->sum(value('grand_total'));\n         $today = Carbon::now()->format('Y-m-d');\n-        $my_orders_sum_today_cash = Order::where('date_order', 'like', \"%$today%\")->where('is_paid', 1)->where('payment_method', 'cash')->sum(value('grand_total'));\n-        $my_orders_sum_today_transfer = Order::where('date_order', 'like', \"%$today%\")->where('is_paid', 1)->where('payment_method', 'transfer')->sum(value('grand_total'));\n+        $my_orders_sum_today = Order::where('date_order', 'like', \"%$today%\")->where('is_paid', 1)->sum(value('grand_total'));\n         $my_orders_sum_today_unpaid = Order::where('is_paid', 0)->where('status', '!=', 'canceled')->sum(value('grand_total'));\n         $my_orders_sum_today_unpaid_count = Order::where('is_paid', 0)->where('status', '!=', 'canceled')->count();\n \n         return view('livewire.my-orders-page', [\n             'orders' => $my_orders,\n             'my_orders_sum' => $my_orders_sum,\n-            'my_orders_sum_today_cash' => $my_orders_sum_today_cash,\n-            'my_orders_sum_today_transfer' => $my_orders_sum_today_transfer,\n+            'my_orders_sum_today' => $my_orders_sum_today,\n             'my_orders_sum_today_unpaid' => $my_orders_sum_today_unpaid,\n             'my_orders_sum_today_unpaid_count' => $my_orders_sum_today_unpaid_count,\n             'isadmin' => $isadmin,\n             'today' => $today,\n"
+                },
+                {
+                    "date": 1732697150164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\Livewire;\n \n use App\\Models\\Order;\n+use App\\Models\\Payment;\n use Livewire\\Attributes\\Title;\n use Livewire\\Component;\n use Livewire\\WithPagination;\n use App\\Http\\Controllers\\PrintController;\n"
+                }
+            ],
+            "date": 1732361691554,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire;\n\nuse App\\Models\\Order;\nuse Livewire\\Attributes\\Title;\nuse Livewire\\Component;\nuse Livewire\\WithPagination;\nuse App\\Http\\Controllers\\PrintController;\nuse Illuminate\\Support\\Carbon;\nuse Illuminate\\Http\\Request;\n\n#[Title('My Orders')]\nclass MyOrdersPage extends Component\n{\n    use WithPagination;\n    // protected $paginationTheme = 'bootstrap';\n\n    public function render()\n    {\n        $isadmin = auth()->user()->is_admin;\n        if ($isadmin == 1) {\n            $my_orders = Order::latest()->paginate(10);\n        }\n        if ($isadmin == 0) {\n            $my_orders = Order::where('user_id', auth()->id())->latest()->paginate(5);\n        }\n        $my_orders_all = Order::where('user_id', auth()->id());\n        $my_orders_sum = $my_orders_all->sum(value('grand_total'));\n        $today = Carbon::now()->format('Y-m-d');\n        $my_orders_sum_today = Order::where('date_order', 'like', \"%$today%\")->sum(value('grand_total'));\n        return view('livewire.my-orders-page', [\n            'orders' => $my_orders,\n            'my_orders_sum' => $my_orders_sum,\n            'my_orders_sum_today' => $my_orders_sum_today,\n            'isadmin' => $isadmin,\n        ]);\n    }\n}\n"
+        }
+    ]
+}

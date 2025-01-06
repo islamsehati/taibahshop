@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/0001_01_01_000003_create_soft_deletes_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1735295489945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1735295489945,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::table('orders', function (Blueprint $table) {\n            $table->softDeletes();\n        });\n        Schema::table('porders', function (Blueprint $table) {\n            $table->softDeletes();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        //\n    }\n};\n"
+        }
+    ]
+}

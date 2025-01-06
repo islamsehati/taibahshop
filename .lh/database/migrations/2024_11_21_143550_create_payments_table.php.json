@@ -1,0 +1,34 @@
+{
+    "sourceFile": "database/migrations/2024_11_21_143550_create_payments_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1732174723237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732174834097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,11 @@\n             $table->id();\n             $table->foreignId('porder_id')->nullable()->constrained('porders')->cascadeOnDelete();\n             $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();\n             $table->datetime('date_payment')->nullable();\n+            $table->string('currency')->nullable();\n+            $table->string('payment_method')->nullable();\n+            $table->decimal('nominal', 10, 0)->nullable();\n             $table->timestamps();\n             $table->unsignedBigInteger('created_by')->nullable();\n             $table->unsignedBigInteger('updated_by')->nullable();\n             $table->unsignedBigInteger('branch_id')->nullable();\n"
+                },
+                {
+                    "date": 1732185386627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,14 @@\n     public function up(): void\n     {\n         Schema::create('payments', function (Blueprint $table) {\n             $table->id();\n-            $table->foreignId('porder_id')->nullable()->constrained('porders')->cascadeOnDelete();\n-            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();\n+            $table->unsignedBigInteger('porder_code')->nullable();\n+            $table->unsignedBigInteger('order_code')->nullable();\n+\n+            $table->foreign('porder_code')->references('code_tr')->on('porders');\n+            $table->foreign('order_code')->references('code_tr')->on('orders');\n+\n             $table->datetime('date_payment')->nullable();\n             $table->string('currency')->nullable();\n             $table->string('payment_method')->nullable();\n             $table->decimal('nominal', 10, 0)->nullable();\n"
+                },
+                {
+                    "date": 1732185630511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,9 @@\n     public function up(): void\n     {\n         Schema::create('payments', function (Blueprint $table) {\n             $table->id();\n-            $table->unsignedBigInteger('porder_code')->nullable();\n-            $table->unsignedBigInteger('order_code')->nullable();\n \n-            $table->foreign('porder_code')->references('code_tr')->on('porders');\n-            $table->foreign('order_code')->references('code_tr')->on('orders');\n-\n             $table->datetime('date_payment')->nullable();\n             $table->string('currency')->nullable();\n             $table->string('payment_method')->nullable();\n             $table->decimal('nominal', 10, 0)->nullable();\n@@ -30,8 +25,15 @@\n \n             $table->foreign('created_by')->references('id')->on('users');\n             $table->foreign('updated_by')->references('id')->on('users');\n             $table->foreign('branch_id')->references('id')->on('branches');\n+\n+            \n+            $table->unsignedBigInteger('porder_code')->nullable();\n+            $table->unsignedBigInteger('order_code')->nullable();\n+\n+            $table->foreign('porder_code')->references('code_tr')->on('porders');\n+            $table->foreign('order_code')->references('code_tr')->on('orders');\n         });\n     }\n \n     /**\n"
+                },
+                {
+                    "date": 1732185755286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,14 @@\n     public function up(): void\n     {\n         Schema::create('payments', function (Blueprint $table) {\n             $table->id();\n+            $table->unsignedBigInteger('porder_id')->nullable();\n+            $table->unsignedBigInteger('order_id')->nullable();\n \n+            $table->foreign('porder_id')->references('id')->on('porders');\n+            $table->foreign('order_id')->references('id')->on('orders');\n+\n             $table->datetime('date_payment')->nullable();\n             $table->string('currency')->nullable();\n             $table->string('payment_method')->nullable();\n             $table->decimal('nominal', 10, 0)->nullable();\n@@ -25,15 +30,8 @@\n \n             $table->foreign('created_by')->references('id')->on('users');\n             $table->foreign('updated_by')->references('id')->on('users');\n             $table->foreign('branch_id')->references('id')->on('branches');\n-\n-\n-            $table->unsignedBigInteger('porder_code')->nullable();\n-            $table->unsignedBigInteger('order_code')->nullable();\n-\n-            $table->foreign('porder_code')->references('code_tr')->on('porders');\n-            $table->foreign('order_code')->references('code_tr')->on('orders');\n         });\n     }\n \n     /**\n"
+                }
+            ],
+            "date": 1732174723237,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('payments', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('porder_id')->nullable()->constrained('porders')->cascadeOnDelete();\n            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();\n            $table->datetime('date_payment')->nullable();\n            $table->timestamps();\n            $table->unsignedBigInteger('created_by')->nullable();\n            $table->unsignedBigInteger('updated_by')->nullable();\n            $table->unsignedBigInteger('branch_id')->nullable();\n\n            $table->foreign('created_by')->references('id')->on('users');\n            $table->foreign('updated_by')->references('id')->on('users');\n            $table->foreign('branch_id')->references('id')->on('branches');\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('payments');\n    }\n};\n"
+        }
+    ]
+}

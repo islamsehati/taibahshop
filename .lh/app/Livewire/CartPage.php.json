@@ -1,0 +1,58 @@
+{
+    "sourceFile": "app/Livewire/CartPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1733312769072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733316838761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     {\n         $this->cart_items = CartManagement::removeCartItem($product_id);\n         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n         $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n+        $this->dispatch('cart-page');\n     }\n \n     public function increaseQty($product_id)\n     {\n"
+                },
+                {
+                    "date": 1733389491129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,16 @@\n         $this->cart_items = CartManagement::getCartItemsFromCart();\n         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n     }\n \n+    public function clearItem()\n+    {\n+        $this->cart_items = CartManagement::clearCartItems();\n+        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n+        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n+        $this->dispatch('cart-page');\n+    }\n+\n     public function removeItem($product_id)\n     {\n         $this->cart_items = CartManagement::removeCartItem($product_id);\n         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n"
+                },
+                {
+                    "date": 1733389528910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n-        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n         $this->dispatch('cart-page');\n     }\n \n     public function removeItem($product_id)\n"
+                },
+                {
+                    "date": 1733389790591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n-        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n         $this->dispatch('cart-page');\n     }\n \n     public function removeItem($product_id)\n"
+                },
+                {
+                    "date": 1733389827894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,10 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n+        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n+        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n         $this->dispatch('cart-page');\n     }\n \n     public function removeItem($product_id)\n"
+                },
+                {
+                    "date": 1733390245882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n-        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n+        $this->dispatch('update-cart-count', total_count: 0)->to(Navbar::class);\n         $this->dispatch('cart-page');\n     }\n \n     public function removeItem($product_id)\n"
+                },
+                {
+                    "date": 1733390281324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n-        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n         $this->dispatch('update-cart-count', total_count: 0)->to(Navbar::class);\n         $this->dispatch('cart-page');\n     }\n \n"
+                },
+                {
+                    "date": 1733390324274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,10 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n-        $this->dispatch('update-cart-count', total_count: 0)->to(Navbar::class);\n+        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n+        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n         $this->dispatch('cart-page');\n     }\n \n     public function removeItem($product_id)\n"
+                },
+                {
+                    "date": 1733390455229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n-        $this->dispatch('cart-page');\n+        redirect('/products')\n     }\n \n     public function removeItem($product_id)\n     {\n"
+                },
+                {
+                    "date": 1733390461280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \n     public function clearItem()\n     {\n         $this->cart_items = CartManagement::clearCartItems();\n-        redirect('/products')\n+        redirect('/products');\n     }\n \n     public function removeItem($product_id)\n     {\n"
+                }
+            ],
+            "date": 1733312769072,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire;\n\nuse App\\Helpers\\CartManagement;\nuse App\\Livewire\\Partials\\Navbar;\nuse App\\Models\\Branch;\nuse Illuminate\\Support\\Facades\\Cookie;\nuse Livewire\\Attributes\\Title;\nuse Livewire\\Component;\n\n#[Title('Cart - TaibahShop')]\nclass CartPage extends Component\n{\n    public $cart_items = [];\n    public $grand_total;\n    public $quantity = [];\n\n    public function mount()\n    {\n        $this->cart_items = CartManagement::getCartItemsFromCart();\n        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n    }\n\n    public function removeItem($product_id)\n    {\n        $this->cart_items = CartManagement::removeCartItem($product_id);\n        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n        $this->dispatch('update-cart-count', total_count: count($this->cart_items))->to(Navbar::class);\n    }\n\n    public function increaseQty($product_id)\n    {\n        $this->cart_items = CartManagement::incrementQuantityToCartItem($product_id);\n        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n    }\n    public function decreaseQty($product_id)\n    {\n        $this->cart_items = CartManagement::decrementQuantityToCartItem($product_id);\n        $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n    }\n\n    // public function typeQty($product_id)\n    // {\n    //     dd($this->quantity);\n\n    // $this->cart_items = CartManagement::typingQuantityToCartItem($product_id);\n    // $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);\n    // }\n\n    public function render()\n    {\n        $branches = Branch::all();\n        return view('livewire.cart-page', [\n            'branches' => $branches,\n        ]);\n    }\n}\n"
+        }
+    ]
+}

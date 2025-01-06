@@ -1,0 +1,30 @@
+{
+    "sourceFile": "database/migrations/2024_12_12_223912_create_productions_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1734018077722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1734018128433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();\n             $table->foreignId('from_branch_id')->nullable()->constrained('branches');\n             $table->foreignId('to_branch_id')->nullable()->constrained('branches');\n             $table->string('currency')->nullable();\n-            $table->enum('status', ['new', 'transfering', 'done'])->default('new');\n+            $table->enum('status', ['new', 'processing', 'done'])->default('new');\n             $table->text('notes')->nullable();\n             $table->decimal('grand_total', 10, 2)->nullable();\n             $table->timestamps();\n             $table->unsignedBigInteger('created_by')->nullable();\n"
+                },
+                {
+                    "date": 1734018164318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();\n             $table->foreignId('from_branch_id')->nullable()->constrained('branches');\n             $table->foreignId('to_branch_id')->nullable()->constrained('branches');\n             $table->string('currency')->nullable();\n-            $table->enum('status', ['new', 'processing', 'done'])->default('new');\n+            $table->enum('status', ['new', 'processing', 'done', 'canceled'])->default('new');\n             $table->text('notes')->nullable();\n             $table->decimal('grand_total', 10, 2)->nullable();\n             $table->timestamps();\n             $table->unsignedBigInteger('created_by')->nullable();\n"
+                },
+                {
+                    "date": 1734018177636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n             $table->foreignId('to_branch_id')->nullable()->constrained('branches');\n             $table->string('currency')->nullable();\n             $table->enum('status', ['new', 'processing', 'done', 'canceled'])->default('new');\n             $table->text('notes')->nullable();\n-            $table->decimal('grand_total', 10, 2)->nullable();\n+            $table->decimal('grand_total', 10, 0)->nullable();\n             $table->timestamps();\n             $table->unsignedBigInteger('created_by')->nullable();\n             $table->unsignedBigInteger('updated_by')->nullable();\n             $table->unsignedBigInteger('branch_id')->nullable();\n"
+                }
+            ],
+            "date": 1734018077722,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('productions', function (Blueprint $table) {\n            $table->id();\n            $table->string('code_tr')->nullable();\n            $table->datetime('date_order')->nullable();\n            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();\n            $table->foreignId('from_branch_id')->nullable()->constrained('branches');\n            $table->foreignId('to_branch_id')->nullable()->constrained('branches');\n            $table->string('currency')->nullable();\n            $table->enum('status', ['new', 'transfering', 'done'])->default('new');\n            $table->text('notes')->nullable();\n            $table->decimal('grand_total', 10, 2)->nullable();\n            $table->timestamps();\n            $table->unsignedBigInteger('created_by')->nullable();\n            $table->unsignedBigInteger('updated_by')->nullable();\n            $table->unsignedBigInteger('branch_id')->nullable();\n\n            $table->foreign('created_by')->references('id')->on('users');\n            $table->foreign('updated_by')->references('id')->on('users');\n            $table->foreign('branch_id')->references('id')->on('branches');\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('productions');\n    }\n};\n"
+        }
+    ]
+}

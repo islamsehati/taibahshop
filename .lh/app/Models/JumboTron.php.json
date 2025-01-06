@@ -1,0 +1,30 @@
+{
+    "sourceFile": "app/Models/JumboTron.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1735947829861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1735947913520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,6 @@\n class JumboTron extends Model\n {\n     use HasFactory;\n \n-    protected $fillable = ['name', 'link', 'image', 'is_active'];\n+    protected $fillable = ['name', 'link', 'target', 'image', 'is_active'];\n }\n"
+                },
+                {
+                    "date": 1735948740993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,15 @@\n {\n     use HasFactory;\n \n     protected $fillable = ['name', 'link', 'target', 'image', 'is_active'];\n+\n+    protected static function boot()\n+    {\n+        parent::boot();\n+        static::updating(function ($model) {\n+            if ($model->isDirty('image') && ($model->getOriginal('image') !== null)) {\n+                Storage::disk('public')->delete($model->getOriginal('image'));\n+            }\n+        });\n+    }\n }\n"
+                },
+                {
+                    "date": 1735948747072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n+use Illuminate\\Support\\Facades\\Storage;\n \n class JumboTron extends Model\n {\n     use HasFactory;\n"
+                }
+            ],
+            "date": 1735947829861,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass JumboTron extends Model\n{\n    use HasFactory;\n\n    protected $fillable = ['name', 'link', 'image', 'is_active'];\n}\n"
+        }
+    ]
+}

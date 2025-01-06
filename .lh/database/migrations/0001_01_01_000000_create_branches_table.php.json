@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/0001_01_01_000000_create_branches_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1736004656684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1736004656683,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('branches', function (Blueprint $table) {\n            $table->id();\n            $table->string('name');\n            $table->string('slug')->unique();\n            $table->string('image')->nullable();\n            $table->boolean('is_open')->default(true);\n            $table->boolean('is_active')->default(true);\n            $table->timestamps();\n            // $table->unsignedBigInteger('created_by')->nullable();\n            // $table->unsignedBigInteger('updated_by')->nullable();\n\n            // $table->foreign('created_by')->references('id')->on('users');\n            // $table->foreign('updated_by')->references('id')->on('users');\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('branches');\n    }\n};\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/PaymentResource/Pages/ListPayments.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1735032101787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1735032101787,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\PaymentResource\\Pages;\n\nuse App\\Filament\\Resources\\PaymentResource;\nuse Filament\\Actions;\nuse Filament\\Resources\\Pages\\ListRecords;\n\nclass ListPayments extends ListRecords\n{\n    protected static string $resource = PaymentResource::class;\n\n    protected function getHeaderActions(): array\n    {\n        return [\n            // Actions\\CreateAction::make(),\n        ];\n    }\n}\n"
+        }
+    ]
+}

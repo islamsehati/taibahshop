@@ -1,0 +1,21 @@
+php artisan migrate:fresh
+
+php artisan db:seed --class=DatabaseSeeder
+
+php artisan wilayah:seed
+
+php artisan storage:link
+ln -s /home/obaa8744/postaibah/storage/app/public /home/obaa8744/public_html/taibahshop.com/storage
+
+php artisan shield:install --fresh
+
+php artisan shield:generate --resource=UserResource
+
+php artisan optimize:clear
+
+
+______________________________
+
+
+php artisan make:model Product -m
+php artisan make:filament-resource Customer --generate

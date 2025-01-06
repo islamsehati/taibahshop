@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Filament/Widgets/LatestOrders.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1733941349640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733941389759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n                         'canceled' => 'heroicon-m-x-circle'\n                     })\n                     ->sortable(),\n \n-                TextColumn::make('payment.payment_method')\n+                TextColumn::make('payments.payment_method')\n                     ->sortable()\n                     ->searchable(),\n \n                 TextColumn::make('created_at')\n"
+                }
+            ],
+            "date": 1733941349640,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Widgets;\n\nuse App\\Filament\\Resources\\OrderResource;\nuse App\\Models\\Order;\nuse Filament\\Actions\\Action as ActionsAction;\nuse Filament\\Actions\\Modal\\Actions\\Action;\nuse Filament\\Tables;\nuse Filament\\Tables\\Actions\\Action as TablesActionsAction;\nuse Filament\\Tables\\Actions\\ViewAction;\nuse Filament\\Tables\\Columns\\IconColumn;\nuse Filament\\Tables\\Columns\\TextColumn;\nuse Filament\\Tables\\Table;\nuse Filament\\Widgets\\TableWidget as BaseWidget;\nuse Illuminate\\Support\\Facades\\Auth;\n\nclass LatestOrders extends BaseWidget\n{\n\n    protected int | string | array $columnSpan = 'full';\n    protected static ?int $sort = 2;\n\n    public function table(Table $table): Table\n    {\n        return $table\n            ->query(OrderResource::getEloquentQuery())\n            ->query(function (Order $query) {\n                if (Auth::user()->id != 1) {\n                    return $query->where('branch_id', Auth::user()->branch_id);\n                } else {\n                    return $query;\n                };\n            })\n            ->defaultPaginationPageOption(5)\n            ->defaultSort('created_at', 'desc')\n            ->columns([\n                TextColumn::make('id')\n                    ->label('Order ID')\n                    ->searchable(),\n\n                IconColumn::make('is_paid')\n                    ->label('Paid')\n                    ->boolean()\n                    ->trueColor('info')\n                    ->falseColor('danger')\n                    ->trueIcon('heroicon-o-check-badge')\n                    ->falseIcon('heroicon-o-x-mark')\n                    ->sortable(),\n\n                TextColumn::make('user.name')\n                    ->searchable(),\n\n                TextColumn::make('grand_total')\n                    ->numeric(locale: 'nl')->prefix('Rp '),\n\n                TextColumn::make('status')\n                    ->badge()\n                    ->color(fn(string $state): string => match ($state) {\n                        'new' => 'info',\n                        'processing' => 'warning',\n                        'shipped' => 'gray',\n                        'delivered' => 'success',\n                        'canceled' => 'danger'\n                    })\n                    ->icon(fn(string $state): string => match ($state) {\n                        'new' => 'heroicon-m-sparkles',\n                        'processing' => 'heroicon-m-arrow-path',\n                        'shipped' => 'heroicon-m-truck',\n                        'delivered' => 'heroicon-m-check-badge',\n                        'canceled' => 'heroicon-m-x-circle'\n                    })\n                    ->sortable(),\n\n                TextColumn::make('payment.payment_method')\n                    ->sortable()\n                    ->searchable(),\n\n                TextColumn::make('created_at')\n                    ->label('Order Date')\n                    ->dateTime()\n            ])\n            ->actions([\n                ViewAction::make('View Order')\n                    ->label('View Order')\n                    ->url(fn(Order $record): string => OrderResource::getUrl('view', ['record' => $record]))\n                    ->icon('heroicon-m-eye'),\n            ]);\n    }\n}\n"
+        }
+    ]
+}

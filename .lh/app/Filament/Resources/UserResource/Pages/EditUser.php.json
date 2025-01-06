@@ -1,0 +1,30 @@
+{
+    "sourceFile": "app/Filament/Resources/UserResource/Pages/EditUser.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1733771824943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733771955146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,13 @@\n         $data['updated_oleh'] = auth()->user()->id;\n         return $data;\n     }\n \n-    protected function getRedirectUrl(): string\n+    protected function getRedirectUrl(array $data): array\n     {\n-        function(User $record) {\n-            if($record->is_admin = 0) {\n+        \n+            \n                 return $this->previousUrl;\n-            }   \n-        }\n+            \n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1733771961114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         $data['updated_oleh'] = auth()->user()->id;\n         return $data;\n     }\n \n-    protected function getRedirectUrl(array $data): array\n+    protected function getRedirectUrl(array $data): string\n     {\n \n \n         return $this->previousUrl;\n"
+                },
+                {
+                    "date": 1733771969845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,5 @@\n     {\n         $data['updated_oleh'] = auth()->user()->id;\n         return $data;\n     }\n-\n-    protected function getRedirectUrl($data): string\n-    {\n-\n-\n-        return $this->previousUrl;\n-    }\n }\n"
+                }
+            ],
+            "date": 1733771824943,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\UserResource\\Pages;\n\nuse App\\Filament\\Resources\\UserResource;\nuse App\\Models\\User;\nuse Filament\\Actions;\nuse Filament\\Resources\\Pages\\EditRecord;\n\nclass EditUser extends EditRecord\n{\n    protected static string $resource = UserResource::class;\n\n    protected function getHeaderActions(): array\n    {\n        return [\n            Actions\\DeleteAction::make(),\n        ];\n    }\n\n    protected function mutateFormDataBeforeFill(array $data): array\n    {\n        $data['updated_oleh'] = auth()->user()->id;\n        return $data;\n    }\n\n    protected function getRedirectUrl(): string\n    {\n        function(User $record) {\n            if($record->is_admin = 0) {\n                return $this->previousUrl;\n            }   \n        }\n    }\n}\n"
+        }
+    ]
+}

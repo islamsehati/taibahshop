@@ -1,0 +1,94 @@
+{
+    "sourceFile": "app/Models/Product.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1732727165618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732727220742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get(), 'product_id', 'id');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727252843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->get()->where('order.status', '!=', 'canceled');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727266186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->get()->where('order.status', '!=', 'canceled');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('order.status', '!=', 'canceled');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727291660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('order.status', '!=', 'canceled');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('status', '!=', 'canceled');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727364308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id')->leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('status', '!=', 'canceled');\n+        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('order.status', '!=', 'canceled'), 'product_id', 'id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727386641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->where('order.status', '!=', 'canceled'), 'product_id', 'id');\n+        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get()->where('order.status', '!=', 'canceled'), 'product_id', 'id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727568008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get()->where('order.status', '!=', 'canceled'), 'product_id', 'id');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727656639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,10 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->leftJoin('porders', 'order_items.id', '=', 'porders.id')->get()->where('order.status', '!=', 'canceled')->where('porder.status', '!=', 'canceled');\n+        return $this->hasMany($orderitems, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1732727705242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->leftJoin('porders', 'order_items.id', '=', 'porders.id')->get()->where('order.status', '!=', 'canceled')->where('porder.status', '!=', 'canceled');\n+        $orderitems = OrderItem::class;\n         return $this->hasMany($orderitems, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n"
+                },
+                {
+                    "date": 1732727761023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        $orderitems = OrderItem::class;\n+        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get();\n         return $this->hasMany($orderitems, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n"
+                },
+                {
+                    "date": 1732727784979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get();\n+        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id');\n         return $this->hasMany($orderitems, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n"
+                },
+                {
+                    "date": 1732727837887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,10 +68,9 @@\n         return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n     public function quantities()\n     {\n-        $orderitems = OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id');\n-        return $this->hasMany($orderitems, 'product_id', 'id');\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n     }\n \n     public function ptquantities()\n     {\n"
+                },
+                {
+                    "date": 1733505768375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n         'tags',\n         'cogs',\n         'price',\n         'strikethroughprice',\n+        'low_alert',\n         'is_active',\n         'in_stock',\n         'is_featured',\n         'on_sale',\n"
+                },
+                {
+                    "date": 1733512633382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,25 +63,25 @@\n     {\n         return $this->hasMany(OrderItem::class);\n     }\n \n-    public function pquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n-    public function quantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n+    // public function pquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n+    // public function quantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n \n-    public function ptquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n-    public function tquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n+    // public function ptquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n+    // public function tquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n \n \n     protected static function boot()\n     {\n"
+                },
+                {
+                    "date": 1733512827339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,25 +63,25 @@\n     {\n         return $this->hasMany(OrderItem::class);\n     }\n \n-    // public function pquantities()\n-    // {\n-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    // }\n-    // public function quantities()\n-    // {\n-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    // }\n+    public function pquantities()\n+    {\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    }\n+    public function quantities()\n+    {\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    }\n \n-    // public function ptquantities()\n-    // {\n-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    // }\n-    // public function tquantities()\n-    // {\n-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    // }\n+    public function ptquantities()\n+    {\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    }\n+    public function tquantities()\n+    {\n+        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    }\n \n \n     protected static function boot()\n     {\n"
+                },
+                {
+                    "date": 1733512986056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,25 +63,25 @@\n     {\n         return $this->hasMany(OrderItem::class);\n     }\n \n-    public function pquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n-    public function quantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n+    // public function pquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n+    // public function quantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n \n-    public function ptquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n-    public function tquantities()\n-    {\n-        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n-    }\n+    // public function ptquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n+    // public function tquantities()\n+    // {\n+    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');\n+    // }\n \n \n     protected static function boot()\n     {\n"
+                },
+                {
+                    "date": 1733739422380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n         'name',\n         'variant',\n         'alias',\n         'slug',\n+        'unit_name',\n+        'contain',\n         'description',\n         'images',\n         'category_id',\n         'brand_id',\n"
+                },
+                {
+                    "date": 1735403182591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n         'on_sale',\n         'rating',\n         'created_by',\n         'updated_by',\n+        'updated_at',\n         'branch_id',\n     ];\n \n     protected $casts = [\n"
+                },
+                {
+                    "date": 1735726530576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         'low_alert',\n         'is_active',\n         'in_stock',\n         'is_featured',\n-        'on_sale',\n+        'promo',\n         'rating',\n         'created_by',\n         'updated_by',\n         'updated_at',\n"
+                }
+            ],
+            "date": 1732727165618,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Casts\\Attribute;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough;\nuse Illuminate\\Support\\Facades\\Storage;\n\nclass Product extends Model\n{\n    use HasFactory;\n    protected $fillable = [\n        'sku',\n        'name',\n        'variant',\n        'alias',\n        'slug',\n        'description',\n        'images',\n        'category_id',\n        'brand_id',\n        'tags',\n        'cogs',\n        'price',\n        'strikethroughprice',\n        'is_active',\n        'in_stock',\n        'is_featured',\n        'on_sale',\n        'rating',\n        'created_by',\n        'updated_by',\n        'branch_id',\n    ];\n\n    protected $casts = [\n        'images' => 'array',\n    ];\n\n    public function user()\n    {\n        return $this->belongsTo(User::class);\n    }\n    public function branch()\n    {\n        return $this->belongsTo(Branch::class);\n    }\n\n    public function category()\n    {\n        return $this->belongsTo(Category::class);\n    }\n\n    public function brand()\n    {\n        return $this->belongsTo(Brand::class);\n    }\n\n    public function orderItems()\n    {\n        return $this->hasMany(OrderItem::class);\n    }\n\n    public function pquantities()\n    {\n        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n    }\n    public function quantities()\n    {\n        return $this->hasMany(OrderItem::leftJoin('orders', 'order_items.id', '=', 'orders.id')->get(), 'product_id', 'id');\n    }\n\n    public function ptquantities()\n    {\n        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n    }\n    public function tquantities()\n    {\n        return $this->hasMany(OrderItem::class, 'product_id', 'id');\n    }\n\n\n    protected static function boot()\n    {\n        parent::boot();\n        static::updating(function ($model) {\n            if ($model->isDirty('images') && ($model->getOriginal('images') !== null)) {\n                Storage::disk('public')->delete($model->getOriginal('images'));\n            }\n        });\n    }\n}\n"
+        }
+    ]
+}

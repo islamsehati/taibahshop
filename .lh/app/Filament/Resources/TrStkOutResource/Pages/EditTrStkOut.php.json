@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/TrStkOutResource/Pages/EditTrStkOut.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1735296652264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1735296652264,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\TrStkOutResource\\Pages;\n\nuse App\\Filament\\Resources\\TrStkOutResource;\nuse Filament\\Actions;\nuse Filament\\Resources\\Pages\\EditRecord;\nuse Illuminate\\Support\\Facades\\Auth;\n\nclass EditTrStkOut extends EditRecord\n{\n    protected static string $resource = TrStkOutResource::class;\n\n    protected function getHeaderActions(): array\n    {\n        return [\n            Actions\\ViewAction::make(),\n            Actions\\DeleteAction::make(),\n            Actions\\ForceDeleteAction::make(),\n            Actions\\RestoreAction::make(),\n        ];\n    }\n\n    protected function mutateFormDataBeforeFill(array $data): array\n    {\n        $data['updated_by'] = auth()->user()->id;\n        return $data;\n    }\n}\n"
+        }
+    ]
+}

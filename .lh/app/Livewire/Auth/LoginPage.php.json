@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Livewire/Auth/LoginPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1735839373135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1735839379864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n             return;\n         }\n \n         // redirect to homepage\n-        // return redirect()->intended();\n+        // return redirect('/)->intended();\n         return redirect('/');\n     }\n \n     public function render()\n"
+                }
+            ],
+            "date": 1735839373135,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire\\Auth;\n\nuse Livewire\\Attributes\\Title;\nuse Livewire\\Component;\n\n#[Title('Login')]\nclass LoginPage extends Component\n{\n    public $email;\n    public $password;\n\n    public function login()\n    {\n        $this->validate([\n            'email' => 'required|email|max:255|exists:users,email',\n            'password' => 'required|min:6|max:255',\n        ]);\n\n        if (!auth()->attempt(['email' => $this->email, 'password' => $this->password])) {\n            session()->flash('error', 'invalid credentials');\n            return;\n        }\n\n        // redirect to homepage\n        // return redirect()->intended();\n        return redirect('/');\n    }\n\n    public function render()\n    {\n        return view('livewire.auth.login-page');\n    }\n}\n"
+        }
+    ]
+}

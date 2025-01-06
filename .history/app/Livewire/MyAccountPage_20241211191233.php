@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Branch;
+use App\Models\User;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+use Vermaysha\Wilayah\Models\City;
+use Vermaysha\Wilayah\Models\District;
+use Vermaysha\Wilayah\Models\Province;
+use Vermaysha\Wilayah\Models\Village;
+
+class MyAccountPage extends Component
+{
+
+    #[Url()]
+    public $name;
+    #[Url()]
+    public $phone;
+    #[Url()]
+    public $email;
+    #[Url()]
+    public $password;
+
+    #[Url()]
+    public $state;
+    #[Url()]
+    public $city;
+    #[Url()]
+    public $district;
+    #[Url()]
+    public $village;
+    #[Url()]
+    public $street_address;
+    #[Url()]
+    public $zip_code;
+
+    public function mount()
+    {
+
+        $this->name = User::where('id', auth()->user()->id)->value('name');
+        $this->phone = User::where('id', auth()->user()->id)->value('phone');
+        $this->email = User::where('id', auth()->user()->id)->value('email');
+        $this->password = User::where('id', auth()->user()->id)->value('password');
+        $this->state = Province::where('province_code', User::where('id', auth()->user()->id)->value('state'))->value('name');
+        $this->city = City::where('province_code', User::where('id', auth()->user()->id)->value('city'))->value('name');
+        $this->district = District::where('province_code', User::where('id', auth()->user()->id)->value('district'))->value('name');
+        $this->village = Village::where('province_code', User::where('id', auth()->user()->id)->value('village'))->value('name');
+        $this->street_address = User::where('id', auth()->user()->id)->value('street_address');
+        $this->zip_code = User::where('id', auth()->user()->id)->value('zip_code');
+    }
+
+    public function render()
+    {
+        return view('livewire.my-account-page', []);
+    }
+}

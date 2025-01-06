@@ -1,0 +1,54 @@
+{
+    "sourceFile": "app/Filament/Resources/PorderResource/Pages/EditPorder.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1734936416607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1734936430082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,13 @@\n \n namespace App\\Filament\\Resources\\PorderResource\\Pages;\n \n use App\\Filament\\Resources\\PorderResource;\n+use App\\Models\\Payment;\n use Filament\\Actions;\n use Filament\\Resources\\Pages\\EditRecord;\n use Illuminate\\Support\\Facades\\Auth;\n+use Illuminate\\Database\\Eloquent\\Model;\n \n class EditPorder extends EditRecord\n {\n     protected static string $resource = PorderResource::class;\n"
+                },
+                {
+                    "date": 1734936615297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,40 @@\n+<?php\n+\n+namespace App\\Filament\\Resources\\PorderResource\\Pages;\n+\n+use App\\Filament\\Resources\\PorderResource;\n+use App\\Models\\Payment;\n+use Filament\\Actions;\n+use Filament\\Resources\\Pages\\EditRecord;\n+use Illuminate\\Support\\Facades\\Auth;\n+use Illuminate\\Database\\Eloquent\\Model;\n+\n+class EditPorder extends EditRecord\n+{\n+    protected static string $resource = PorderResource::class;\n+\n+    protected function getHeaderActions(): array\n+    {\n+        return [\n+            Actions\\ViewAction::make(),\n+            Actions\\DeleteAction::make(),\n+        ];\n+    }\n+\n+    protected function mutateFormDataBeforeFill(array $data): array\n+    {\n+        $data['updated_by'] = auth()->user()->id;\n+        return $data;\n+    }\n+\n+    protected function handleRecordUpdate(Model $record, array $data): Model\n+    {\n+        if ($record->is_paid == 1) {\n+            $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n+        } else {\n+            $data['paid_at'] = null;\n+        }\n+        $record->update($data);\n+        return $record;\n+    }\n+}\n"
+                },
+                {
+                    "date": 1734943501156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $data['updated_by'] = auth()->user()->id;\n         return $data;\n     }\n \n-    protected function handleRecordUpdate(Model $record, array $data): Model\n+    protected function afterSave(Model $record, array $data): Model\n     {\n         if ($record->is_paid == 1) {\n             $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n         } else {\n"
+                },
+                {
+                    "date": 1734944088498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $data['updated_by'] = auth()->user()->id;\n         return $data;\n     }\n \n-    protected function afterSave(Model $record, array $data): Model\n+    protected function handleRecordUpdate(Model $record, array $data): Model\n     {\n         if ($record->is_paid == 1) {\n             $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n         } else {\n"
+                },
+                {
+                    "date": 1734946501562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \n     protected function handleRecordUpdate(Model $record, array $data): Model\n     {\n         if ($record->is_paid == 1) {\n-            $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n+            $data['paid_at'] = Payment::where('porder_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n         } else {\n             $data['paid_at'] = null;\n         }\n         $record->update($data);\n"
+                },
+                {
+                    "date": 1734947083693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,41 +37,4 @@\n         $record->update($data);\n         return $record;\n     }\n }\n-<?php\n-\n-namespace App\\Filament\\Resources\\PorderResource\\Pages;\n-\n-use App\\Filament\\Resources\\PorderResource;\n-use App\\Models\\Payment;\n-use Filament\\Actions;\n-use Filament\\Resources\\Pages\\EditRecord;\n-use Illuminate\\Support\\Facades\\Auth;\n-use Illuminate\\Database\\Eloquent\\Model;\n-\n-class EditPorder extends EditRecord\n-{\n-    protected static string $resource = PorderResource::class;\n-\n-    protected function getHeaderActions(): array\n-    {\n-        return [\n-            Actions\\ViewAction::make(),\n-            Actions\\DeleteAction::make(),\n-        ];\n-    }\n-\n-    protected function mutateFormDataBeforeFill(array $data): array\n-    {\n-        $data['updated_by'] = auth()->user()->id;\n-        return $data;\n-    }\n-\n-    protected function handleRecordUpdate(Model $record, array $data): Model\n-    {\n-        $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n-        $record->update($data);\n-\n-        return $record;\n-    }\n-}\n"
+                },
+                {
+                    "date": 1734947159153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \n     protected function handleRecordUpdate(Model $record, array $data): Model\n     {\n         if ($record->is_paid == 1) {\n-            $data['paid_at'] = Payment::where('porder_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n+            $data['paid_at'] = Payment::where('porder_id', $record->id)->orderBy('date_payment', 'desc')->value('date_payment');\n         } else {\n             $data['paid_at'] = null;\n         }\n         $record->update($data);\n"
+                },
+                {
+                    "date": 1734947288213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,45 @@\n+<?php\n+\n+namespace App\\Filament\\Resources\\PorderResource\\Pages;\n+\n+use App\\Filament\\Resources\\PorderResource;\n+use App\\Models\\Payment;\n+use Filament\\Actions;\n+use Filament\\Resources\\Pages\\EditRecord;\n+use Illuminate\\Support\\Facades\\Auth;\n+use Illuminate\\Database\\Eloquent\\Model;\n+\n+class EditPorder extends EditRecord\n+{\n+    protected static string $resource = PorderResource::class;\n+\n+    protected function getHeaderActions(): array\n+    {\n+        return [\n+            Actions\\ViewAction::make(),\n+            Actions\\DeleteAction::make(),\n+        ];\n+    }\n+\n+    protected function mutateFormDataBeforeFill(array $data): array\n+    {\n+        $data['updated_by'] = auth()->user()->id;\n+        return $data;\n+    }\n+\n+    protected function handleRecordUpdate(Model $record, array $data): Model\n+    {\n+        if ($record->is_paid == 1) {\n+            $data['paid_at'] = Payment::where('porder_id', $record->id)->orderBy('date_payment', 'desc')->value('date_payment');\n+        } else {\n+            $data['paid_at'] = null;\n+        }\n+        $record->update($data);\n+        return $record;\n+    }\n+\n+    protected function getRedirectUrl(): string\n+    {\n+        return $this->previousUrl;\n+    }\n+}\n"
+                },
+                {
+                    "date": 1735296706902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,10 @@\n     {\n         return [\n             Actions\\ViewAction::make(),\n             Actions\\DeleteAction::make(),\n+            Actions\\ForceDeleteAction::make(),\n+            Actions\\RestoreAction::make(),\n         ];\n     }\n \n     protected function mutateFormDataBeforeFill(array $data): array\n"
+                }
+            ],
+            "date": 1734936416606,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\PorderResource\\Pages;\n\nuse App\\Filament\\Resources\\PorderResource;\nuse Filament\\Actions;\nuse Filament\\Resources\\Pages\\EditRecord;\nuse Illuminate\\Support\\Facades\\Auth;\n\nclass EditPorder extends EditRecord\n{\n    protected static string $resource = PorderResource::class;\n\n    protected function getHeaderActions(): array\n    {\n        return [\n            Actions\\ViewAction::make(),\n            Actions\\DeleteAction::make(),\n        ];\n    }\n\n    protected function mutateFormDataBeforeFill(array $data): array\n    {\n        $data['updated_by'] = auth()->user()->id;\n        return $data;\n    }\n\n    protected function handleRecordUpdate(Model $record, array $data): Model\n    {\n        $data['paid_at'] = Payment::where('order_id', $record->id)->orderBy('date_payment', 'desc')->get()->value('date_payment');\n        $record->update($data);\n\n        return $record;\n    }\n}\n"
+        }
+    ]
+}

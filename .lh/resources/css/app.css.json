@@ -1,0 +1,26 @@
+{
+    "sourceFile": "resources/css/app.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1736137916720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1736142092891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import url(\"https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap\");\r\n+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Marko+One&family=Oleo+Script:wght@400;700&display=swap');\r\n \r\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n"
+                },
+                {
+                    "date": 1736142420416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import url(\"https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Marko+One&family=Oleo+Script:wght@400;700&display=swap\");\r\n+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Lobster&family=Marko+One&family=Oleo+Script:wght@400;700&display=swap');\r\n \r\n @tailwind base;\r\n @tailwind components;\r\n @tailwind utilities;\r\n"
+                }
+            ],
+            "date": 1736137916720,
+            "name": "Commit-0",
+            "content": "@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');\r\n\r\n@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;"
+        }
+    ]
+}

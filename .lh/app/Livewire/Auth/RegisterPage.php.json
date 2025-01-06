@@ -1,0 +1,62 @@
+{
+    "sourceFile": "app/Livewire/Auth/RegisterPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1733763029364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733763045077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n \n         // save to database\n         $user = new User();\n         $user->name = $this->name;\n+        $user->phone = $this->phone;\n         $user->email = $this->email;\n         $user->password = Hash::make($this->password);\n         $user->created_by = 1;\n         $user->updated_by = 1;\n"
+                },
+                {
+                    "date": 1733763415257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n         $user->name = $this->name;\n         $user->phone = $this->phone;\n         $user->email = $this->email;\n         $user->password = Hash::make($this->password);\n-        $user->created_by = 1;\n-        $user->updated_by = 1;\n+        $user->created_oleh = 1;\n+        $user->updated_oleh = 1;\n         $user->save();\n \n         // login user\n         Auth::login($user, true);\n"
+                },
+                {
+                    "date": 1733820288565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,12 @@\n use Illuminate\\Support\\Facades\\Hash;\n use Livewire\\Attributes\\Title;\n use Livewire\\Component;\n use Illuminate\\Support\\Facades\\Auth;\n+use Vermaysha\\Wilayah\\Models\\City;\n+use Vermaysha\\Wilayah\\Models\\District;\n+use Vermaysha\\Wilayah\\Models\\Province;\n+use Vermaysha\\Wilayah\\Models\\Village;\n \n #[Title('Register')]\n class RegisterPage extends Component\n \n@@ -51,7 +55,17 @@\n     }\n \n     public function render()\n     {\n-        return view('livewire.auth.register-page');\n+        $states = Province::all();\n+        $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n+        $districts = District::all()->where('city_code', $this->city)->sortBy('name');\n+        $villages = Village::all()->where('district_code', $this->district)->sortBy('name');\n+\n+        return view('livewire.auth.register-page', [\n+            'states' => $states,\n+            'cities' => $cities,\n+            'districts' => $districts,\n+            'villages' => $villages,\n+        ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1733820366180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,13 @@\n     public $phone;\n     public $email;\n     public $password;\n \n+    public $state;\n+    public $city;\n+    public $district;\n+    public $village;\n+\n     // regiter user\n     public function register()\n     {\n         // dd($this->name, $this->email, $this->password);\n"
+                },
+                {
+                    "date": 1733821015876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,10 @@\n     public $state;\n     public $city;\n     public $district;\n     public $village;\n+    public $street_address;\n+    public $zip_code;\n \n     // regiter user\n     public function register()\n     {\n@@ -36,8 +38,13 @@\n             'name' => 'required|max:255',\n             'phone' => 'required|max:255',\n             'email' => 'required|email|unique:users|max:255',\n             'password' => 'required|min:6|max:255',\n+            'state' => 'required|max:255',\n+            'city' => 'required|max:255',\n+            'district' => 'required|max:255',\n+            'village' => 'required|max:255',\n+            'street_address' => 'required|max:255',\n         ]);\n \n         // save to database\n         $user = new User();\n@@ -46,8 +53,15 @@\n         $user->email = $this->email;\n         $user->password = Hash::make($this->password);\n         $user->created_oleh = 1;\n         $user->updated_oleh = 1;\n+\n+        $user->state = $this->state;\n+        $user->city = $this->city;\n+        $user->district = $this->district;\n+        $user->village = $this->village;\n+        $user->street_address = $this->street_address;\n+        $user->zip_code = $this->zip_code;\n         $user->save();\n \n         // login user\n         Auth::login($user, true);\n"
+                },
+                {
+                    "date": 1733822040264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,16 @@\n namespace App\\Livewire\\Auth;\n \n use App\\Models\\User;\n use Illuminate\\Support\\Facades\\Hash;\n-use Livewire\\Attributes\\Title;\n use Livewire\\Component;\n use Illuminate\\Support\\Facades\\Auth;\n use Vermaysha\\Wilayah\\Models\\City;\n use Vermaysha\\Wilayah\\Models\\District;\n use Vermaysha\\Wilayah\\Models\\Province;\n use Vermaysha\\Wilayah\\Models\\Village;\n+use Livewire\\Attributes\\Title;\n+use Livewire\\Attributes\\Url;\n \n #[Title('Register')]\n class RegisterPage extends Component\n \n@@ -21,11 +22,15 @@\n     public $phone;\n     public $email;\n     public $password;\n \n+    #[Url()]\n     public $state;\n+    #[Url()]\n     public $city;\n+    #[Url()]\n     public $district;\n+    #[Url()]\n     public $village;\n     public $street_address;\n     public $zip_code;\n \n"
+                },
+                {
+                    "date": 1733830529436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,14 @@\n         // return redirect('/');\n         // redirect()->route('login');\n     }\n \n+    // change Branch in User\n+    public function refreshReg()\n+    {\n+        $this->dispatch('register-page');\n+    }\n+\n     public function render()\n     {\n         $states = Province::all();\n         $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n"
+                },
+                {
+                    "date": 1733831244259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,12 +16,15 @@\n #[Title('Register')]\n class RegisterPage extends Component\n \n {\n-\n+    #[Url()]\n     public $name;\n+    #[Url()]\n     public $phone;\n+    #[Url()]\n     public $email;\n+    #[Url()]\n     public $password;\n \n     #[Url()]\n     public $state;\n@@ -30,9 +33,11 @@\n     #[Url()]\n     public $district;\n     #[Url()]\n     public $village;\n+    #[Url()]\n     public $street_address;\n+    #[Url()]\n     public $zip_code;\n \n     // regiter user\n     public function register()\n"
+                },
+                {
+                    "date": 1733833283480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,8 @@\n         // return redirect('/');\n         // redirect()->route('login');\n     }\n \n-    // change Branch in User\n     public function refreshReg()\n     {\n         $this->dispatch('register-page');\n     }\n"
+                },
+                {
+                    "date": 1734402463978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,24 @@\n         // return redirect('/');\n         // redirect()->route('login');\n     }\n \n+    public function changeState()\n+    {\n+        $this->city = \"\";\n+        $this->district = \"\";\n+        $this->village = \"\";\n+    }\n+    public function changeCity()\n+    {\n+        $this->district = \"\";\n+        $this->village = \"\";\n+    }\n+    public function changeDistrict()\n+    {\n+        $this->village = \"\";\n+    }\n+\n     public function refreshReg()\n     {\n         $this->dispatch('register-page');\n     }\n"
+                },
+                {
+                    "date": 1735192593296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,9 @@\n         $user->email = $this->email;\n         $user->password = Hash::make($this->password);\n         $user->created_oleh = 1;\n         $user->updated_oleh = 1;\n+        $user->branch_id  = 1;\n \n         $user->state = $this->state;\n         $user->city = $this->city;\n         $user->district = $this->district;\n"
+                }
+            ],
+            "date": 1733763029364,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire\\Auth;\n\nuse App\\Models\\User;\nuse Illuminate\\Support\\Facades\\Hash;\nuse Livewire\\Attributes\\Title;\nuse Livewire\\Component;\nuse Illuminate\\Support\\Facades\\Auth;\n\n#[Title('Register')]\nclass RegisterPage extends Component\n\n{\n\n    public $name;\n    public $phone;\n    public $email;\n    public $password;\n\n    // regiter user\n    public function register()\n    {\n        // dd($this->name, $this->email, $this->password);\n\n        $this->validate([\n            'name' => 'required|max:255',\n            'phone' => 'required|max:255',\n            'email' => 'required|email|unique:users|max:255',\n            'password' => 'required|min:6|max:255',\n        ]);\n\n        // save to database\n        $user = new User();\n        $user->name = $this->name;\n        $user->email = $this->email;\n        $user->password = Hash::make($this->password);\n        $user->created_by = 1;\n        $user->updated_by = 1;\n        $user->save();\n\n        // login user\n        Auth::login($user, true);\n        // Auth::login($user);\n\n        // redirect to homepage\n        return redirect()->intended();\n        // return redirect('/');\n        // redirect()->route('login');\n    }\n\n    public function render()\n    {\n        return view('livewire.auth.register-page');\n    }\n}\n"
+        }
+    ]
+}

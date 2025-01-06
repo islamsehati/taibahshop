@@ -1,0 +1,50 @@
+{
+    "sourceFile": "app/Models/Production.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1734018297311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1734018310304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,5 +21,17 @@\n         'created_by',\n         'updated_by',\n         'branch_id',\n     ];\n+    public function branch()\n+    {\n+        return $this->hasMany(Branch::class);\n+    }\n+    public function user()\n+    {\n+        return $this->belongsTo(User::class);\n+    }\n+    public function items()\n+    {\n+        return $this->hasMany(OrderItem::class);\n+    }\n }\n"
+                },
+                {
+                    "date": 1734018316948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n \n class Production extends Model\n {\n     use HasFactory;\n+    \n     protected $fillable = [\n         'code_tr',\n         'date_order',\n         'user_id',\n@@ -21,8 +22,9 @@\n         'created_by',\n         'updated_by',\n         'branch_id',\n     ];\n+\n     public function branch()\n     {\n         return $this->hasMany(Branch::class);\n     }\n"
+                },
+                {
+                    "date": 1734018541248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,8 @@\n     protected $fillable = [\n         'code_tr',\n         'date_order',\n         'user_id',\n-        'from_branch_id',\n-        'to_branch_id',\n         'currency',\n         'status',\n         'notes',\n         'grand_total',\n"
+                },
+                {
+                    "date": 1734018571644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,37 @@\n+<?php\n+\n+namespace App\\Models;\n+\n+use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n+use Illuminate\\Database\\Eloquent\\Model;\n+\n+class Production extends Model\n+{\n+    use HasFactory;\n+\n+    protected $fillable = [\n+        'code_tr',\n+        'date_order',\n+        'user_id',\n+        'currency',\n+        'status',\n+        'notes',\n+        'grand_total',\n+        'created_by',\n+        'updated_by',\n+        'branch_id',\n+    ];\n+\n+    public function branch()\n+    {\n+        return $this->hasMany(Branch::class);\n+    }\n+    public function user()\n+    {\n+        return $this->belongsTo(User::class);\n+    }\n+    public function items()\n+    {\n+        return $this->hasMany(OrderItem::class);\n+    }\n+}\n"
+                },
+                {
+                    "date": 1734018599102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,8 @@\n         'updated_by',\n         'branch_id',\n     ];\n \n-    public function branch()\n-    {\n-        return $this->hasMany(Branch::class);\n-    }\n     public function user()\n     {\n         return $this->belongsTo(User::class);\n     }\n"
+                },
+                {
+                    "date": 1734019713626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,41 +30,4 @@\n     {\n         return $this->hasMany(OrderItem::class);\n     }\n }\n-<?php\n-\n-namespace App\\Models;\n-\n-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n-use Illuminate\\Database\\Eloquent\\Model;\n-\n-class Production extends Model\n-{\n-    use HasFactory;\n-    \n-    protected $fillable = [\n-        'code_tr',\n-        'date_order',\n-        'user_id',\n-        'currency',\n-        'status',\n-        'notes',\n-        'grand_total',\n-        'created_by',\n-        'updated_by',\n-        'branch_id',\n-    ];\n-\n-    public function branch()\n-    {\n-        return $this->hasMany(Branch::class);\n-    }\n-    public function user()\n-    {\n-        return $this->belongsTo(User::class);\n-    }\n-    public function items()\n-    {\n-        return $this->hasMany(OrderItem::class);\n-    }\n-}\n"
+                },
+                {
+                    "date": 1735296550334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,13 @@\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n+use Illuminate\\Database\\Eloquent\\SoftDeletes;\n \n class Production extends Model\n {\n-    use HasFactory;\n+    use HasFactory, SoftDeletes;\n \n     protected $fillable = [\n         'code_tr',\n         'date_order',\n"
+                },
+                {
+                    "date": 1735403144181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n         'notes',\n         'grand_total',\n         'created_by',\n         'updated_by',\n+        'updated_at',\n         'branch_id',\n     ];\n \n     public function user()\n"
+                }
+            ],
+            "date": 1734018297311,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Production extends Model\n{\n    use HasFactory;\n    protected $fillable = [\n        'code_tr',\n        'date_order',\n        'user_id',\n        'from_branch_id',\n        'to_branch_id',\n        'currency',\n        'status',\n        'notes',\n        'grand_total',\n        'created_by',\n        'updated_by',\n        'branch_id',\n    ];\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "sourceFile": "app/Imports/ProductsImport.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1733511134371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733511164980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n             'cogs' => $row[11],\n             'price' => $row[12],\n             'strikethroughprice' => $row[13],\n \n-            'is_active' => $row[14],\n+            'low_alert' => $row[14],\n             'is_active' => $row[15],\n             'in_stock' => $row[16],\n             'is_featured' => $row[17],\n             'on_sale' => $row[18],\n"
+                },
+                {
+                    "date": 1733819878049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,27 +20,29 @@\n             'name' => $row[1],\n             'variant' => $row[2],\n             'alias' => $row[3],\n             'slug' => $row[4],\n-            'description' => $row[5],\n-            'images' => $row[6],\n+            'unit_name' => $row[5],\n+            'contain' => $row[6],\n+            'description' => $row[7],\n+            'images' => $row[8],\n \n-            'branch_id' => $row[7],\n-            'category_id' => $row[8],\n-            'brand_id' => $row[9],\n-            'tags' => $row[10],\n+            'branch_id' => $row[9],\n+            'category_id' => $row[10],\n+            'brand_id' => $row[11],\n+            'tags' => $row[12],\n \n-            'cogs' => $row[11],\n-            'price' => $row[12],\n-            'strikethroughprice' => $row[13],\n+            'cogs' => $row[13],\n+            'price' => $row[14],\n+            'strikethroughprice' => $row[15],\n \n-            'low_alert' => $row[14],\n-            'is_active' => $row[15],\n-            'in_stock' => $row[16],\n-            'is_featured' => $row[17],\n-            'on_sale' => $row[18],\n-            'rating' => $row[19],\n-            'created_by' => $row[20],\n+            'low_alert' => $row[16],\n+            'is_active' => $row[17],\n+            'in_stock' => $row[18],\n+            'is_featured' => $row[19],\n+            'on_sale' => $row[20],\n+            'rating' => $row[21],\n+            'created_by' => $row[22],\n \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1735054318328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,9 @@\n             'is_featured' => $row[19],\n             'on_sale' => $row[20],\n             'rating' => $row[21],\n             'created_by' => $row[22],\n+            'edited_by' => $row[23],\n \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1735057933685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n             'is_featured' => $row[19],\n             'on_sale' => $row[20],\n             'rating' => $row[21],\n             'created_by' => $row[22],\n-            'edited_by' => $row[23],\n+            'updated_by' => $row[23],\n \n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1735726606738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             'low_alert' => $row[16],\n             'is_active' => $row[17],\n             'in_stock' => $row[18],\n             'is_featured' => $row[19],\n-            'on_sale' => $row[20],\n+            'promo' => $row[20],\n             'rating' => $row[21],\n             'created_by' => $row[22],\n             'updated_by' => $row[23],\n \n"
+                }
+            ],
+            "date": 1733511134371,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Imports;\n\nuse App\\Models\\Product;\nuse Maatwebsite\\Excel\\Concerns\\ToModel;\n\nclass ProductsImport implements ToModel\n{\n    /**\n     * @param array $row\n     *\n     * @return \\Illuminate\\Database\\Eloquent\\Model|null\n     */\n    public function model(array $row)\n    {\n        return new Product([\n\n            'sku' => $row[0],\n            'name' => $row[1],\n            'variant' => $row[2],\n            'alias' => $row[3],\n            'slug' => $row[4],\n            'description' => $row[5],\n            'images' => $row[6],\n\n            'branch_id' => $row[7],\n            'category_id' => $row[8],\n            'brand_id' => $row[9],\n            'tags' => $row[10],\n\n            'cogs' => $row[11],\n            'price' => $row[12],\n            'strikethroughprice' => $row[13],\n\n            'is_active' => $row[14],\n            'is_active' => $row[15],\n            'in_stock' => $row[16],\n            'is_featured' => $row[17],\n            'on_sale' => $row[18],\n            'rating' => $row[19],\n            'created_by' => $row[20],\n\n        ]);\n    }\n}\n"
+        }
+    ]
+}

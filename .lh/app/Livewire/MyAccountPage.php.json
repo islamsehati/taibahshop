@@ -1,0 +1,38 @@
+{
+    "sourceFile": "app/Livewire/MyAccountPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1733918609730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733918847391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,16 @@\n <?php\n \n namespace App\\Livewire;\n \n+use App\\Models\\Branch;\n+use App\\Models\\User;\n use Livewire\\Attributes\\Url;\n use Livewire\\Component;\n+use Vermaysha\\Wilayah\\Models\\City;\n+use Vermaysha\\Wilayah\\Models\\District;\n+use Vermaysha\\Wilayah\\Models\\Province;\n+use Vermaysha\\Wilayah\\Models\\Village;\n \n class MyAccountPage extends Component\n {\n \n@@ -29,8 +35,29 @@\n     public $street_address;\n     #[Url()]\n     public $zip_code;\n \n+    public function mount() {\n+        $states = Province::all();\n+        $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n+        $districts = District::all()->where('city_code', $this->city)->sortBy('name');\n+        $villages = Village::all()->where('district_code', $this->district)->sortBy('name');\n+        $users = User::all();\n+        $branches = Branch::all();\n+\n+        $this->name = ;\n+        $this->phone = ;\n+        $this->email = ;\n+        $this->password = ;\n+        $this->state = ;\n+        $this->city = ;\n+        $this->district = ;\n+        $this->village = ;\n+        $this->street_address = ;\n+        $this->zip_code = ;\n+\n+    }\n+\n     public function render()\n     {\n         return view('livewire.my-account-page');\n     }\n"
+                },
+                {
+                    "date": 1733918952768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,12 +40,11 @@\n         $states = Province::all();\n         $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n         $districts = District::all()->where('city_code', $this->city)->sortBy('name');\n         $villages = Village::all()->where('district_code', $this->district)->sortBy('name');\n-        $users = User::all();\n         $branches = Branch::all();\n \n-        $this->name = ;\n+        $this->name = User::where('id', auth()->user()->id)->value('name');\n         $this->phone = ;\n         $this->email = ;\n         $this->password = ;\n         $this->state = ;\n@@ -58,7 +57,9 @@\n     }\n \n     public function render()\n     {\n-        return view('livewire.my-account-page');\n+        return view('livewire.my-account-page',[\n+\n+        ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1733919153155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,24 +36,19 @@\n     #[Url()]\n     public $zip_code;\n \n     public function mount() {\n-        $states = Province::all();\n-        $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n-        $districts = District::all()->where('city_code', $this->city)->sortBy('name');\n-        $villages = Village::all()->where('district_code', $this->district)->sortBy('name');\n-        $branches = Branch::all();\n \n         $this->name = User::where('id', auth()->user()->id)->value('name');\n-        $this->phone = ;\n-        $this->email = ;\n-        $this->password = ;\n-        $this->state = ;\n-        $this->city = ;\n-        $this->district = ;\n-        $this->village = ;\n-        $this->street_address = ;\n-        $this->zip_code = ;\n+        $this->phone = User::where('id', auth()->user()->id)->value('phone');\n+        $this->email = User::where('id', auth()->user()->id)->value('email');\n+        $this->password = User::where('id', auth()->user()->id)->value('password');\n+        $this->state = Province::where('province_code',User::where('id', auth()->user()->id)->value('state'))->value('name');\n+        $this->city = City::where('province_code', User::where('id', auth()->user()->id)->value('city'))->value('name');\n+        $this->district = District::where('province_code', User::where('id', auth()->user()->id)->value('district'))->value('name');\n+        $this->village = Village::where('province_code', User::where('id', auth()->user()->id)->value('village'))->value('name');\n+        $this->street_address = User::where('id', auth()->user()->id)->value('street_address');\n+        $this->zip_code = User::where('id', auth()->user()->id)->value('zip_code');\n \n     }\n \n     public function render()\n"
+                },
+                {
+                    "date": 1733919162085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,7 +52,7 @@\n     }\n \n     public function render()\n     {\n-        return view('livewire.my-account-page', []);\n+        return view('livewire.my-account-page');\n     }\n }\n"
+                },
+                {
+                    "date": 1733919261968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,7 +52,20 @@\n     }\n \n     public function render()\n     {\n-        return view('livewire.my-account-page');\n+        $states = Province::all();\n+        $cities = City::all()->where('province_code', $this->state)->sortByDesc('name');\n+        $districts = District::all()->where('city_code', $this->city)->sortBy('name');\n+        $villages = Village::all()->where('district_code', $this->district)->sortBy('name');\n+\n+        $users = User::all();\n+\n+        return view('livewire.my-account-page',[\n+            'states' => $states,\n+            'cities' => $cities,\n+            'districts' => $districts,\n+            'villages' => $villages,\n+            'users' => $users,\n+        ]);\n     }\n }\n"
+                }
+            ],
+            "date": 1733918609729,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire;\n\nuse Livewire\\Attributes\\Url;\nuse Livewire\\Component;\n\nclass MyAccountPage extends Component\n{\n\n    #[Url()]\n    public $name;\n    #[Url()]\n    public $phone;\n    #[Url()]\n    public $email;\n    #[Url()]\n    public $password;\n\n    #[Url()]\n    public $state;\n    #[Url()]\n    public $city;\n    #[Url()]\n    public $district;\n    #[Url()]\n    public $village;\n    #[Url()]\n    public $street_address;\n    #[Url()]\n    public $zip_code;\n\n    public function render()\n    {\n        return view('livewire.my-account-page');\n    }\n}\n"
+        }
+    ]
+}

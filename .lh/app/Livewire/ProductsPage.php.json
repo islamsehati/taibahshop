@@ -1,0 +1,134 @@
+{
+    "sourceFile": "app/Livewire/ProductsPage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 29,
+            "patches": [
+                {
+                    "date": 1731217467620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732195994173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         $total_count = CartManagement::addItemToCart($product_id);\n         $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n \n         $this->alert('success', 'Added to the Cart', [\n-            'position' => 'top',\n+            'position' => 'bottom',\n             'timer' => 3000,\n             'toast' => true,\n         ]);\n     }\n"
+                },
+                {
+                    "date": 1732364437752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,11 @@\n \n     #[Url()]\n     public $branch = '';\n \n+    #[Url()]\n+    public $page;\n+\n     // add product to cart method\n     public function addToCart($product_id)\n     {\n         $total_count = CartManagement::addItemToCart($product_id);\n"
+                },
+                {
+                    "date": 1732364454189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n     #[Url()]\n     public $branch = '';\n \n     #[Url()]\n-    public $page;\n+    public $page = '';\n \n     // add product to cart method\n     public function addToCart($product_id)\n     {\n"
+                },
+                {
+                    "date": 1732364548194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,7 +106,8 @@\n             'orderitem' => $orderitems,\n             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'branches' => Branch::where('is_active', 1)->get(['id', 'name', 'slug']),\n+            'page' => $this->page,\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1732364621181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n     #[Url()]\n     public $branch = '';\n \n     #[Url()]\n-    public $page = '';\n+    public $page;\n \n     // add product to cart method\n     public function addToCart($product_id)\n     {\n"
+                },
+                {
+                    "date": 1732364854081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,8 @@\n \n     #[Url()]\n     public $branch = '';\n \n-    #[Url()]\n-    public $page;\n-\n     // add product to cart method\n     public function addToCart($product_id)\n     {\n         $total_count = CartManagement::addItemToCart($product_id);\n@@ -106,8 +103,7 @@\n             'orderitem' => $orderitems,\n             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'branches' => Branch::where('is_active', 1)->get(['id', 'name', 'slug']),\n-            'page' => $this->page,\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1732368584282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,25 +85,32 @@\n         if ($this->sort == 'price') {\n             $productQuery->orderBy('price');\n         }\n         if (!empty($this->cari)) {\n-            $productQuery->where('branch_id', '=', $this->branch)\n+            $productQuery->where('branch_id', $this->branch)\n                 ->orWhere('name', 'like', \"%{$this->cari}%\")\n                 ->orWhere('variant', 'like', \"%{$this->cari}%\")\n                 ->orWhere('description', 'like', \"%{$this->cari}%\")\n                 ->orWhere('tags', 'like', \"%{$this->cari}%\");\n         }\n         if (empty($this->branch)) {\n-            $productQuery->where('branch_id', '=', 1);\n+            $productQuery->where('branch_id', 1);\n         } else {\n-            $productQuery->where('branch_id', '=', $this->branch);\n+            $productQuery->where('branch_id', $this->branch);\n         }\n \n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null) {\n+            $url = 0;\n+        } else {\n+            $url = 1;\n+        }\n+\n         return view('livewire.products-page', [\n             'products' => $productQuery->paginate(10),\n             'orderitem' => $orderitems,\n             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),\n             'branches' => Branch::where('is_active', 1)->get(['id', 'name', 'slug']),\n+            'url' => $url,\n         ]);\n     }\n }\n"
+                },
+                {
+                    "date": 1732368593458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,11 @@\n \n     #[Url()]\n     public $branch = '';\n \n+    #[Url()]\n+    public $page = '';\n+\n     // add product to cart method\n     public function addToCart($product_id)\n     {\n         $total_count = CartManagement::addItemToCart($product_id);\n"
+                },
+                {
+                    "date": 1732374847380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null) {\n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured != 1 && $this->on_sale != 1) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732374879854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured != 1 && $this->on_sale != 1) {\n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594138619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == null || $this->branch == null || $this->cari == null || $this->selected_categories == null || $this->selected_brands == null || $this->featured == null || $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594193089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null || $this->branch == null || $this->cari == null || $this->selected_categories == null || $this->selected_brands == null || $this->featured == null || $this->on_sale == null) {\n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594205238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,12 +100,12 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == null || $this->branch == null || $this->cari == null || $this->selected_categories == null || $this->selected_brands == null || $this->featured == null || $this->on_sale == null) {\n+            $url = 1;\n+        } else {\n             $url = 0;\n-        } else {\n-            $url = 1;\n         }\n \n         return view('livewire.products-page', [\n             'products' => $productQuery->paginate(10),\n"
+                },
+                {
+                    "date": 1732594226539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -101,11 +101,11 @@\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n         if ($this->page == null || $this->branch == null || $this->cari == null || $this->selected_categories == null || $this->selected_brands == null || $this->featured == null || $this->on_sale == null) {\n+            $url = 0;\n+        } else {\n             $url = 1;\n-        } else {\n-            $url = 0;\n         }\n \n         return view('livewire.products-page', [\n             'products' => $productQuery->paginate(10),\n"
+                },
+                {
+                    "date": 1732594243868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null || $this->branch == null || $this->cari == null || $this->selected_categories == null || $this->selected_brands == null || $this->featured == null || $this->on_sale == null) {\n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594252959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == 1 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594265648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == 1 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == 0 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594272150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == 0 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == 2 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594284623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == 2 && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594299606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,8 +106,10 @@\n         } else {\n             $url = 1;\n         }\n \n+        dd($this->page);\n+\n         return view('livewire.products-page', [\n             'products' => $productQuery->paginate(10),\n             'orderitem' => $orderitems,\n             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n"
+                },
+                {
+                    "date": 1732594321088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,16 +100,14 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == null && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == '' && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n \n-        dd($this->page);\n-\n         return view('livewire.products-page', [\n             'products' => $productQuery->paginate(10),\n             'orderitem' => $orderitems,\n             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n"
+                },
+                {
+                    "date": 1732594373142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == '' && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == '' || $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594383811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == '' || $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == \"\" || $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1732594404102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,9 @@\n         } else {\n             $productQuery->where('branch_id', $this->branch);\n         }\n \n-        if ($this->page == \"\" || $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n+        if ($this->page == \"\" && $this->branch == null && $this->cari == null && $this->selected_categories == null && $this->selected_brands == null && $this->featured == null && $this->on_sale == null) {\n             $url = 0;\n         } else {\n             $url = 1;\n         }\n"
+                },
+                {
+                    "date": 1733316665598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,8 +53,9 @@\n     public function addToCart($product_id)\n     {\n         $total_count = CartManagement::addItemToCart($product_id);\n         $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n+        $this->dispatch('products-page');\n \n         $this->alert('success', 'Added to the Cart', [\n             'position' => 'bottom',\n             'timer' => 3000,\n"
+                },
+                {
+                    "date": 1733388751773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n use App\\Models\\Brand;\n use App\\Models\\Category;\n use App\\Models\\OrderItem;\n use App\\Models\\Product;\n+use Illuminate\\Support\\Facades\\Auth;\n use Jantinnerezo\\LivewireAlert\\LivewireAlert;\n use Livewire\\Attributes\\Title;\n use Livewire\\Attributes\\Url;\n use Livewire\\Component;\n@@ -51,17 +52,23 @@\n \n     // add product to cart method\n     public function addToCart($product_id)\n     {\n-        $total_count = CartManagement::addItemToCart($product_id);\n-        $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n-        $this->dispatch('products-page');\n+        if (Auth::check()) {\n+            $total_count = CartManagement::addItemToCart($product_id);\n+            $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n+            $this->dispatch('products-page');\n+    \n+            $this->alert('success', 'Added to the Cart', [\n+                'position' => 'bottom',\n+                'timer' => 3000,\n+                'toast' => true,\n+            ]);\n+        } else {\n+            redirect('/login')\n+        }\n+        \n \n-        $this->alert('success', 'Added to the Cart', [\n-            'position' => 'bottom',\n-            'timer' => 3000,\n-            'toast' => true,\n-        ]);\n     }\n \n     public function render()\n     {\n"
+                },
+                {
+                    "date": 1733388763276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n                 'timer' => 3000,\n                 'toast' => true,\n             ]);\n         } else {\n-            redirect('/login')\n+            redirect('/login');\n         }\n         \n \n     }\n"
+                },
+                {
+                    "date": 1733410306044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n     {\n         if (Auth::check()) {\n             $total_count = CartManagement::addItemToCart($product_id);\n             $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n-            $this->dispatch('products-page');\n+            // $this->dispatch('products-page');\n \n             $this->alert('success', 'Added to the Cart', [\n                 'position' => 'bottom',\n                 'timer' => 3000,\n"
+                },
+                {
+                    "date": 1733411069879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     public function addToCart($product_id)\n     {\n         if (Auth::check()) {\n             $total_count = CartManagement::addItemToCart($product_id);\n-            $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n+            $this->dispatch('update-cart-count', total_count: count(CartManagement::getCartItemsFromCart()))->to(Navbar::class);\n             // $this->dispatch('products-page');\n \n             $this->alert('success', 'Added to the Cart', [\n                 'position' => 'bottom',\n"
+                }
+            ],
+            "date": 1731217467620,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Livewire;\n\nuse App\\Helpers\\CartManagement;\nuse App\\Livewire\\Partials\\Navbar;\nuse App\\Models\\Branch;\nuse App\\Models\\Brand;\nuse App\\Models\\Category;\nuse App\\Models\\OrderItem;\nuse App\\Models\\Product;\nuse Jantinnerezo\\LivewireAlert\\LivewireAlert;\nuse Livewire\\Attributes\\Title;\nuse Livewire\\Attributes\\Url;\nuse Livewire\\Component;\nuse Livewire\\WithPagination;\n\n#[Title('Products - TaibahShop')]\n\nclass ProductsPage extends Component\n{\n    use LivewireAlert;\n\n    use WithPagination;\n\n    #[Url()]\n    public $selected_categories = [];\n\n    #[Url()]\n    public $selected_brands = [];\n\n    #[Url()]\n    public $featured = [];\n\n    #[Url()]\n    public $on_sale = [];\n\n    #[Url()]\n    public $price_range = 150000;\n\n    public $sort = 'latest';\n\n    #[Url()]\n    public $cari = '';\n\n    #[Url()]\n    public $branch = '';\n\n    // add product to cart method\n    public function addToCart($product_id)\n    {\n        $total_count = CartManagement::addItemToCart($product_id);\n        $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);\n\n        $this->alert('success', 'Added to the Cart', [\n            'position' => 'top',\n            'timer' => 3000,\n            'toast' => true,\n        ]);\n    }\n\n    public function render()\n    {\n        $orderitems = OrderItem::all();\n        $productQuery = Product::query()->where('is_active', 1);\n\n        if (!empty($this->selected_categories)) {\n            $productQuery->whereIn('category_id', $this->selected_categories);\n        }\n        if (!empty($this->selected_brands)) {\n            $productQuery->whereIn('brand_id', $this->selected_brands);\n        }\n        if ($this->featured) {\n            $productQuery->where('is_featured', 1);\n        }\n        if ($this->on_sale) {\n            $productQuery->where('on_sale', 1);\n        }\n        if ($this->price_range) {\n            $productQuery->whereBetween('price', [0, $this->price_range]);\n        }\n        if ($this->sort == 'latest') {\n            $productQuery->latest();\n        }\n        if ($this->sort == 'price') {\n            $productQuery->orderBy('price');\n        }\n        if (!empty($this->cari)) {\n            $productQuery->where('branch_id', '=', $this->branch)\n                ->orWhere('name', 'like', \"%{$this->cari}%\")\n                ->orWhere('variant', 'like', \"%{$this->cari}%\")\n                ->orWhere('description', 'like', \"%{$this->cari}%\")\n                ->orWhere('tags', 'like', \"%{$this->cari}%\");\n        }\n        if (empty($this->branch)) {\n            $productQuery->where('branch_id', '=', 1);\n        } else {\n            $productQuery->where('branch_id', '=', $this->branch);\n        }\n\n        return view('livewire.products-page', [\n            'products' => $productQuery->paginate(10),\n            'orderitem' => $orderitems,\n            'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),\n            'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),\n            'branches' => Branch::where('is_active', 1)->get(['id', 'name', 'slug']),\n        ]);\n    }\n}\n"
+        }
+    ]
+}

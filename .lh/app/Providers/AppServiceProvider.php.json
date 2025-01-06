@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Providers/AppServiceProvider.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1732196454451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1735462858778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,9 @@\n     {\n         Blade::directive('currency', function ($expression) {\n             return \"Rp<?php echo number_format($expression,0,',','.'); ?>\";\n         });\n+        Blade::directive('formatNumber', function ($expression) {\n+            return \"<?php echo number_format($expression,0,',','.'); ?>\";\n+        });\n     }\n }\n"
+                }
+            ],
+            "date": 1732196454451,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Providers;\n\nuse Illuminate\\Support\\Facades\\Blade;\nuse Illuminate\\Support\\ServiceProvider;\n\nclass AppServiceProvider extends ServiceProvider\n{\n    /**\n     * Register any application services.\n     */\n    public function register(): void\n    {\n        //\n    }\n\n    /**\n     * Bootstrap any application services.\n     */\n    public function boot(): void\n    {\n        Blade::directive('currency', function ($expression) {\n            return \"Rp<?php echo number_format($expression,0,',','.'); ?>\";\n        });\n    }\n}\n"
+        }
+    ]
+}
