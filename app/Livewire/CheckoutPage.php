@@ -277,7 +277,7 @@ class CheckoutPage extends Component
 
         if ($isadmin == 0) {
             // Mail::to(request()->user())->send(new OrderPlaced($order));
-            // Mail::to('taibah.fc@gmail.com')->send(new OrderPlaced($order));
+            Mail::to('taibah.fc@gmail.com')->send(new OrderPlaced($order));
         }
 
         return redirect($redirect_url);
