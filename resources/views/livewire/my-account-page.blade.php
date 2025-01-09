@@ -37,27 +37,27 @@
             </div>
 
             <a href="/my-account-edit">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-400 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                 <i class="text-red-500 fa fa-pencil-square-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Edit My Account<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a href="/my-orders">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-400 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                 <i class="text-red-500 fa fa-envelope-o relative -left-6 scale-[200%]" aria-hidden="true"></i>My Orders<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-x" data-hs-overlay="#hs-focus-management-modal-x">
-              <div class="cursor-pointer block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-400 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="cursor-pointer block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                 <i class="text-red-500 fa fa-file-text-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Syarat dan Ketentuan<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a href="https://wa.me/6287881231119">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-400 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                 <i class="text-red-500 fa fa-question-circle-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Bantuan<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             {{-- <a href="/logout">
-              <div class="block items-center rounded-lg mx-auto my-2 p-4 w-full hover:bg-yellow-400 bg-red-400 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 p-4 w-full hover:bg-yellow-400 bg-red-300 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
                 Logout<span class="fa fa-arrow-circle-right" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a> --}}
