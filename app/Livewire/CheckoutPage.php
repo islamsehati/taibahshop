@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
 #[Title('Checkout')]
 class CheckoutPage extends Component
 {
+
     #[Url()]
     public $sales_type;
     #[Url()]
@@ -173,7 +174,6 @@ class CheckoutPage extends Component
             }
         }
 
-
         $cart_items = CartManagement::getCartItemsFromCart()->where('branch_id', $this->branch_id);
 
         $order = new Order();
@@ -280,6 +280,8 @@ class CheckoutPage extends Component
             Mail::to('taibah.fc@gmail.com')->send(new OrderPlaced($order));
         }
 
+        $this->user_id = '';
+        $this->payment_method = '';
         return redirect($redirect_url);
     }
 

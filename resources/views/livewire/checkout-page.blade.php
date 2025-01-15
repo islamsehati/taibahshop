@@ -135,7 +135,7 @@
 						</hr>
 					</div>
 					
-
+					{{-- TOMBOL PLACE ORDER --}}
 					<button type='submit' wire:loading.attr="disabled" wire:loading.class="bg-gray-500" wire:loading.class.remove="bg-green-500" class="{{ $cart_items == '[]' ? 'hidden' : ''}} max-lg:hidden bg-green-500 mt-4 w-full p-3 rounded-lg text-xl text-white hover:bg-green-600">
 						<span wire:loading.remove>Ajukan Order</span>
 						<span wire:loading class="text-gray-300">Processing...</span>
@@ -548,6 +548,7 @@
 
 
 		</div>
+		{{-- <input wire:model='troli' value="{{ $cart_items }}"  id="troli" name="troli" type="text">	 --}}
 	</form>
 
 	<script>
