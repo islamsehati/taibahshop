@@ -214,6 +214,8 @@ class CheckoutPage extends Component
             $order->shipping_method = 'kurir_taibah';
             $order->shipping_amount = 0;
             $order->discount = 0;
+            $order->total_payment = 0;
+            $order->total_cashback = $order->total_payment - $order->grand_total;
         }
 
         $payment = new Payment();
