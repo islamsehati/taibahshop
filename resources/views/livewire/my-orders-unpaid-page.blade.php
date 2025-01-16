@@ -2,7 +2,7 @@
     <h1 class="text-center text-2xl font-bold text-slate-500">
         @if ($isadmin == 1)
             Orders<br>
-            Pending ({{ $my_orders_sum_unpaid_count }}) @currency($my_orders_sum_unpaid)
+            <span class="text-lg text-red-500">Pending ({{ $my_orders_sum_unpaid_count }}) @currency($my_orders_sum_unpaid)</span>
         @else
             My Orders | @currency($my_orders_sum)
         @endif

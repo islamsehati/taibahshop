@@ -2,7 +2,7 @@
     <h1 class="text-center text-2xl font-bold text-slate-500">
         @if ($isadmin == 1)
             Orders | Paid Today<br>
-            Cash @currency($paymentcash - $my_orders_sum_cashback) | Tf @currency($paymenttf)<br>
+            <span class="text-lg">Cash @currency($paymentcash - $my_orders_sum_cashback) | Tf @currency($paymenttf)<br></span>
         @else
             My Orders | @currency($my_orders_sum)
         @endif
