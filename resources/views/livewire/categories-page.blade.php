@@ -14,7 +14,7 @@
       @foreach ($jumbotrons as $jumbotron)
       <div class="hs-carousel-slide">
         <a wire:key="{{ $jumbotron->id }}" href='{{ $jumbotron->link }}'>
-          <img src="{{ url('storage', $jumbotron->image) }}" alt="{{ $jumbotron->name }}" class="object-fill object-center w-full">
+          <img src="{{ url('storage', $jumbotron->image) }}" alt="{{ $jumbotron->name }}" class="object-fill object-center w-full h-auto">
         </a>
       </div>
       @endforeach
