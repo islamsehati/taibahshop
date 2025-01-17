@@ -8,7 +8,7 @@
 			<div class="md:col-span-12 lg:col-span-4 col-span-12">
 				<div class="grid max-lg:grid-cols-2 max-md:grid-cols-1 gap-4">
 					<div >
-					<div class="bg-white mb-2 rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
+					<div class="bg-white mb-1 rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
 						<div class="text-xl font-bold underline text-gray-700 dark:text-white mb-2">
 							CABANG
 						</div>
@@ -109,7 +109,7 @@
 						</div>
 						<div class="flex justify-between mb-2 font-bold text-gray-400">
 							<span>
-								Discount*
+								Diskon*
 							</span>
 							<span>
 								@currency(intval($discount)*1000)
@@ -117,7 +117,7 @@
 						</div>
 						<div class="flex justify-between mb-2 font-bold text-gray-400">
 							<span>
-								Shipping Cost*
+								Ongkir*
 							</span>
 							<span>
 								@currency(intval($shipping_amount)*1000)
@@ -152,7 +152,7 @@
 					<div class="mb-6">
 						<div>
 							<div class="text-lg font-semibold mt-4 {{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}}">
-								Shipment & Other Cost
+								Detail Order
 							</div>
 							<div  class="grid sm:grid-cols-2 gap-4 {{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}}">
 								<div>
