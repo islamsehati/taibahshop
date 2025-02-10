@@ -350,19 +350,19 @@
             <div class="grid grid-cols-3 gap-3">
                 <a href="/admin/orders/{{ $order->id }}/edit"
                     class="{{ auth()->user()->is_admin == 1 ? 'block' : 'hidden' }}">
-                    <button class="bg-green-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600">
+                    <button class="bg-green-500 mt-4 w-full p-3 rounded-lg text-sm text-white hover:bg-green-600">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                     </button>
                 </a>
                 <a href="{{ route('printid', [$order->id]) }}"
                     class="{{ auth()->user()->is_admin == 1 ? 'block' : 'hidden' }}">
-                    <button class="bg-gray-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-gray-600">
+                    <button class="bg-gray-500 mt-4 w-full p-3 rounded-lg text-sm text-white hover:bg-gray-600">
                         <i class="fa fa-print" aria-hidden="true"></i> Print
                     </button>
                 </a>
                 <a href="{{ route('printkitchen', [$order->id]) }}"
                     class="{{ auth()->user()->is_admin == 1 ? 'block' : 'hidden' }}">
-                    <button class="bg-gray-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-gray-600">
+                    <button class="bg-gray-500 mt-4 w-full p-3 rounded-lg text-sm text-white hover:bg-gray-600">
                         <i class="fa fa-coffee" aria-hidden="true"></i> Kitchen
                     </button>
                 </a>

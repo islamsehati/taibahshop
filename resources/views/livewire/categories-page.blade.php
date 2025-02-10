@@ -8,13 +8,13 @@
     "loadingClasses": "opacity-0",
     "dotsItemClasses": "hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500"
     }' class="relative mb-7">
-  <div class="hs-carousel relative overflow-hidden w-full lg:min-h-[40rem] md:min-h-96 sm:min-h-80 min-h-48 bg-white rounded-xl">
+  <div class="hs-carousel relative overflow-hidden w-full aspect-[2/1] bg-white rounded-xl">
     <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
       
       @foreach ($jumbotrons as $jumbotron)
       <div class="hs-carousel-slide">
         <a wire:key="{{ $jumbotron->id }}" href='{{ $jumbotron->link }}'>
-          <img src="{{ url('storage', $jumbotron->image) }}" alt="{{ $jumbotron->name }}" class="object-cover object-center lg:min-h-[40rem] md:min-h-96 sm:min-h-80 min-h-48">
+          <img src="{{ url('storage', $jumbotron->image) }}" alt="{{ $jumbotron->name }}" class="object-cover object-center w-full aspect-[2/1]">
         </a>
       </div>
       @endforeach
@@ -123,7 +123,7 @@
           <div class="flex items-center">
             <img class="h-[5rem] w-[5rem] object-contain" src="{{ url('storage', $brand->image) }}" alt="{{ $brand->name }}">
             <div class="ms-3">
-              <h3 class="group-hover:text-yellow-400 text-2xl font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
+              <h3 class="group-hover:text-yellow-400 text-xl font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
                 {{ $brand->name }}
               </h3>
             </div>

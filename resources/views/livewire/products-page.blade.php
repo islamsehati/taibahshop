@@ -300,7 +300,7 @@
 
                         @foreach ($products as $product)
                             <div wire:key="{{ $product->id }}"
-                                class="md:px-2 md:mb-3 px-1 mb-2 sm:w-1/2 md:w-1/3 lg:w-1/5 w-1/2">
+                                class="md:px-2 md:mb-3 px-1 mb-2 sm:w-1/3 md:w-1/4 lg:w-1/5 w-1/2">
                                 <div
                                     class="border rounded-xl hover:shadow-md border-gray-300 bg-white dark:border-gray-700">
                                     <div
@@ -309,17 +309,17 @@
                                             @if ($product->images != null)
                                                 <img src="{{ url('storage', $product->images[0]) }}"
                                                     alt="{{ $product->name }}"
-                                                    class="object-cover w-full h-40 mx-auto rounded-lg">
+                                                    class="object-cover w-full aspect-square mx-auto rounded-lg">
                                             @else
                                                 <img src="{{ url('storage/food-packaging.png') }}"
                                                     alt="{{ $product->name }}"
-                                                    class="object-cover w-full h-40 mx-auto rounded-lg">
+                                                    class="object-cover w-full aspect-square mx-auto rounded-lg">
                                             @endif
 
                                         </a>
                                     </div>
-                                    <div class="p-3 ">
-                                        <div class="flex items-center justify-between gap-2 mb-2">
+                                    <div class="px-3 pb-3">
+                                        <div class="flex items-center justify-between gap-2">
                                             <h3 class="truncate text-xl max-lg:text-lg font-medium dark:text-gray-400">
                                                 @if ($product->variant != null)
                                                     {{ $product->variant }}
@@ -354,7 +354,7 @@
                                             <a id='addToCartButton'
                                                 wire:click.prevent='addToCart({{ $product->id }}); soundBeep.play();'
                                                 href="#"
-                                                class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
+                                                class="text-sm text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="w-4 h-4 bi bi-cart3 "
                                                     viewBox="0 0 16 16">
