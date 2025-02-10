@@ -9,6 +9,10 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        'xs': '430px',
+        // => @media (min-width: 450px) { ... }
+      },
       fontFamily: {
         'lobster': ['"Lobster"', 'cursive'],
         'marko': ['"Marko One"', 'cursive'],
