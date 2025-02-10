@@ -300,7 +300,7 @@
 
                         @foreach ($products as $product)
                             <div wire:key="{{ $product->id }}"
-                                class="md:px-2 md:mb-3 px-1 mb-2 sm:w-1/3 md:w-1/4 lg:w-1/5 w-1/2">
+                                class="md:px-2 md:mb-3 px-1 mb-2 max-sm:w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5 w-1/2">
                                 <div
                                     class="border rounded-xl hover:shadow-md border-gray-300 bg-white dark:border-gray-700">
                                     <div
