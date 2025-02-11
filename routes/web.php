@@ -19,6 +19,7 @@ use App\Livewire\MyAccountPage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\MyOrdersPage;
 use App\Livewire\MyOrdersUnpaidPage;
+use App\Livewire\PaymentsPage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
 use App\Livewire\SuccessPage;
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-account', MyAccountPage::class);
     Route::get('/my-account-edit', MyAccountEditPage::class);
     Route::get('/items', ItemsPage::class);
+    Route::get('/payments', PaymentsPage::class);
 });
 
 Route::get('/prinprview/{id}', [PrintController::class, 'prinprview'])->name('printid');
