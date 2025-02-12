@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -32,34 +33,43 @@ class PaymentsPage extends Component
     public function render()
     {
         if ($this->date_awal == '' || $this->date_akhir == '') {
-            $date_awal = '2000-01-01';
-            $date_akhir = '3000-12-31';
-        } else {
-            $date_awal = $this->date_awal;
-            $date_akhir = $this->date_akhir;
+            $date_awal = Carbon::now()->startOfMonth()->format('Y-m-d');
+            $date_akhir = Carbon::now()->endOfMonth()->format('Y-m-d');
+            // } else {
+            //     $date_awal = $this->date_awal;
+            //     $date_akhir = $this->date_akhir;
+            $this->date_awal = $date_awal;
+            $this->date_akhir = $date_akhir;
         }
 
         $orders = Order::all();
         $users = User::all();
 
-        $payments = Payment::whereBetween('date_payment', [$date_awal . ' 00-00-00', $date_akhir . ' 23-59-59'])
+        $payments = Payment::whereBetween('date_payment', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
             ->whereNull('deleted_at')
             ->orderBy('id', 'desc')
             ->get()
             ->where('order.status', '!=', 'canceled')
             ->where('porder.status', '!=', 'canceled'); # berhasil join dan ambil nilai status
 
-        $ordersUnpaid = Order::whereBetween('date_order', [$date_awal . ' 00-00-00', $date_akhir . ' 23-59-59'])
+        $ordersUnpaid = Order::whereBetween('date_order', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
             ->whereNull('deleted_at')
             ->where('status', '!=', 'canceled')
             ->orderBy('id', 'desc')
             ->get();
+
+        $jumlahkembali = Order::whereBetween('paid_at', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
+            ->whereNotNull('paid_at')
+            ->whereNull('deleted_at')
+            ->where('status', '!=', 'canceled')
+            ->sum('total_cashback');
 
 
         return view('livewire.payments-page', [
             'orders' => $orders,
             'payments' => $payments,
             'ordersUnpaid' => $ordersUnpaid,
+            'jumlahkembali' => $jumlahkembali,
             'users' => $users,
         ]);
     }

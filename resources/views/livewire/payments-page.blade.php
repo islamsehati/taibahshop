@@ -37,6 +37,8 @@
                       <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Date Payment</th>
                       <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Method</th>
                       <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Nominal</th>
+                      <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Kembali</th>
+                      <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,14 +49,23 @@
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $payment->date_payment }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $payment->payment_method }}</td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-gray-200">@formatNumber($payment->nominal_plus)</td>
+                      @if ($orders->where('id',$payment->order_id)->value('paid_at') == $payment->updated_at)
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-gray-200">@formatNumber($orders->where('id',$payment->order_id)->value('total_cashback'))</td>                      
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-gray-200">@formatNumber(($payment->nominal_plus) - $orders->where('id',$payment->order_id)->value('total_cashback'))</td>                      
+                      @else
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-gray-200">0</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-gray-200">@formatNumber($payment->nominal_plus)</td>
+                      @endif
                     </tr>
                     @endforeach
       
                   </tbody>
                   <tfoot>
                     <tr>
-                        <td colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus')) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
+                        <td colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus') - $jumlahkembali) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus'))</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($jumlahkembali)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus') - $jumlahkembali)</td>
                     </tr>
                   </tfoot>
                 </table>

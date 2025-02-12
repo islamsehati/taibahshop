@@ -7,6 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
+use Carbon\Carbon;
 use Livewire\Attributes\Url;
 
 #[Title('Items')]
@@ -32,16 +33,18 @@ class ItemsPage extends Component
     {
 
         if ($this->date_awal == '' || $this->date_akhir == '') {
-            $date_awal = '2000-01-01';
-            $date_akhir = '3000-01-01';
-        } else {
-            $date_awal = $this->date_awal;
-            $date_akhir = $this->date_akhir;
+            $date_awal = Carbon::now()->startOfMonth()->format('Y-m-d');
+            $date_akhir = Carbon::now()->endOfMonth()->format('Y-m-d');
+            // } else {
+            //     $date_awal = $this->date_awal;
+            //     $date_akhir = $this->date_akhir;
+            $this->date_awal = $date_awal;
+            $this->date_akhir = $date_akhir;
         }
 
         $products = Product::all();
         $orderitems = OrderItem::where('branch_id', auth()->user()->branch_id)
-            ->whereBetween('updated_at', [$date_awal . ' 00-00-00', $date_akhir . ' 23-59-59'])
+            ->whereBetween('updated_at', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
             ->whereNull('deleted_at')
             ->orderBy('product_id', 'asc')->get()
             ->where('order.status', '!=', 'canceled')->where('porder.status', '!=', 'canceled') # berhasil join dan ambil nilai status

@@ -49,7 +49,7 @@
 
     <div class="mt-3">
         <div id="segment-1" role="tabpanel" aria-labelledby="segment-item-1">
-            <div class="flex flex-col bg-white p-0 pt-4 rounded rounded-lg mt-4 shadow-lg">
+            <div class="flex flex-col bg-white p-0 pt-4 rounded-lg mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">
