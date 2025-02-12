@@ -58,18 +58,10 @@ class PaymentsPage extends Component
             ->orderBy('id', 'desc')
             ->get();
 
-        $jumlahkembali = Order::whereBetween('paid_at', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
-            ->whereNotNull('paid_at')
-            ->whereNull('deleted_at')
-            ->where('status', '!=', 'canceled')
-            ->sum('total_cashback');
-
-
         return view('livewire.payments-page', [
             'orders' => $orders,
             'payments' => $payments,
             'ordersUnpaid' => $ordersUnpaid,
-            'jumlahkembali' => $jumlahkembali,
             'users' => $users,
         ]);
     }

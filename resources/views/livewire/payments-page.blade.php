@@ -58,14 +58,22 @@
                       @endif
                     </tr>
                     @endforeach
+                    @php
+                      $jumlahkembalian = 0;
+                      foreach($payments as $payment) {
+                        if ($orders->where('id',$payment->order_id)->value('paid_at') == $payment->updated_at) {
+                          $jumlahkembalian += $orders->where('id',$payment->order_id)->value('total_cashback');
+                        } 
+                      }
+                    @endphp
       
                   </tbody>
                   <tfoot>
                     <tr>
-                        <td colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus') - $jumlahkembali) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus'))</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($jumlahkembali)</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus') - $jumlahkembali)</td>
+                        <td colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus') - $jumlahkembalian) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-semibold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus'))</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-semibold text-gray-800 dark:text-gray-200">@formatNumber($jumlahkembalian)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus') - $jumlahkembalian)</td>
                     </tr>
                   </tfoot>
                 </table>
