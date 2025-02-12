@@ -30,5 +30,6 @@ Homestead.json
 auth.json
 
 /_salah
+/database
 .env-taibahshop
 php-artisan-perintah.txt
