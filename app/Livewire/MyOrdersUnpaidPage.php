@@ -86,7 +86,7 @@ class MyOrdersUnpaidPage extends Component
     {
         $isadmin = auth()->user()->is_admin;
         if ($isadmin == 1) {
-            $my_orders = Order::where('branch_id', auth()->user()->branch_id)->where('is_paid', 0)->orderBy('date_order', 'desc')->paginate(500);
+            $my_orders = Order::where('branch_id', auth()->user()->branch_id)->where('is_paid', 0)->orderBy('date_order', 'desc')->paginate(100);
         }
         if ($isadmin == 0) {
             $my_orders = Order::where('user_id', auth()->id())->latest()->paginate(100);

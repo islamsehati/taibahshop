@@ -33,8 +33,10 @@ class PaymentsPage extends Component
     public function render()
     {
         if ($this->date_awal == '' || $this->date_akhir == '') {
-            $date_awal = Carbon::now()->startOfMonth()->format('Y-m-d');
-            $date_akhir = Carbon::now()->endOfMonth()->format('Y-m-d');
+            $date_awal = Carbon::now()->format('Y-m-d');
+            $date_akhir = Carbon::now()->format('Y-m-d');
+            // $date_awal = Carbon::now()->startOfMonth()->format('Y-m-d');
+            // $date_akhir = Carbon::now()->endOfMonth()->format('Y-m-d');
             // } else {
             //     $date_awal = $this->date_awal;
             //     $date_akhir = $this->date_akhir;
