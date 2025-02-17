@@ -381,12 +381,20 @@
 
                     <!-- pagination start -->
                     <style>
+                        nav {
+                            justify-content: space-between;
+                        }
                         nav div div p {
                             margin-left: 20px;
                             margin-right: 20px;
                         }
+                        @media (min-width: 640px) {
+                            nav .flex-1 {
+                                display: none;
+                            }
+                        }
                     </style>
-                    <div class="flex justify-center mt-6">
+                    <div class="mx-6 mt-6">
                         {{ $products->links() }}
                     </div>
                     <!-- pagination end -->
