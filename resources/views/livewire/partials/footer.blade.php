@@ -3,6 +3,7 @@
 {{ request()->is('cart') ? ' hidden' : '' }} 
  {{ request()->is('checkout') ? ' hidden' : '' }}
  {{ request()->is('my-account') ? ' hidden' : '' }}
+ {{ request()->is('pos') ? ' hidden' : '' }}
    ">
     <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
         <!-- Grid -->

@@ -130,6 +130,70 @@ class CartManagement
         return count($cart_items);
     }
 
+    // add item to cart with qty on POS
+    static public function addItemToCartWithQtyOnPos($product_id, $qty)
+    {
+        $cart_items = self::getCartItemsFromCart();
+
+        $existing_item = null;
+
+        foreach ($cart_items as $key => $item) {
+            if ($item['product_id'] == $product_id) {
+                $existing_item = $item['product_id'];
+                $this_unit_amount = $item['unit_amount'];
+                break;
+            }
+        }
+
+        if ($existing_item !== null) {
+            $data = Cart::where('product_id', $product_id)->where('created_by', auth()->user()->id);
+            if ($qty == null || $qty < 0) {
+                $qty = 1;
+            } else {
+                $qty = $qty;
+            }
+            $update = [
+                'quantity' => $qty,
+                'total_amount' => $qty * $this_unit_amount,
+            ];
+            $data->update($update);
+        } else {
+            $product = Product::where('id', $product_id)->first(['id', 'name', 'variant', 'slug', 'unit_name', 'contain', 'price', 'images', 'branch_id']);
+            // $productimgempty = url('storage/box.png');
+            if ($product->images != null) {
+                $productimg = $product->images[0];
+            } else {
+                $productimg = '';
+            }
+            if ($qty == null || $qty < 0) {
+                $qty = 1;
+            } else {
+                $qty = $qty;
+            }
+
+            if ($product) {
+                $cart_items = [
+                    'product_id' => $product_id,
+                    'name' => $product->name,
+                    'variant' => $product->variant,
+                    'slug' => $product->slug,
+                    'unit_name' => $product->unit_name,
+                    'contain' => $product->contain,
+                    'image' => $productimg,
+                    'quantity' => $qty,
+                    'unit_amount' => $product->price,
+                    'total_amount' => $product->price * $qty,
+                    'mutation_type' => 'Sales',
+                    'created_by' => auth()->user()->id,
+                    'updated_by' => auth()->user()->id,
+                    'branch_id' => $product->branch_id
+                ];
+            }
+            self::addCartItemsToCart($cart_items);
+        }
+        return count($cart_items);
+    }
+
     // remove item from cart
     static public function removeCartItem($product_id)
     {
@@ -244,6 +308,16 @@ class CartManagement
             $items = Cart::query()->where('created_by', auth()->user()->id)->sum('total_amount');
         } else {
             $items = Cart::query()->where('created_by', 0)->sum('total_amount');
+        }
+        return ($items);
+    }
+    // calculate grand total by branch
+    static public function calculateGrandTotalByBranch($items)
+    {
+        if (Auth::check()) {
+            $items = Cart::query()->where('created_by', auth()->user()->id)->where('branch_id', auth()->user()->branch_id)->sum('total_amount');
+        } else {
+            $items = Cart::query()->where('created_by', 0)->where('branch_id', auth()->user()->branch_id)->sum('total_amount');
         }
         return ($items);
     }
