@@ -1,4 +1,5 @@
-<header class="{{ request()->is('pos')?'hidden' : 'flex'}}   z-50 sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-red-500 text-sm md:py-0 py-0 dark:bg-gray-800 shadow-md">
+<header class="{{ request()->is('pos')?'hidden' : 'flex'}} {{ request()->is('checkout')?'hidden' : 'flex'}}   
+  z-50 sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-red-500 text-sm md:py-0 py-0 dark:bg-gray-800 shadow-md">
   <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
     <div class="
     {{ request()->is('my-account')?'hidden' : 'relative'}} 

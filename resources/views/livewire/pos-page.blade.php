@@ -188,7 +188,7 @@
                                     
                                 </div>
 
-                                <div class="hidden mr-3 md:flex hs-dropdown">
+                                <div class="hidden mr-4 md:flex hs-dropdown">
                                     <button class="font-lobster" id="hs-dropdown-with-title" type="button" class="inline-flex items-center px-4 py-3 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-dropdown-toggle gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         TaibahShop
                                     </button>
@@ -228,13 +228,13 @@
 
                     {{-- Product Card Start --}}
 
-                    <div class="flex flex-wrap items-center justify-center mx-auto">
+                    <div class="flex flex-wrap items-center justify-center mx-auto px-0.5 bg-slate-200">
 
                         @foreach ($products as $product)
                             <div wire:key="{{ $product->id }}"
                                 class="w-1/2 px-0 mb-0 xs:w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
                                 <div
-                                    class="bg-white border group hover:bg-gray-800 focus:bg-gray-800 border-slate-200 hover:border-slate-400 focus:border-slate-400 dark:border-gray-700">
+                                    class="bg-white border-2 group hover:bg-gray-800 focus:bg-gray-800 border-slate-200 dark:border-gray-700">
                                     <div onclick="showModalPro({{ $product->id }})"
                                         class="relative {{ $product->is_active == 1 ? 'bg-gray-100' : 'bg-gray-400' }} cursor-pointer scale-90">
                                             @if ($product->images != null || $product->images === "[]")
@@ -286,7 +286,7 @@
                                         {{-- @if ($stock >= 1 && $product->in_stock == 1) --}}
                                         @if ($product->in_stock == 1)
                                             <span onclick="showModalPro({{ $product->id }})"
-                                                class="flex items-center text-gray-500 cursor-pointer dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-300">
+                                                class="flex items-center text-gray-500 cursor-pointer dark:text-gray-400 group-hover:text-blue-500 dark:hover:text-blue-300">
                                                 <span wire:loading wire:target='addToCart({{ $product->id }})'>...</span>
                                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
                                                     <span class="w-full mr-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-left text-red-400" aria-hidden="true"></i></span>
