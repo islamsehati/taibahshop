@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Number;
 
-#[Title('POS - Dapatin.id')]
+#[Title('POS - TaibahShop.com')]
 class PosPage extends Component
 {
 

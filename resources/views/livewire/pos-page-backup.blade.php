@@ -13,20 +13,20 @@
                                 <div class="flex justify-between mb-3 sm:mb-0">
                                     <div class="flex mx-auto sm:ml-3 text-nowrap hs-dropdown">
                                         <button id="hs-dropdown-with-title" type="button" class="inline-flex items-center px-2 py-1 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-dropdown-toggle gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                                            <i class="fa fa-envelope" aria-hidden="true"></i> Orders
+                                            <x-fas-envelope class="text-gray-500 size-4"/> Orders
                                         </button>
     
                                         <div class="z-50 hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 divide-y divide-gray-200 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-title">
                                               <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-t-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/my-orders">
-                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                <x-fas-envelope class="text-gray-500 size-4"/>
                                                 Pesanan
                                               </a>
                                               <a class="flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/payments">
-                                                <i class="fa fa-money" aria-hidden="true"></i>
+                                                <x-fas-money-bill-wave class="text-gray-500 size-4"/>
                                                 Pembayaran
                                               </a>
                                               <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-b-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/items">
-                                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                                <x-fas-cube class="text-gray-500 size-4"/>
                                                 Barang Terjual
                                               </a>
                                           </div>
@@ -61,7 +61,7 @@
                     
                                     <div class="hs-dropdown [--strategy:fixed] [--adaptive:none] [--auto-close:inside]">
                                         <summary class="flex cursor-pointer items-center gap-2 py-[0.5rem] px-2 text-gray-900 bg-white transition hover:border-green-400 rounded-r-lg border dark:border-none focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1">
-                                            <div class="text-sm"><i class="fa fa-sliders" aria-hidden="true"></i></div>
+                                        <x-fas-sliders class="w-5 h-5 mx-auto text-blue-500"/>
                                         </summary>
                     
                                         <div class="h-[80vh] overflow-y-auto text-start hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-80 hidden z-40 bg-white px-2 shadow-lg before:absolute top-full before:-top-5 before:-start-0 before:w-full before:h-5">
@@ -199,11 +199,11 @@
                                             Halaman
                                           </span>
                                           <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/">
-                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            <x-fas-home class="text-gray-500 size-4"/>
                                             Beranda
                                           </a>
                                           <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/cart">
-                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <x-fas-shopping-cart class="text-gray-500 size-4"/>
                                             Troli
                                           </a>
                                         </div>
@@ -212,7 +212,7 @@
                                             Kontak
                                           </span>
                                           <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="https://wa.me/6287881231119">
-                                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            <x-fas-phone-volume class="text-gray-500 size-4"/>
                                             Bantuan
                                           </a>
                                         </div>
@@ -289,9 +289,9 @@
                                                 class="flex items-center text-gray-500 cursor-pointer dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-300">
                                                 <span wire:loading wire:target='addToCart({{ $product->id }})'>...</span>
                                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
-                                                    <span class="w-full mr-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-left text-red-500" aria-hidden="true"></i></span>
+                                                    <span class="w-full mr-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><x-fas-chevron-left class="w-5 h-5 mx-auto text-green-500 hover:text-red-400"/></span>
                                                     <span class="w-full px-5 bg-blue-200 rounded-md" wire:loading.remove wire:target='addToCart({{ $product->id }})'>{{ $cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') }}</span>
-                                                    <span class="w-full ml-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-right text-green-500" aria-hidden="true"></i></span>
+                                                    <span class="w-full ml-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><x-fas-chevron-right class="w-5 h-5 mx-auto text-green-500 hover:text-blue-500"/></span>
                                                 @else
                                                     <span class="flex items-center flex-nowrap" wire:loading.remove wire:target='addToCart({{ $product->id }})'>
                                                         +Cart
@@ -323,7 +323,7 @@
 
                                     <a href="/products/{{ $product->slug }}" class="inline-flex items-center justify-center mr-2 text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
                                         
-                                        <i class="fa fa-share text-blue-500" aria-hidden="true"></i>
+                                            <x-fas-location-arrow class="mx-auto text-blue-500 size-4"/>
                                         
                                     </a>
                                     <button type="button" class="inline-flex items-center justify-center text-red-400 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled" aria-label="Close" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}">
@@ -342,10 +342,10 @@
                                 onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" 
                                 class="block w-full px-4 py-3 text-sm text-center border-gray-200 rounded-lg focus:border-green-400 focus:ring-green-400" 
                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
-                                {{-- wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();' --}}
+                                wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();'
                                 placeholder="ubah qty" 
                                 @else
-                                {{-- wire:keyup.enter='addToCart({{ $product->id }}); setTimeout(scrollBottom, 5000); soundBeep.play();' --}}
+                                wire:keyup.enter='addToCart({{ $product->id }}); setTimeout(scrollBottom, 5000); soundBeep.play();'
                                 placeholder="inputkan qty" 
                                 @endif 
                                 autofocus="">
@@ -354,14 +354,14 @@
                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
                                 <button type="button" wire:click='removeItem({{ $product->id }})'
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-red-400 rounded-lg gap-x-2 hover:bg-gray-400 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <x-fas-trash class="w-5 h-5 mx-auto text-white"/>
                                 </button>
                                 @endif
                                 <div>
-                                <button type="button" class="closeButtonModalProduk inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg gap-x-2 hover:bg-gray-300 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg gap-x-2 hover:bg-gray-300 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}">
                                   Batal
                                 </button>
-                                <button type="button"
+                                <button
                                 id='addToCartButton' 
                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
                                     wire:click='addToCart({{ $product->id }}); soundBeep.play();'
@@ -465,8 +465,8 @@
 
                         <div class="flex justify-between w-full">
                             <a >
-                                <button wire:click='refreshPage();' class="px-4 py-2 text-sm text-center text-white bg-yellow-500 hover:bg-yellow-600">
-                                    <i class="fa fa-refresh" wire:loading.remove wire:target='refreshPage();' class="mx-auto text-white"></i>
+                                <button wire:click='refreshPage();' class="px-2 py-2 text-sm text-center text-white bg-yellow-500 hover:bg-yellow-600">
+                                    <x-fas-arrows-rotate wire:loading.remove wire:target='refreshPage();' class="w-5 h-5 mx-auto text-white"/>
                                     <div wire:loading wire:target='refreshPage();' wire:loading.class="inline-block" class="hidden -mb-1 animate-spin size-5 border-[3px] border-current border-t-transparent text-white-600 rounded-full dark:text-orange-500" role="status" aria-label="loading">
                                         <span class="sr-only">Loading...</span>
                                       </div>
@@ -482,8 +482,8 @@
                                 </button>
                             </a>
                             <a>
-                                <button onclick="toggle_full_screen();" class="px-4 py-2 text-sm text-center text-white bg-green-500 hover:bg-green-600">
-                                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                <button onclick="toggle_full_screen();" class="px-2 py-2 text-sm text-center text-white bg-green-500 hover:bg-green-600">
+                                    <x-fas-maximize class="w-5 h-5 mx-auto text-white"/>
                                 </button>
                             </a>
                         </div>
