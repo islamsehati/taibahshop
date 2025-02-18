@@ -60,7 +60,7 @@
                                     </label>
                     
                                     <div class="hs-dropdown [--strategy:fixed] [--adaptive:none] [--auto-close:inside]">
-                                        <summary class="flex cursor-pointer items-center gap-2 py-[0.5rem] px-2 text-gray-900 bg-white transition hover:border-green-400 rounded-r-lg border dark:border-none focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1">
+                                        <summary class="flex cursor-pointer items-center gap-2 pt-[0.5rem] pb-[0.5rem] px-2 text-gray-900 bg-white transition hover:border-green-400 rounded-r-lg border dark:border-none focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1">
                                             <div class="text-sm"><i class="fa fa-sliders" aria-hidden="true"></i></div>
                                         </summary>
                     
@@ -190,7 +190,7 @@
 
                                 <div class="hidden mr-3 md:flex hs-dropdown">
                                     <button class="font-lobster" id="hs-dropdown-with-title" type="button" class="inline-flex items-center px-4 py-3 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-dropdown-toggle gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                                        TaibahShop.com
+                                        TaibahShop
                                     </button>
 
                                     <div class="z-50 hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 divide-y divide-gray-200 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-title">
@@ -222,7 +222,7 @@
                         </div>
                     </div>
 
-                    <button wire:click='resetProductsTile()' class="sticky top-0 z-10 {{ $url == 0 ? ' hidden' : 'flex' }} py-1 mb-2 mx-auto justify-center items-center bg-slate-100">
+                    <button wire:click='resetProductsTile()' class="w-full sticky top-0 z-10 {{ $url == 0 ? ' hidden' : 'flex' }} py-1 mb-2 mx-auto justify-center items-center bg-slate-100">
                         reset
                     </button>
 
@@ -289,7 +289,7 @@
                                                 class="flex items-center text-gray-500 cursor-pointer dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-300">
                                                 <span wire:loading wire:target='addToCart({{ $product->id }})'>...</span>
                                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
-                                                    <span class="w-full mr-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-left text-red-500" aria-hidden="true"></i></span>
+                                                    <span class="w-full mr-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-left text-red-400" aria-hidden="true"></i></span>
                                                     <span class="w-full px-5 bg-blue-200 rounded-md" wire:loading.remove wire:target='addToCart({{ $product->id }})'>{{ $cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') }}</span>
                                                     <span class="w-full ml-2" wire:loading.remove wire:target='addToCart({{ $product->id }})'><i class="fa fa-chevron-circle-right text-green-500" aria-hidden="true"></i></span>
                                                 @else
@@ -405,7 +405,7 @@
                 {{-- LIST ITEM START --}}
                 <div id="ListItem" class="fixed left-0 w-1/3 h-screen p-2 overflow-auto bg-white">
                       
-                       <div class="pb-20">
+                       <div class="pb-28">
                             <table class="w-full">
                                 <body class="w-full">
                                     @forelse ($cart_items as $item)
@@ -444,7 +444,7 @@
                                 </body>
                             </table>
                             @if ($cartcek->where('branch_id', auth()->user()->branch_id)->where('created_by', auth()->user()->id)->count() > 0)
-                            <div class="w-full py-5 mx-auto text-center">
+                            <div class="w-full pt-5 mx-auto text-center">
                                 <button wire:dblclick='clearItemByBranch({{ Auth::user()->branch_id }})'  
                                     class="text-sm font-semibold text-red-500 underline cursor-pointer underline-offset-2">
                                     <span class="p-1" wire:loading.remove wire:target='clearItemByBranch({{ Auth::user()->branch_id }})'>Clear</span>
