@@ -309,22 +309,20 @@
                         @endforeach
 
                         @foreach ($productsAllModal as $product)
+                    <!-- Start ModalProduk -->
                     <span id="modalProd-{{ $product->id }}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-{{ $product->id }}" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}"
                         class="absolute top-0 -z-50"> modalProduk </span>
-                    <div id="hs-focus-management-modal-{{ $product->id }}" class="[--overlay-backdrop:false] hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="hs-focus-management-modal-label">
+                      <div id="hs-focus-management-modal-{{ $product->id }}" class="[--body-scroll:true] [--overlay-backdrop:false] hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="hs-focus-management-modal-label">
                         <div class="m-3 mt-0 transition-all ease-out opacity-0 hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:max-w-lg sm:w-full sm:mx-auto">
                           {{-- <form > --}}
                             <div class="flex flex-col border shadow-sm pointer-events-auto bg-gray-50 rounded-xl">
                               <div class="flex items-center justify-between px-4 py-3 border-b">
-                                <h3 id="hs-focus-management-modal-label" class="font-bold text-gray-800">
+                                <h3 class="font-bold text-gray-800">
                                   {{ $product->name }} : {{ $product->variant }}
                                 </h3>
                                 <div class="flex justify-end">
-
                                     <a href="/products/{{ $product->slug }}" class="inline-flex items-center justify-center mr-2 text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200">
-                                        
                                         <i class="fa fa-share text-blue-500" aria-hidden="true"></i>
-                                        
                                     </a>
                                     <button type="button" class="inline-flex items-center justify-center text-red-400 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled" aria-label="Close" data-hs-overlay="#hs-focus-management-modal-{{ $product->id }}">
                                         <span class="sr-only">Close</span>
@@ -342,10 +340,10 @@
                                 onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" 
                                 class="block w-full px-4 py-3 text-sm text-center border-gray-200 rounded-lg focus:border-green-400 focus:ring-green-400" 
                                 @if ($cartcek->where('product_id', $product->id)->where('created_by', auth()->user()->id)->value('quantity') > 0)
-                                {{-- wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();' --}}
+                                wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();'
                                 placeholder="ubah qty" 
                                 @else
-                                {{-- wire:keyup.enter='addToCart({{ $product->id }}); setTimeout(scrollBottom, 5000); soundBeep.play();' --}}
+                                wire:keyup.enter='addToCart({{ $product->id }}); setTimeout(scrollBottom, 5000); soundBeep.play();'
                                 placeholder="inputkan qty" 
                                 @endif 
                                 autofocus="">
@@ -372,12 +370,13 @@
                                     Simpan
                                 </button> 
                                 </div>
-
+                      
                               </div>
                             </div>
                           {{-- </form> --}}
                         </div>
                       </div>
+                    <!-- End ModalProduk -->
                       @endforeach
 
                     </div>
