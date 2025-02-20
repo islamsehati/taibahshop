@@ -268,9 +268,9 @@
 								<div>
 								<div class="w-full">
 									<label class="block text-gray-700 dark:text-white mb-1" for="total_cashback">
-										Kembali
+										{{ $total_cashback < 0 ? 'Belum Bayar' : 'Kembali' }}
 									</label>
-									<div class="w-full rounded-lg border py-2 px-6 dark:bg-gray-700 dark:text-white dark:border-none">@currency($total_cashback)</div> 
+									<div class="w-full rounded-lg border py-2 px-6 {{ $total_cashback < 0 ? 'bg-red-500 text-white' : '' }}">@currency($total_cashback)</div> 
 								</div>
 								</div>
 								

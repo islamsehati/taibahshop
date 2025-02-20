@@ -2,7 +2,7 @@
     <h1 class="text-center text-2xl font-bold text-slate-500">
         @if ($isadmin == 1)
             Orders<br>
-            <span class="text-lg text-red-500">Pending ({{ $my_orders_sum_unpaid_count }}) @currency($my_orders_sum_unpaid)</span>
+            <span class="text-lg text-red-500 counterstep">Pending (<span id="valueCountShow">{{ $my_orders_sum_unpaid_count }}</span><span id="valueCount"></span>) <span id="valueSumShow">@currency($my_orders_sum_unpaid)</span><span id="valueSum"></span></span>
         @else
             My Orders | @currency($my_orders_sum)
         @endif
@@ -447,5 +447,38 @@
         </div>
     </div>
 
+
+    <script>
+        function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+            window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+        }
+
+        const endValueCount = <?php echo $my_orders_sum_unpaid_count ?>;
+        const endValueSum = <?php echo $my_orders_sum_unpaid ?>;
+
+        const objCountShow = document.getElementById("valueCountShow");
+        const objCount = document.getElementById("valueCount");
+        const objSumShow = document.getElementById("valueSumShow");
+        const objSum = document.getElementById("valueSum");
+        objCountShow.classList.add("hidden"); 
+        objSumShow.classList.add("hidden"); 
+        animateValue(objCount, 0, endValueCount, 5000);
+        animateValue(objSum, 0, endValueSum, 5000);
+        setTimeout(() => {
+            objCount.classList.toggle("hidden")
+            objCountShow.classList.remove("hidden")
+            objSum.classList.toggle("hidden")
+            objSumShow.classList.remove("hidden")
+        }, 5000);
+    </script>
 
 </div>
