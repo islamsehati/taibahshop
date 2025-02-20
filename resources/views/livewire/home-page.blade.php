@@ -155,8 +155,8 @@
       {{-- Hero Section End --}}
 
       {{-- Brand Section Start --}}
-      <section class="py-20">
-        <div class="max-w-xl mx-auto">
+      <section class="group py-20">
+        <div class="group-hover:animate-slidein600 max-w-xl mx-auto">
           <div class="text-center ">
             <div class="relative flex flex-col items-center">
               <h1 class="text-4xl font-bold dark:text-gray-200"> Popular<span class="text-red-500"> Brands
@@ -175,16 +175,16 @@
             </p>
           </div>
         </div>
-        <div class="justify-center max-w-6xl px-4 py-4 mx-auto lg:py-0">
+        <div class="group-hover:animate-slidein1200 justify-center max-w-6xl px-4 py-4 mx-auto lg:py-0">
           <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 max-lg:grid-cols-2">
       
             @foreach ($brands as $brand)
-            <div wire:key="{{ $brand->id }}" class="group bg-white rounded-lg shadow-sm hover:shadow-lg dark:bg-gray-800">
+            <div wire:key="{{ $brand->id }}" class="group/brand bg-white rounded-lg shadow-sm hover:shadow-lg dark:bg-gray-800">
               <a href="/products?selected_brands[0]={{ $brand->id }}" class="">
                 <img src="{{ url('storage', $brand->image) }}" alt="{{ $brand->name }}" class="object-contain aspect-square w-full mx-auto rounded-t-lg scale-90">
               </a>
               <div class="px-2 pt-0 pb-3 text-center truncate">
-                <a href="" class="tracking-tight md:text-xl text-md font-bold group-hover:text-yellow-400  text-gray-900 dark:text-gray-300">
+                <a href="" class="tracking-tight md:text-xl text-md font-bold group-hover/brand:text-yellow-400  text-gray-900 dark:text-gray-300">
                   {{ $brand->name }}
                 </a>
               </div>
@@ -198,8 +198,8 @@
       {{-- Brand Section End --}}
 
       {{-- Category Section Start --}}
-      <div class="bg-orange-200 py-20">
-        <div class="max-w-xl mx-auto">
+      <section class="bg-orange-200 py-20 group">
+        <div class="group-hover:animate-slidein600 max-w-xl mx-auto">
           <div class="text-center ">
             <div class="relative flex flex-col items-center">
               <h1 class="text-4xl font-bold dark:text-gray-200"> Browse <span class="text-red-500"> Categories
@@ -219,17 +219,17 @@
           </div>
         </div>
       
-        <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+        <div class="group-hover:animate-slidein1200 max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
           <div class="grid grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 gap-3 sm:gap-6">
             
             @foreach ($categories as $category)               
-            <a wire:key="{{ $category->id }}" class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-lg transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products?selected_categories[0]={{ $category->id }}">
+            <a wire:key="{{ $category->id }}" class="group/category flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-lg transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products?selected_categories[0]={{ $category->id }}">
               <div class="p-4 md:p-5">
                 <div class="flex justify-between items-center">
                   <div class="flex items-center">
                     <img src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}" class="h-[2.375rem] w-[2.375rem] rounded-full">
                     <div class="ms-3 truncate">
-                      <h3 class="group-hover:text-yellow-400 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
+                      <h3 class="group-hover/category:text-yellow-400 font-semibold text-gray-800 dark:group-hover/category:text-gray-400 dark:text-gray-200">
                         {{ $category->name }}
                       </h3>
                     </div>
@@ -247,13 +247,13 @@
           </div>
         </div>
       
-      </div>
+      </section>
       {{-- Category Section End --}}
 
       {{-- Customers Review Section Start --}}
-      <section class="py-14 font-poppins dark:bg-gray-800">
+      <section class="py-14 font-poppins dark:bg-gray-800 group">
         <div class="max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
-          <div class="max-w-xl mx-auto">
+          <div class="group-hover:animate-slidein300 max-w-xl mx-auto">
             <div class="text-center ">
               <div class="relative flex flex-col items-center">
                 <h1 class="text-4xl font-bold dark:text-gray-200"> Customer <span class="text-red-500"> Reviews
@@ -275,7 +275,8 @@
           </div>
       
           <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
-            <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
+
+            <div class="group-hover:animate-slidein600  py-6 bg-white rounded-md shadow dark:bg-gray-900">
               <div class="flex flex-nowrap items-center justify-between px-6 pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
@@ -355,7 +356,8 @@
                 </div>
               </div>
             </div>
-            <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
+
+            <div class="group-hover:animate-slidein900  py-6 bg-white rounded-md shadow dark:bg-gray-900">
               <div class="flex flex-nowrap items-center justify-between px-6 pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
@@ -434,7 +436,8 @@
                 </div>
               </div>
             </div>
-            <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
+
+            <div class="group-hover:animate-slidein1200  py-6 bg-white rounded-md shadow dark:bg-gray-900">
               <div class="flex flex-nowrap items-center justify-between px-6 pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
@@ -513,7 +516,8 @@
                 </div>
               </div>
             </div>
-            <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
+
+            <div class="group-hover:animate-slidein1500  py-6 bg-white rounded-md shadow dark:bg-gray-900">
               <div class="flex flex-nowrap items-center justify-between px-6 pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
@@ -592,6 +596,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
