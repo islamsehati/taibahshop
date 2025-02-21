@@ -1,8 +1,45 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+
+<style>
+    @property --num {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+    }
+
+    .counter-ani span {
+    counter-reset: num var(--num);
+    animation: var(--animation) 5s forwards ease-in-out;
+    }
+
+    .counter-ani span::after {
+    content: counter(num);
+    }
+
+    @keyframes counter-unpaid-count {
+    from {
+        --num: 0;
+    }
+    to {
+        --num: <?php echo $my_orders_sum_unpaid_count ?>;
+    }
+    }
+
+    @keyframes counter-unpaid {
+    from {
+        --num: 0;
+    }
+    to {
+        --num: <?php echo $my_orders_sum_unpaid ?>;
+    }
+    } 
+</style>
+
     <h1 class="text-center text-2xl font-bold text-slate-500">
         @if ($isadmin == 1)
         Orders<br>
-        <span class="text-lg text-red-500 counterstep">Pending (<span id="valueCountShow">{{ $my_orders_sum_unpaid_count }}</span><span id="valueCount"></span>) <span id="valueSumShow">@currency($my_orders_sum_unpaid)</span><span id="valueSum"></span></span>
+        <span class="text-lg text-red-500" id="RealShow">Pending (<span id="valueCountShow" >{{ $my_orders_sum_unpaid_count }}</span>) <span id="valueSumShow" >@currency($my_orders_sum_unpaid)</span></span>
+        <span class="text-lg text-red-500 counter-ani" id="CountHide">Pending (<span style="--animation: counter-unpaid-count"></span>) <span style="--animation: counter-unpaid"></span></span>
         @else
         My Orders | @currency($my_orders_sum)
         @endif
@@ -49,7 +86,7 @@
 
     <div class="mt-3">
         <div id="segment-1" role="tabpanel" aria-labelledby="segment-item-1">
-            <div class="flex flex-col bg-white p-0 pt-4 rounded rounded-lg mt-4 shadow-lg">
+            <div class="flex flex-col bg-white p-0 pt-4 rounded-lg mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">
@@ -453,36 +490,14 @@
 
 
     <script>
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
 
-        const endValueCount = <?php echo $my_orders_sum_unpaid_count ?>;
-        const endValueSum = <?php echo $my_orders_sum_unpaid ?>;
-
-        const objCountShow = document.getElementById("valueCountShow");
-        const objCount = document.getElementById("valueCount");
-        const objSumShow = document.getElementById("valueSumShow");
-        const objSum = document.getElementById("valueSum");
-        objCountShow.classList.add("hidden");
-        objSumShow.classList.add("hidden");
-        animateValue(objCount, 0, endValueCount, 2000);
-        animateValue(objSum, 0, endValueSum, 2000);
+        const objShow = document.getElementById("RealShow");
+        const objHide = document.getElementById("CountHide");
+        objShow.classList.add("hidden");
         setTimeout(() => {
-            objCount.classList.toggle("hidden")
-            objCountShow.classList.remove("hidden")
-            objSum.classList.toggle("hidden")
-            objSumShow.classList.remove("hidden")
-        }, 2000);
+            objShow.classList.remove("hidden");
+            objHide.classList.add("hidden");
+        }, 5000);
     </script>
 
 </div>

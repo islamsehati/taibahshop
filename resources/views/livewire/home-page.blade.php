@@ -291,7 +291,7 @@
                 <p class="lg:text-base font-medium text-xs text-gray-600 dark:text-gray-400 text-right"> Joined<br> 10, MAR , 2023
                 </p>
               </div>
-              <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+              <p class="lg:min-h-20 px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
                 Ayam gorengnya juara banget! Renyah di luar, lembut di dalam, bumbunya pas banget.
               </p>
               <div class="flex flex-wrap justify-between px-6 pt-4 border-t dark:border-gray-700">
@@ -372,7 +372,7 @@
                 <p class="lg:text-base font-medium text-xs text-gray-600 dark:text-gray-400 text-right"> Joined<br> 19, JAN , 2024
                 </p>
               </div>
-              <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+              <p class="lg:min-h-20 px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
                 Harganya agak mahal, tapi worth it sih karena rasanya enak banget.
                 Suasananya nyaman buat nongkrong bareng teman, pelayanannya juga ramah.
               </p>
@@ -452,7 +452,7 @@
                 <p class="lg:text-base font-medium text-xs text-gray-600 dark:text-gray-400 text-right"> Joined<br> 30, SEP , 2023
                 </p>
               </div>
-              <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+              <p class="lg:min-h-20 px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
                 Kombinasi menciptakan perpaduan rasa yang sempurna dan membuat hidangan semakin nikmat.
                 Kamu bisa temukan disini.
               </p>
@@ -532,7 +532,7 @@
                 <p class="lg:text-base font-medium text-xs text-gray-600 dark:text-gray-400 text-right"> Joined<br> 28, FEB , 2024
                 </p>
               </div>
-              <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+              <p class="lg:min-h-20 px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
                 Beli makan di sini selalu fresh from the kitchen, harus nunggu di goreng dulu.
                 Btw, temen temen yang mau beli disini bisa pesan online dlu ya biar gak nunggu lama.
               </p>
