@@ -19,7 +19,7 @@ class SuccessPage extends Component
     {
         $isadmin = auth()->user()->is_admin;
         if ($isadmin == 1) {
-            $latest_order = Order::with('address')->latest()->first();
+            $latest_order = Order::with('address')->where('created_by', auth()->user()->id)->latest()->first();
         }
         if ($isadmin == 0) {
             $latest_order = Order::with('address')->where('user_id', auth()->user()->id)->latest()->first();
