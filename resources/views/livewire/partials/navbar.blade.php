@@ -66,8 +66,13 @@
               <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-48 hidden z-10 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute top-full md:border before:-top-5 before:start-0 before:w-full before:h-5">
   
                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" 
-                href="/products">
-                  All Product
+                @auth
+                href="/products"
+                @endauth 
+                @guest
+                href="/products?branch=1"
+                @endguest
+                  >All Product
                 </a>
                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" 
                 href="/products?featured[0]=1">
@@ -207,7 +212,14 @@
         </div>
       </button>
 
-      <button onclick="location.href='/products';" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button 
+      @auth
+      onclick="location.href='/products';" 
+      @endauth 
+      @guest
+      onclick="location.href='/products?branch=1';" 
+      @endguest
+      type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
         <div class="w-5 h-5 mb-0 mx-auto {{ request()->is('products')?' text-yellow-500' : 'text-gray-500'}} dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <i class="fa fa-th-large scale-150" aria-hidden="true"></i>
         </div>
