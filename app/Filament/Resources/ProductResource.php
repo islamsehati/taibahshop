@@ -100,8 +100,8 @@ class ProductResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->columnSpanFull()
-                            ->readOnly(fn($record) => !is_null($record)) # tidak dapat diedit setelah terisi
-                            ->unique(Product::class, 'sku', ignoreRecord: true),
+                            ->readOnly(fn($record) => !is_null($record)), # tidak dapat diedit setelah terisi
+                        // ->unique(Product::class, 'sku', ignoreRecord: true),
 
                         TextInput::make('name')
                             ->required()
@@ -168,7 +168,8 @@ class ProductResource extends Resource
                             ->directory('products')
                             ->maxFiles(20)
                             ->maxSize(2048)
-                            ->reorderable(),
+                            ->reorderable()
+                            ->appendFiles(),
                     ])
                 ])->columnSpan(['sm' => 2, 'md' => 2, 'lg' => 2, 'xl' => 2]),
 

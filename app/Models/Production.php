@@ -32,4 +32,15 @@ class Production extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($model) {
+            $model->items()->delete();
+        });
+        static::restored(function ($model) {
+            $model->items()->restore();
+        });
+    }
 }

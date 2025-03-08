@@ -90,8 +90,13 @@ class Product extends Model
     {
         parent::boot();
         static::updating(function ($model) {
+            $imagesBefore = Product::where('id', $model->id)->value('images');
             if ($model->isDirty('images') && ($model->getOriginal('images') !== null)) {
-                Storage::disk('public')->delete($model->getOriginal('images'));
+                $imagesAfter = $model->images;
+                $imagesDIFF = array_diff($imagesBefore, $imagesAfter);
+                foreach ($imagesDIFF as $img) {
+                    Storage::disk('public')->delete($img);
+                }
             }
         });
     }

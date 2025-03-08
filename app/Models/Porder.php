@@ -47,4 +47,17 @@ class Porder extends Model
     {
         return $this->hasOne(Address::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($model) {
+            $model->items()->delete();
+            $model->payments()->delete();
+        });
+        static::restored(function ($model) {
+            $model->items()->restore();
+            $model->payments()->restore();
+        });
+    }
 }
