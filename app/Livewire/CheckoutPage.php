@@ -19,10 +19,10 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-use Vermaysha\Wilayah\Models\City;
-use Vermaysha\Wilayah\Models\District;
-use Vermaysha\Wilayah\Models\Province;
-use Vermaysha\Wilayah\Models\Village;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 use Illuminate\Support\Str;
 
 #[Title('Checkout')]

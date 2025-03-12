@@ -7,10 +7,10 @@ use App\Models\Order;
 use App\Models\User;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use Vermaysha\Wilayah\Models\City;
-use Vermaysha\Wilayah\Models\District;
-use Vermaysha\Wilayah\Models\Province;
-use Vermaysha\Wilayah\Models\Village;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 
 #[Title('Success - TaibahShop')]
 class SuccessPage extends Component

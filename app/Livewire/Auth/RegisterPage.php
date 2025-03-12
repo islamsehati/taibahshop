@@ -6,10 +6,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Vermaysha\Wilayah\Models\City;
-use Vermaysha\Wilayah\Models\District;
-use Vermaysha\Wilayah\Models\Province;
-use Vermaysha\Wilayah\Models\Village;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 

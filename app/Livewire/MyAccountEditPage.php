@@ -10,10 +10,10 @@ use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Vermaysha\Wilayah\Models\City;
-use Vermaysha\Wilayah\Models\District;
-use Vermaysha\Wilayah\Models\Province;
-use Vermaysha\Wilayah\Models\Village;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 
 class MyAccountEditPage extends Component
 {
