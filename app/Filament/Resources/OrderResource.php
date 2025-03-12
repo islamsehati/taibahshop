@@ -53,6 +53,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 use Vermaysha\Wilayah\Models\District;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Pages\SubNavigationPosition;
+use Filament\Resources\Pages\Page;
 use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Columns\IconColumn;
@@ -710,6 +712,17 @@ class OrderResource extends Resource
             });
     }
 
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            Pages\ViewOrder::class,
+            Pages\EditOrder::class,
+            // RelationManagers\AddressRelationManager::class,
+        ]);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -747,6 +760,7 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'view' => Pages\ViewOrder::route('/{record}'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
+            // 'address' => RelationManagers\AddressRelationManager::route('/{record}/addressrelation'),
         ];
     }
 }
