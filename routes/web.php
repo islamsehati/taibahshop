@@ -69,9 +69,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/items', ItemsPage::class);
     Route::get('/payments', PaymentsPage::class);
     Route::get('/pos', PosPage::class);
-});
 
-Route::get('/prinprview/{id}', [PrintController::class, 'prinprview'])->name('printid');
-Route::get('/prinprviewkitchen/{id}', [PrintController::class, 'prinprviewkitchen'])->name('printkitchen');
-Route::get('/exportproducts', [ExportController::class, 'exportProduct']);
-Route::get('/exportbrands', [ExportController::class, 'exportBrand']);
+    Route::get('/prinprview/{id}', [PrintController::class, 'prinprview'])->name('printid');
+    Route::get('/prinprviewkitchen/{id}', [PrintController::class, 'prinprviewkitchen'])->name('printkitchen');
+    Route::get('/exportproducts', [ExportController::class, 'exportProduct']);
+    Route::get('/exportbrands', [ExportController::class, 'exportBrand']);
+});
