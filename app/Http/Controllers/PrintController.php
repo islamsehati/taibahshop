@@ -7,10 +7,10 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\User;
-use Vermaysha\Wilayah\Models\City;
-use Vermaysha\Wilayah\Models\District;
-use Vermaysha\Wilayah\Models\Province;
-use Vermaysha\Wilayah\Models\Village;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
 use Illuminate\Support\Str;
 
 class PrintController extends Controller
