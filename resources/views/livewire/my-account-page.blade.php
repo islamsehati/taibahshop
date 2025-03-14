@@ -56,15 +56,6 @@
                 <i class="text-red-500 fa fa-question-circle-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Bantuan<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
-            {{-- <a href="/logout">
-              <div class="block items-center rounded-lg mx-auto my-2 p-4 w-full hover:bg-yellow-400 bg-red-300 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
-                Logout<span class="fa fa-arrow-circle-right" style="float:right;margin-top:4px" aria-hidden="true"></span>
-              </div>
-            </a> --}}
-
-
-            
-            
             
             <div id="hs-focus-management-modal-x" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-focus-management-modal-label">
               <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">

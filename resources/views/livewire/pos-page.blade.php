@@ -8,24 +8,24 @@
                 {{-- Grid Start --}}
                 <div class="absolute right-0 w-2/3">
                     <div class="top-0 z-10 px-3 bg-slate-200">
-                        <div class="items-center justify-between py-2 sm:flex sm:flex-row-reverse ">
+                        <div class="items-center justify-between py-2 xs:flex xs:flex-row-reverse ">
 
-                                <div class="flex justify-between mb-3 sm:mb-0">
+                                <div class="flex justify-between mb-3 xs:mb-0 ml-3">
                                     <div class="flex mx-auto sm:ml-3 text-nowrap hs-dropdown">
                                         <button id="hs-dropdown-with-title" type="button" class="inline-flex items-center px-2 py-1 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-dropdown-toggle gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             <i class="fa fa-envelope" aria-hidden="true"></i> Orders
                                         </button>
     
                                         <div class="z-50 hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 divide-y divide-gray-200 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-title">
-                                              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-t-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/my-orders">
+                                              <a wire:navigate class="flex items-center gap-x-3.5 py-2 px-3 rounded-t-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/my-orders">
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                                 Pesanan
                                               </a>
-                                              <a class="flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/payments">
+                                              <a wire:navigate class="flex items-center gap-x-3.5 py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/payments">
                                                 <i class="fa fa-money" aria-hidden="true"></i>
                                                 Pembayaran
                                               </a>
-                                              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-b-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/items">
+                                              <a wire:navigate class="flex items-center gap-x-3.5 py-2 px-3 rounded-b-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/items">
                                                 <i class="fa fa-cube" aria-hidden="true"></i>
                                                 Barang Terjual
                                               </a>
@@ -55,7 +55,7 @@
                                         </span>
                                         <input wire:model.live="cari" 
                                         {{-- autofocus="" --}}
-                                        class="block sm:w-full w-[calc(100vw-33vw-4rem)] py-2 pr-20 text-sm bg-white border rounded-l-lg placeholder:italic placeholder:text-slate-400 border-slate-200 pl-9 focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1"
+                                        class="block xs:w-full w-[calc(100vw-33vw-4rem)] py-2 pr-20 text-sm bg-white border rounded-l-lg placeholder:italic placeholder:text-slate-400 border-slate-200 pl-9 focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1"
                                         placeholder="Cari..." type="text" name="search" />
                                     </label>
                     
@@ -415,7 +415,7 @@
                                         @endphp
                                         <td>
                                             <div class="absolute w-[80%] sm:w-full pl-2 {{ Str::length($panjangNama) > 27 ? 'xs:-mt-6 -mt-8' : '-mt-5' }} text-wrap sm:mt-0 sm:relative">
-                                                <a href="/products/{{ $item['slug'] }}" class="hover:text-blue-500">{{ $loop->iteration }}.
+                                                <a wire:navigate href="/products/{{ $item['slug'] }}" class="hover:text-blue-500">{{ $loop->iteration }}.
                                                     @if (Str::contains($item['variant'], $item['name']))
                                                     {{ $item['variant'] }}
                                                     @else
@@ -471,7 +471,7 @@
                                       </div>
                                 </button>
                             </a>
-                            <a href="/checkout?branch_id={{ auth()->user()->branch_id }}"
+                            <a wire:navigate href="/checkout?branch_id={{ auth()->user()->branch_id }}"
                                 class="w-full py-2 text-sm text-center text-white bg-blue-500 hover:bg-blue-600">
                                 <button class="hidden mx-auto sm:flex">
                                     CHECKOUT
