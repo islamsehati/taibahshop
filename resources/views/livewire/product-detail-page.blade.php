@@ -44,7 +44,7 @@
                                 </svg>
                             </span>
                             <h2 class="text-lg font-bold text-gray-500 dark:text-gray-400">Free Delivery*</h2><span
-                                class="text-xs">&ensp; selama promo</span>
+                                class="text-xs dark:text-gray-400">&ensp; selama promo</span>
                         </div>
                     </div>
                 </div>
@@ -53,35 +53,35 @@
             <div class="w-full sm:px-4 px-0 md:w-1/2 ">
                 <div class="lg:pl-20">
                     <div class="mb-2">
-                        <h2 wire:model="name" class="max-w-xl mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                        <h2 wire:model="name" class="max-w-xl mb-6 text-2xl font-bold dark:text-white md:text-4xl">
                             {{ $product->name }} {{ $product->variant }}</h2>
                         <p
-                            class="w-full inline-block mb-3 pl-3 py-2 text-2xl font-bold border-l-4 border-yellow-500 text-yellow-500 bg-gray-100 dark:text-gray-400 ">
+                            class="dark:bg-gray-900 w-full inline-block mb-3 pl-3 py-2 text-2xl font-bold border-l-4 border-yellow-500 text-yellow-500 bg-gray-100 dark:text-gray-100 ">
                             <span>@currency($product->price)</span>
                             @if ($product->strikethroughprice != null && $product->strikethroughprice >= 0)
                                 <span
-                                    class="text-sm font-normal text-gray-500 line-through dark:text-gray-400">@currency($product->strikethroughprice)</span>
+                                    class="text-sm font-normal text-gray-500 line-through dark:text-gray-100">@currency($product->strikethroughprice)</span>
                             @endif
                         </p>
                         <hr>
                         <div class="flex justify-between mt-2 mb-2">
                             <span class="w-1/3 text-center px-2 py-5"><i class="fa fa-map-marker text-green-600"></i>
-                                <div class="line-clamp-2">{{ $branch }}</div>
+                                <div class="line-clamp-2 dark:text-gray-100">{{ $branch }}</div>
                             </span>
                             <span class="w-1/3 text-center px-2 py-5 border-l-2 border-r-2"><i
                                     class="fa fa-th-list text-red-500"></i>
-                                <div class="line-clamp-2">{{ $category }}</div>
+                                <div class="line-clamp-2 dark:text-gray-100">{{ $category }}</div>
                             </span>
                             <span class="w-1/3 text-center px-2 py-5"><i class="fa fa-star text-yellow-400"
                                     aria-hidden="true"></i>
-                                <div class="line-clamp-2">{{ $product->rating }}/5</div>
+                                <div class="line-clamp-2 dark:text-gray-100">{{ $product->rating }}/5</div>
                             </span>
                         </div>
                         <hr>
 
                         @if (count($variants) > 1)
                             <div>
-                                <a class="text-black text-xs font-bold px-2 py-2 mr-1">Variant</a>
+                                <a class="text-black text-xs font-bold px-2 py-2 mr-1 dark:text-gray-200">Variant</a>
                                 @foreach ($variants as $variant)
                                     @php
                                         if ($variant->id == $product->id) {
@@ -98,13 +98,13 @@
                                 @endforeach
                             </div>
                         @else
-                            <div class="mt-4">Product has no variants</div>
+                            <div class="mt-4 dark:text-gray-200">Product has no variants</div>
                         @endif
                     </div>
 
                     <div class="hidden md:flex mb-5 pt-4 mt-5 justify-between border-t">
                         <div for=""
-                            class="text-nowrap w-20 pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300 dark:border-gray-600 dark:text-gray-400">
+                            class="text-nowrap w-20 pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300 dark:border-gray-600 dark:text-gray-200">
                             Quantity</div>
                         <div class="relative flex flex-row w-32 h-10  bg-transparent rounded-lg">
 
@@ -116,7 +116,7 @@
                             <input wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();' autofocus
                                 required type="numeric" wire:model='quantity' value="" min=1
                                 onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black">
+                                class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-100 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black">
 
                             <button wire:click='increaseQty'
                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
@@ -136,7 +136,7 @@
                         {{-- @if ($stock >= 1 && $product->in_stock == 1) --}}
                         @if ($product->in_stock == 1)
                             <button id='addToCartButton' wire:click='addToCart({{ $product->id }}); soundBeep.play();'
-                                class="w-full p-4 bg-gradient-to-r from-yellow-300 to-red-500 rounded-md lg:full dark:text-gray-200 text-gray-50 hover:from-yellow-600 hover:to-yellow-600 dark:bg-blue-500 dark:hover:bg-blue-700">
+                                class="w-full p-4 bg-gradient-to-r from-yellow-300 to-red-500 rounded-md lg:full dark:text-gray-200 text-gray-50 hover:from-yellow-600 hover:to-yellow-600">
                                 <span wire:loading.remove wire:target='addToCart({{ $product->id }})'>Add to cart <i
                                         class="fa fa-shopping-bag scale-110 relative left-[4px] bottom-[2px]"
                                         aria-hidden="true"></i></span><span wire:loading
@@ -144,30 +144,30 @@
                             </button>
                         @else
                             <button
-                                class="w-full p-4 bg-gray-500 rounded-md lg:full dark:text-gray-200 text-gray-50 hover:bg-yellow-400 dark:bg-blue-500 dark:hover:bg-blue-700">
+                                class="w-full p-4 bg-gray-500 rounded-md lg:full dark:text-gray-200 text-gray-50 hover:bg-yellow-400 dark:bg-gray-500 dark:hover:bg-gray-700">
                                 <span>Habis</span>
                             </button>
                         @endif
                     </div>
 
-                    <div class="mt-8 [&>ul]:list-disc [&>ul]:ml-5">
+                    <div class="mt-8 [&>ul]:list-disc [&>ul]:ml-5 text-gray-700 dark:text-gray-100">
                         {{-- <span>Stock {{ $stock }}</span> --}}
-                        <p class="max-w-md text-gray-700 dark:text-gray-400">
+                        <p class="max-w-md ">
                             {!! Str::markdown($product->description) !!}</p>
 
-                        @if ($product->tags != '')
-                            @php
-                                $tags = Str::of($product->tags)->explode(',');
-                            @endphp
-                            <p class="mt-3 text-gray-700 dark:text-gray-400">
-                                @foreach ($tags as $tag)
-                                    <div class="bg-yellow-100 m-1 px-2 inline-block rounded-md">
-                                        #{{ $tag }}
-                                    </div>
-                                @endforeach
-                        @endif
-                        </p>
                     </div>
+                    @if ($product->tags != '')
+                        @php
+                            $tags = Str::of($product->tags)->explode(',');
+                        @endphp
+                        <p class="mt-3 text-gray-700 dark:text-gray-400">
+                            @foreach ($tags as $tag)
+                                <div class="bg-yellow-100 m-1 px-2 inline-block rounded-md">
+                                    #{{ $tag }}
+                                </div>
+                            @endforeach
+                        </p>
+                    @endif
                 </div>
             </div>
         </div>

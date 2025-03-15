@@ -1,6 +1,6 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <span class="text-4xl font-bold text-slate-500">Order Details </span>
-    <span class="text-xl font-bold text-slate-500">{{ $order->id }}</span>
+    <span class="text-4xl font-bold text-slate-500 dark:text-white">Order Details </span>
+    <span class="text-xl font-bold text-slate-500 dark:text-white">{{ $order->id }}</span>
 
     <!-- Grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-5">
@@ -21,12 +21,12 @@
 
                 <div class="grow">
                     <div class="flex items-center gap-x-2">
-                        <p class="text-xs uppercase tracking-wide text-gray-500">
+                        <p class="text-xs uppercase tracking-wide text-gray-400">
                             Customer
                         </p>
                     </div>
                     <div class="mt-1 flex items-center gap-x-2">
-                        <div>
+                        <div class="text-gray-800 dark:text-gray-200">
                             @if ($address_lastname != null)
                                 {{ $address_firstname }} {{ $address_lastname }}
                             @else
@@ -57,7 +57,7 @@
 
                 <div class="grow">
                     <div class="flex items-center gap-x-2">
-                        <p class="text-xs uppercase tracking-wide text-gray-500">
+                        <p class="text-xs uppercase tracking-wide text-gray-400">
                             Order Date
                         </p>
                     </div>
@@ -91,11 +91,11 @@
 
                 <div class="grow">
                     <div class="flex items-center gap-x-2">
-                        <p class="text-xs uppercase tracking-wide text-gray-500">
+                        <p class="text-xs uppercase tracking-wide text-gray-400">
                             Order Status
                         </p>
                     </div>
-                    <div class="mt-1 flex items-center gap-x-2">
+                    <div class="mt-1 flex items-center gap-x-2 text-gray-800 dark:text-gray-200">
 
                         @php
                             $status = '';
@@ -146,11 +146,11 @@
 
                 <div class="grow">
                     <div class="flex items-center gap-x-2">
-                        <p class="text-xs uppercase tracking-wide text-gray-500">
+                        <p class="text-xs uppercase tracking-wide text-gray-400">
                             Payment Status
                         </p>
                     </div>
-                    <div class="mt-1 flex items-center gap-x-2">
+                    <div class="mt-1 flex items-center gap-x-2 text-gray-800 dark:text-gray-200">
                         @php
                             $payment_status = '';
 
@@ -176,16 +176,16 @@
 
     <div class="flex flex-col md:flex-row gap-4 mt-4">
         <div class="md:w-3/5">
-            <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-4">
+            <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-4 dark:bg-slate-900">
                 <table class="w-full">
-                    <thead>
+                    <thead class="dark:text-slate-400">
                         <tr>
                             <th class="text-left font-semibold">Product</th>
                             <th class="text-center font-semibold">Qty</th>
                             <th class="text-right font-semibold">Total</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="dark:text-slate-200">
                         @foreach ($order_items as $item)
                             <tr wire:key="{{ $item->id }}">
                                 <td class="py-4">
@@ -210,7 +210,7 @@
                                                         $contains = Str::of($item->product->contain)->explode(',');
                                                     @endphp
                                                     @foreach ($contains as $contain)
-                                                        <span class="text-xs bg-slate-100">{{ $contain }}</span>
+                                                        <span class="text-xs bg-slate-100 dark:bg-slate-700">{{ $contain }}</span>
                                                     @endforeach
                                                 @endif
                                             </div>
@@ -231,14 +231,14 @@
                 </table>
             </div>
 
-            <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-0">
+            <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-0 dark:bg-slate-900">
                 <div class="mb-3 flex justify-between">
                     <h1 class="font-3xl font-bold text-slate-500">Shipping Address</h1>
                     <h1 class="font-lg font-bold text-slate-500">From <span
                             style=" margin-left:0.5rem;margin-right:0.2rem;"
                             class="fa fa-map-marker text-green-600"></span> {{ $order->branch->name }}</h1>
                 </div>
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center dark:text-slate-200">
                     <div class="pr-2">
                         <p>
                             @if (isset($address->street_address))
@@ -273,9 +273,9 @@
 
         </div>
         <div class="md:w-2/5">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-4">
-                <h1 class="font-3xl font-bold text-slate-500 mb-3">Notes</h1>
-                <div class="[&>ul]:list-disc [&>ul]:ml-5">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-4 dark:bg-slate-900">
+                <h1 class="font-3xl font-bold text-slate-400 mb-3">Notes</h1>
+                <div class="[&>ul]:list-disc [&>ul]:ml-5 dark:text-slate-200">
                     <p>
                         @if ($order->notes)
                             {!! Str::markdown($order->notes) !!}
@@ -285,9 +285,9 @@
                     </p>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-lg font-semibold mb-4">Summary</h2>
-                <div class="flex justify-between mb-2">
+            <div class="bg-white rounded-lg shadow-md p-6 dark:bg-slate-900">
+                <h2 class="text-lg font-semibold mb-4 dark:text-slate-400">Summary</h2>
+                <div class="flex justify-between mb-2 dark:text-slate-200">
                     <span>Subtotal</span>
                     @if (empty($item))
                     gagal tercatat
@@ -295,7 +295,7 @@
                     <span>@currency($item->order->grand_total + $item->order->discount - $item->order->shipping_amount)</span>
                     @endif
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2 dark:text-slate-200">
                     <span>Discount</span>
                     @if (empty($item))
                     gagal tercatat
@@ -303,7 +303,7 @@
                     <span>@currency($item->order->discount)</span>
                     @endif
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2 dark:text-slate-200">
                     <span>Shipping</span>
                     @if (empty($item))
                     gagal tercatat
@@ -312,7 +312,7 @@
                     @endif
                 </div>
                 <hr class="my-2">
-                <div class="flex justify-between mb-4">
+                <div class="flex justify-between mb-4 dark:text-slate-200">
                     <span class="font-semibold">Grand Total</span>
                     @if (empty($item))
                     gagal tercatat
@@ -320,7 +320,7 @@
                     <span class="font-semibold">@currency($item->order->grand_total)</span>
                     @endif
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2 dark:text-slate-200">
                     <span class="">Payment</span>
                     @if (empty($item))
                     gagal tercatat
@@ -328,7 +328,7 @@
                     <span class="">@currency($item->order->total_payment)</span>
                     @endif
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2 dark:text-slate-200">
                     @if (empty($item))
                     <span>Unpaid</span>
                     @else
@@ -371,7 +371,7 @@
         </div>
     </div>
 
-    <h3 class="text-xl font-bold text-slate-500 mt-10">Payment History
+    <h3 class="text-xl font-bold text-slate-500 mt-10 dark:text-slate-200">Payment History
         <button type="button"
             class="bg-white py-1 px-2 {{ auth()->user()->is_admin == 1 && $order->is_paid == 0 ? 'inline-flex' : 'hidden' }} items-center gap-x-2 text-sm font-medium border border-transparent bg-transparent text-black hover:text-white hover:bg-yellow-500 focus:outline-none focus:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none"
             aria-haspopup="dialog" aria-expanded="false"

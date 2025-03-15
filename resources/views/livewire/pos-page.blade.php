@@ -7,7 +7,7 @@
 
                 {{-- Grid Start --}}
                 <div class="absolute right-0 w-2/3">
-                    <div class="top-0 z-10 px-3 bg-slate-200">
+                    <div class="top-0 z-10 px-3 bg-slate-200 dark:bg-slate-700">
                         <div class="items-center justify-between py-2 xs:flex xs:flex-row-reverse ">
 
                                 <div class="flex justify-between mb-3 xs:mb-0 ml-3">
@@ -60,7 +60,7 @@
                                     </label>
                     
                                     <div class="hs-dropdown [--strategy:fixed] [--adaptive:none] [--auto-close:inside]">
-                                        <summary class="flex cursor-pointer items-center gap-2 pt-[0.5rem] pb-[0.5rem] px-2 text-gray-900 bg-white transition hover:border-green-400 rounded-r-lg border dark:border-none focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1">
+                                        <summary class="flex cursor-pointer items-center gap-2 mt-[0px] pt-[0.5rem] pb-[0.5rem] px-2 text-gray-900 bg-white dark:border-slate-200 border transition hover:border-green-400 rounded-r-lg focus:outline-none focus:border-green-400 focus:ring-green-400 focus:ring-1">
                                             <div class="text-sm"><i class="fa fa-sliders" aria-hidden="true"></i></div>
                                         </summary>
                     
@@ -78,7 +78,7 @@
                                                                 id="{{ $category->slug }}" value="{{ $category->id }}"
                                                                 class="hidden peer">
                                                             <label for="{{ $category->slug }}"
-                                                                class=" items-center pb-1 px-1.5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                                                class=" items-center pb-1 px-1.5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-200 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-500 dark:bg-white dark:hover:bg-gray-700">
                                                                 <span class="text-sm">{{ $category->name }}</span>
                                                             </label>
                                                             </input>
@@ -99,7 +99,7 @@
                                                                 id="{{ $brand->slug }}" value="{{ $brand->id }}"
                                                                 class="hidden peer">
                                                             <label for="{{ $brand->slug }}"
-                                                                class=" items-center pb-1 px-1.5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                                                class=" items-center pb-1 px-1.5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-200 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-500 dark:bg-white dark:hover:bg-gray-700">
                                                                 <span class="text-sm">{{ $brand->name }}</span>
                                                             </label>
                                                             </input>
@@ -189,7 +189,7 @@
                                 </div>
 
                                 <div class="hidden mr-4 md:flex hs-dropdown">
-                                    <button class="font-lobster" id="hs-dropdown-with-title" type="button" class="inline-flex items-center px-4 py-3 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-dropdown-toggle gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                    <button id="hs-dropdown-with-title" type="button" class="font-lobster inline-flex items-center px-1 py-2 text-sm font-medium text-gray-800 bg-transparent dark:text-white rounded-lg hs-dropdown-toggle gap-x-2 dark:bg-transparent" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         TaibahShop
                                     </button>
 
@@ -208,14 +208,18 @@
                                           </a>
                                         </div>
                                         <div class="p-1 space-y-0.5">
-                                          <span class="block px-3 pt-2 pb-1 text-xs font-medium text-gray-400 uppercase dark:text-neutral-500">
-                                            Kontak
-                                          </span>
-                                          <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="https://wa.me/6287881231119">
-                                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                            Bantuan
-                                          </a>
-                                        </div>
+                                            <span class="block px-3 pt-2 pb-1 text-xs font-medium text-gray-400 uppercase dark:text-neutral-500">
+                                              Link
+                                            </span>
+                                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="/admin">
+                                              <x-fas-shield-halved class="text-gray-500 size-4"/>
+                                              Admin Panel
+                                            </a>
+                                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="https://wa.me/6287881231119">
+                                              <x-fas-phone-volume class="text-gray-500 size-4"/>
+                                              Bantuan
+                                            </a>
+                                          </div>
                                       </div>
                                 </div>
 
@@ -228,15 +232,15 @@
 
                     {{-- Product Card Start --}}
 
-                    <div class="flex flex-wrap items-center justify-center mx-auto px-0.5 bg-slate-200">
+                    <div class="flex flex-wrap items-center justify-center mx-auto px-0.5 bg-slate-200 dark:bg-slate-700">
 
                         @foreach ($products as $product)
                             <div wire:key="{{ $product->id }}"
                                 class="w-1/2 px-0 mb-0 xs:w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5">
                                 <div
-                                    class="bg-white border-2 group hover:bg-gray-800 focus:bg-gray-800 border-slate-200 dark:border-gray-700">
+                                    class="bg-white dark:bg-slate-900 border-2 group hover:bg-gray-800 focus:bg-gray-800 dark:hover:bg-white dark:focus:bg-gray-200 border-slate-200 dark:border-slate-700">
                                     <div onclick="showModalPro({{ $product->id }})"
-                                        class="relative {{ $product->is_active == 1 ? 'bg-gray-100' : 'bg-gray-400' }} cursor-pointer scale-90">
+                                        class="relative {{ $product->is_active == 1 ? 'bg-gray-100 dark:bg-slate-700' : 'bg-gray-400 dark:bg-black' }} cursor-pointer scale-90">
                                             @if ($product->images != null || $product->images === "[]")
                                                 <img src="{{ Str::replace('%2F', '/',url('storage', $product->images[0])) }}"
                                                     alt="{{ $product->name }}"
@@ -249,7 +253,7 @@
                                     </div>
                                     <div class="px-3 pb-2">
                                         <div class="flex items-center justify-between gap-2">
-                                            <h3 class="text-sm font-medium truncate group-hover:text-white group-focus:text-white max-lg:text-sm dark:text-gray-400">
+                                            <h3 class="text-sm font-medium truncate group-hover:text-white group-hover:dark:text-black group-focus:text-white max-lg:text-sm dark:text-white">
                                                 @if (Str::contains($product->variant, $product->name))
                                                     {{ $product->variant }}
                                                 @else
@@ -260,7 +264,7 @@
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm max-lg:sm">
                                                 <span
-                                                    class="text-green-600 group-hover:text-lime-400 group-focus:text-lime-400 dark:text-green-600 text-nowrap">
+                                                    class="text-green-600 dark:text-lime-400 group-hover:text-lime-400 group-hover:dark:text-green-500 group-focus:text-lime-400 text-nowrap">
                                                     @if (Str::length($product->price) > 6)
                                                     Rp{{  Number::forHumans($product->price, precision: 2) }}
                                                     @else
@@ -403,13 +407,13 @@
                 {{-- Grid End --}}
 
                 {{-- LIST ITEM START --}}
-                <div id="ListItem" class="fixed left-0 w-1/3 h-screen p-2 overflow-auto bg-white">
+                <div id="ListItem" class="fixed left-0 w-1/3 h-screen p-2 overflow-auto bg-white dark:bg-slate-800">
                       
                        <div class="pb-28">
                             <table class="w-full">
                                 <body class="w-full">
                                     @forelse ($cart_items as $item)
-                                    <tr class="text-xs font-normal bg-gray-100 border border-gray-300 lg:text-sm" wire:key='{{ $item['id'] }}' wire:loading.class="bg-red-300" wire:loading.class.remove="bg-gray-100" wire:target='removeItem({{ $item['product_id'] }})'>
+                                    <tr class="text-xs font-normal bg-gray-100 dark:bg-slate-700 dark:text-white border border-gray-300 lg:text-sm" wire:key='{{ $item['id'] }}' wire:loading.class="bg-red-300" wire:loading.class.remove="bg-gray-100 dark:bg-slate-700" wire:target='removeItem({{ $item['product_id'] }})'>
                                         @php
                                             $panjangNama = $item['name'].$item['name'];
                                         @endphp
@@ -454,7 +458,7 @@
                             @endif
                       </div>
                   
-                      <div class="fixed left-0 w-1/3 px-2 py-2 mt-2 -mb-2 bg-white bottom-2">
+                      <div class="fixed left-0 w-1/3 px-2 py-2 mt-2 -mb-2 bg-white dark:bg-slate-800 bottom-2 dark:text-white">
                         <div class="flex justify-between w-full mb-2">
                             <div>
                                 Qty : {{ $cartcek->where('branch_id', auth()->user()->branch_id)->where('created_by', auth()->user()->id)->sum('quantity') }}
@@ -481,8 +485,11 @@
                                 </button>
                             </a>
                             <a>
-                                <button onclick="toggle_full_screen();" class="px-4 py-2 text-sm text-center text-white bg-green-500 hover:bg-green-600">
+                                <button onclick="toggle_full_screen();" id="layarpenuh" class="px-4 py-2 text-sm text-center text-white bg-green-500 hover:bg-green-600">
                                     <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                </button>
+                                <button onclick="toggle_full_screen();" id="layarpenuhtutup" class="hidden px-4 py-2 text-sm text-center text-white bg-green-500 hover:bg-green-600">
+                                    <i class="fa fa-compress" aria-hidden="true"></i>
                                 </button>
                             </a>
                         </div>
@@ -524,35 +531,51 @@
      function toggle_full_screen()
         {
             if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
-            {
-                if (document.documentElement.requestFullScreen){
-                    document.documentElement.requestFullScreen();
-                }
-                else if (document.documentElement.mozRequestFullScreen){ /* Firefox */
-                    document.documentElement.mozRequestFullScreen();
-                }
-                else if (document.documentElement.webkitRequestFullScreen){   /* Chrome, Safari & Opera */
-                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-                }
-                else if (document.msRequestFullscreen){ /* IE/Edge */
-                    document.documentElement.msRequestFullscreen();
-                }
-            }
-            else
-            {
-                if (document.cancelFullScreen){
-                    document.cancelFullScreen();
-                }
-                else if (document.mozCancelFullScreen){ /* Firefox */
-                    document.mozCancelFullScreen();
-                }
-                else if (document.webkitCancelFullScreen){   /* Chrome, Safari and Opera */
-                    document.webkitCancelFullScreen();
-                }
-                else if (document.msExitFullscreen){ /* IE/Edge */
-                    document.msExitFullscreen();
-                }
-            }
+           {
+               if (document.documentElement.requestFullScreen){
+                   document.documentElement.requestFullScreen();
+                   document.getElementById("layarpenuh").classList.add("hidden");
+                   document.getElementById("layarpenuhtutup").classList.remove("hidden");
+               }
+               else if (document.documentElement.mozRequestFullScreen){ /* Firefox */
+                   document.documentElement.mozRequestFullScreen();
+                   document.getElementById("layarpenuh").classList.add("hidden");
+                   document.getElementById("layarpenuhtutup").classList.remove("hidden");
+               }
+               else if (document.documentElement.webkitRequestFullScreen){   /* Chrome, Safari & Opera */
+                   document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                   document.getElementById("layarpenuh").classList.add("hidden");
+                   document.getElementById("layarpenuhtutup").classList.remove("hidden");
+               }
+               else if (document.msRequestFullscreen){ /* IE/Edge */
+                   document.documentElement.msRequestFullscreen();
+                   document.getElementById("layarpenuh").classList.add("hidden");
+                   document.getElementById("layarpenuhtutup").classList.remove("hidden");
+               }
+           }
+           else
+           {
+               if (document.cancelFullScreen){
+                   document.cancelFullScreen();
+                   document.getElementById("layarpenuh").classList.remove("hidden");
+                   document.getElementById("layarpenuhtutup").classList.add("hidden");
+               }
+               else if (document.mozCancelFullScreen){ /* Firefox */
+                   document.mozCancelFullScreen();
+                   document.getElementById("layarpenuh").classList.remove("hidden");
+                   document.getElementById("layarpenuhtutup").classList.add("hidden");
+               }
+               else if (document.webkitCancelFullScreen){   /* Chrome, Safari and Opera */
+                   document.webkitCancelFullScreen();
+                   document.getElementById("layarpenuh").classList.remove("hidden");
+                   document.getElementById("layarpenuhtutup").classList.add("hidden");
+               }
+               else if (document.msExitFullscreen){ /* IE/Edge */
+                   document.msExitFullscreen();
+                   document.getElementById("layarpenuh").classList.remove("hidden");
+                   document.getElementById("layarpenuhtutup").classList.add("hidden");
+               }
+           }
         }
     //  function full_screen_on()
     //     {

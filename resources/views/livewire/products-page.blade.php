@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <section class="mt-2 py-1 max-md:bg-slate-100 bg-white font-poppins dark:bg-slate-700 max-md:dark:bg-gray-700 rounded-lg">
+    <section class="mt-2 py-1 max-md:bg-slate-100 bg-white font-poppins dark:bg-slate-800 max-md:dark:bg-gray-700 rounded-lg">
         <div class="-px-1 py-1 mx-auto max-w-7xl md:py-4 md:px-6">
             <div class="flex flex-wrap mb-10 -mx-3">
 
@@ -299,7 +299,7 @@
                             <div wire:key="{{ $product->id }}"
                                 class="md:px-2 md:mb-3 px-1 mb-2 xs:w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5 w-1/2">
                                 <div
-                                    class="border rounded-xl hover:shadow-md border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-800">
+                                    class="border rounded-xl hover:shadow-md dark:hover:border-white border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900">
                                     <div
                                         class="relative {{ $product->is_active == 1 ? 'bg-yellow-300' : 'bg-green-500' }} rounded-lg scale-90">
                                         <a href="/products/{{ $product->slug }}" class="">
