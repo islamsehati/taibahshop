@@ -5,7 +5,7 @@
 	</h1>
 
   <div class="flex items-center justify-between">
-    <div class="text-lg font-semibold">Branches</div>
+    <div class="text-lg font-semibold dark:text-white">Branches</div>
     <label class="relative block text-center">
       <span class="sr-only">Search</span>
       <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">

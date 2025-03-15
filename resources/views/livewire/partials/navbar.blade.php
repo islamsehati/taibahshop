@@ -6,15 +6,15 @@
       md:flex md:items-center md:justify-between">
       <div class="flex items-center justify-between">
 
-        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
         
-        <div class="px-5 md:hidden font-medium flex items-center hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/cart">
+        <div class="px-5 md:hidden font-medium flex items-center hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             <label class="relative block text-center">
               <span class="sr-only">Search</span>
               <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </span>
-              <input wire:keyup.enter='cariProduk()' wire:model="cari" class="placeholder:italic placeholder:text-red-400 block bg-red-500 w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" placeholder="Search menu..." type="search" name="search"/>
+              <input wire:keyup.enter='cariProduk()' wire:model="cari" class="placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" placeholder="Search menu..." type="search" name="search"/>
             </label>
         </div>
 
@@ -56,10 +56,10 @@
         <div class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-slate-700 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500">
           <div class="flex flex-col gap-x-0 mt-5 divide-y divide-dashed divide-gray-200 md:flex-row md:items-center md:justify-end md:gap-x-7 md:mt-0 md:ps-7 md:divide-y-0 md:divide-solid dark:divide-gray-700 pr-3">
             
-            <a class="font-medium {{ request()->is('/')?' text-yellow-400' : 'text-white'}} hover:lg:text-red-500 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-1 hover:lg:px-3 hover:lg:-mx-3  hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-current="page">Home</a> 
+            <a class="font-medium {{ request()->is('/')?' text-yellow-400' : 'text-white'}} hover:lg:text-red-500 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-1 hover:lg:px-3 hover:lg:-mx-3  hover:rounded-lg py-3 md:py-6 dark:text-white dark:hover:text-gray-500" href="/" aria-current="page">Home</a> 
 
             <div class="hs-dropdown [--strategy:static] md:[--strategy:fixed] [--adaptive:none] md:[--trigger:hover] max-md:pt-3 md:py-5 {{ request()->is('products') || request()->is('categories')?' md:bg-yellow-500 md:pt-3 md:pb-3 md:px-3 md:-mx-3 rounded-lg' : ''}} hover:text-white hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-3 hover:lg:pb-8 hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg">
-              <button type="button" class="flex items-center w-full text-white hover:text-gray-950 font-medium dark:text-gray-400 dark:hover:text-gray-500">
+              <button type="button" class="flex items-center w-full text-white hover:text-gray-950 font-medium dark:text-white dark:hover:text-gray-500">
                 Product
               </button>
   
@@ -90,16 +90,41 @@
               </div>
             </div>
 
-            <a class="font-medium {{ request()->is('my-orders')?' text-yellow-400' : 'text-white'}}  hover:lg:text-red-500 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-1 hover:lg:px-3 hover:lg:-mx-3  hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/my-orders">
+            <a class="font-medium {{ request()->is('my-orders')?' text-yellow-400' : 'text-white'}}  hover:lg:text-red-500 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-1 hover:lg:px-3 hover:lg:-mx-3  hover:rounded-lg py-3 md:py-6 dark:text-white dark:hover:text-gray-500" href="/my-orders">
               My Orders
             </a>
 
-            <a class="hidden font-medium  md:flex items-center {{ request()->is('cart')?' text-yellow-400' : 'text-white'}} hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/cart">
+            <a class="hidden font-medium  md:flex items-center {{ request()->is('cart')?' text-yellow-400' : 'text-white'}} hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500" href="/cart">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="{{ request()->is('cart')?' text-yellow-400' : 'text-white'}} flex-shrink-0 w-5 h-5 mr-1">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
               </svg>
               <span class="mr-1 {{ request()->is('cart')?' text-yellow-400' : 'text-white'}}">Cart</span> <span class="py-0.5 px-1.5 rounded-full text-xs font-medium bg-red-50 border border-red-200 text-red-600">{{ $total_count }}</span>
             </a>
+
+            <span style="margin-left: -10px;margin-right: -20px">
+              <button type="button" class="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-white rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:text-black dark:focus:bg-neutral-800" data-hs-theme-click-value="dark">
+                <span class="group inline-flex shrink-0 justify-center items-center size-9">
+                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                  </svg>
+                </span>
+              </button>
+              <button type="button" class="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-white dark:text-white rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:text-black dark:focus:bg-neutral-800" data-hs-theme-click-value="light">
+                <span class="group inline-flex shrink-0 justify-center items-center size-9">
+                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                  </svg>
+                </span>
+              </button>
+            </span>
 
             @guest
             <div class="pt-3 md:pt-0">
@@ -115,7 +140,7 @@
 
             @auth               
             <div class="hs-dropdown [--strategy:static] md:[--strategy:fixed] [--adaptive:none] md:[--trigger:hover] max-md:pt-3 md:py-5 hover:text-white hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-3 hover:lg:pb-8 hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg">
-              <button type="button" class="flex items-center w-full {{ request()->is('my-account')?' text-yellow-400' : 'text-white'}} hover:text-gray-950 font-medium dark:text-gray-400 dark:hover:text-gray-500">
+              <button type="button" class="flex items-center w-full {{ request()->is('my-account')?' text-yellow-400' : 'text-white'}} hover:text-gray-950 font-medium dark:text-white dark:hover:text-gray-500">
                 {{ auth()->user()->name }}
               </button>
   
@@ -322,14 +347,14 @@
           <div class=" border-t border-gray-200 dark:border-neutral-700">
           <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700">
             <span style="float:right;">
-                <button type="button" class="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full border-2 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" data-hs-theme-click-value="dark">
+                <button type="button" class="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full border-2 border-gray-300 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" data-hs-theme-click-value="dark">
                   <span class="group inline-flex shrink-0 justify-center items-center size-9">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                     </svg>
                   </span>
                 </button>
-                <button type="button" class="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-red-800 dark:text-red-800 rounded-full border-2 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-white dark:focus:bg-neutral-800" data-hs-theme-click-value="light">
+                <button type="button" class="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-white dark:text-white rounded-full border-2 border-gray-300 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-white dark:focus:bg-neutral-800" data-hs-theme-click-value="light">
                   <span class="group inline-flex shrink-0 justify-center items-center size-9">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="4"></circle>

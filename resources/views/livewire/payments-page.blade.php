@@ -1,5 +1,5 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <h1 class="text-center text-2xl font-bold text-slate-500">
+    <h1 class="text-center text-2xl font-bold text-slate-500 dark:text-white">
       Payments List
     </h1>
     
@@ -26,7 +26,7 @@
     
     <div class="mt-3">
       <div id="segment-1" role="tabpanel" aria-labelledby="segment-item-1">
-        <div class="flex flex-col bg-white p-5 rounded-lg mt-4 shadow-lg">
+        <div class="flex flex-col bg-white dark:bg-neutral-800 p-5 rounded-lg mt-4 shadow-lg">
           <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
               <div class="overflow-hidden">
@@ -70,7 +70,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                        <td colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus') - $jumlahkembalian) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
+                        <td class="text-gray-800 dark:text-gray-200" colspan="3">CASH @formatNumber($payments->where('payment_method', 'cash')->sum('nominal_plus') - $jumlahkembalian) | TRANSFER @formatNumber($payments->where('payment_method', 'transfer')->sum('nominal_plus'))</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-semibold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus'))</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-semibold text-gray-800 dark:text-gray-200">@formatNumber($jumlahkembalian)</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-end font-bold text-gray-800 dark:text-gray-200">@formatNumber($payments->sum('nominal_plus') - $jumlahkembalian)</td>
@@ -87,7 +87,7 @@
         </div>
       </div>
       <div id="segment-2" class="hidden" role="tabpanel" aria-labelledby="segment-item-2">
-        <div class="flex flex-col bg-white p-5 rounded-lg mt-4 shadow-lg">
+        <div class="flex flex-col bg-white dark:bg-neutral-800 p-5 rounded-lg mt-4 shadow-lg">
           <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
               <div class="overflow-hidden">

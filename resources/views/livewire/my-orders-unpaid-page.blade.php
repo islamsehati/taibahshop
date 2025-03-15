@@ -35,7 +35,7 @@
     } 
 </style>
 
-    <h1 class="text-center text-2xl font-bold text-slate-500">
+    <h1 class="text-center text-2xl font-bold text-slate-500 dark:text-white">
         @if ($isadmin == 1)
         Orders<br>
         <span class="text-lg text-red-500" id="RealShow">Pending (<span id="valueCountShow" >{{ $my_orders_sum_unpaid_count }}</span>) <span id="valueSumShow" >@currency($my_orders_sum_unpaid)</span></span>
@@ -86,7 +86,7 @@
 
     <div class="mt-3">
         <div id="segment-1" role="tabpanel" aria-labelledby="segment-item-1">
-            <div class="flex flex-col bg-white p-0 pt-4 rounded-lg mt-4 shadow-lg">
+            <div class="flex flex-col bg-white dark:bg-neutral-700 p-0 pt-4 rounded-lg mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">
@@ -242,7 +242,7 @@
         <div id="segment-2" class="hidden" role="tabpanel" aria-labelledby="segment-item-2">
             @auth
             @if ($isadmin == 1)
-            <div class="flex flex-col bg-white p-5 rounded mt-4 shadow-lg">
+            <div class="flex flex-col bg-white dark:bg-neutral-700 p-5 rounded mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">
@@ -386,7 +386,7 @@
         <div id="segment-3" class="hidden" role="tabpanel" aria-labelledby="segment-item-3">
             @auth
             @if ($isadmin == 1)
-            <div class="flex flex-col bg-white p-5 rounded mt-4 shadow-lg">
+            <div class="flex flex-col bg-white dark:bg-neutral-700 p-5 rounded mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">
@@ -444,7 +444,7 @@
             <h4 class="text-gray-500 font-medium text-lg mt-10">
                 Total per Item
             </h4>
-            <div class="flex flex-col bg-white p-5 rounded mt-4 shadow-lg">
+            <div class="flex flex-col bg-white dark:bg-neutral-700 p-5 rounded mt-4 shadow-lg">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="overflow-hidden">

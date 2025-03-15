@@ -44,7 +44,7 @@
   <!-- End Slider -->
 
   <div class="flex items-center justify-between">
-    <div class="text-lg font-semibold">Categories</div>
+    <div class="text-lg font-semibold dark:text-white">Categories</div>
     <label class="relative block text-center">
       <span class="sr-only">Search</span>
       <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
@@ -62,7 +62,7 @@
           @if ($cariCat == null)       
           <li>
             <a href="products?featured[0]=1" class="text-center mx-auto">
-              <div class="h-16 w-16 mx-2 ml-0 bg-white hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
+              <div class="h-16 w-16 mx-2 ml-0 bg-white hover:bg-yellow-200 dark:hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
                 <div class="">
                   <img class="relative -bottom-2 h-12 w-12 mx-auto" src="{{ url('storage/star.png') }}" alt="Featured Product">
                 </div>
@@ -74,7 +74,7 @@
           </li>
           <li>
             <a href="products?promo[0]=1" class="text-center mx-auto">
-              <div class="h-16 w-16 mx-2 bg-white hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
+              <div class="h-16 w-16 mx-2 bg-white hover:bg-yellow-200 dark:hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
                 <div class="">
                   <img class="relative -bottom-2 h-12 w-12 mx-auto" src="{{ url('storage/indonesian-rupiah_7051105.png') }}" alt="Featured Product">
                 </div>
@@ -88,7 +88,7 @@
           @foreach ($categories->where('name', 'LIKE', '%' . $cariCat . '%')->get() as $category)  
           <li>
             <a wire:key="{{ $category->id }}" href="products?selected_categories[0]={{ $category->id }}" class="text-center mx-auto">
-              <div class="h-16 w-16 mx-2 bg-white hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
+              <div class="h-16 w-16 mx-2 bg-white hover:bg-yellow-200 dark:hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
                 <div class="">
                   <img class="relative -bottom-2 h-12 w-12 mx-auto" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
                 </div>
@@ -105,7 +105,7 @@
   </div>
 
   <div class="flex items-center justify-between">
-    <div class="text-lg font-semibold">Brands</div>
+    <div class="text-lg font-semibold dark:text-white">Brands</div>
     <label class="relative block text-center">
       <span class="sr-only">Search</span>
       <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
@@ -129,7 +129,7 @@
             </div>
           </div>
           <div class="ps-3">
-            <svg class="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="flex-shrink-0 w-5 h-5 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m9 18 6-6-6-6" />
             </svg>
           </div>

@@ -1,7 +1,7 @@
 <div class="w-full max-w-[85rem] py-8 px-4 sm:px-4 lg:px-4 mx-auto mb-24">
   <div class="container mx-auto">
     <div class="mb-4 flex justify-between">
-      <h1 class="text-xl font-semibold">Shopping Cart</h1>
+      <h1 class="text-xl font-semibold dark:text-white">Shopping Cart</h1>
       <h6 wire:click='clearItem()' class="cursor-pointer text-red-500 text-sm underline underline-offset-2 mt-1.5 font-semibold text-right">Clear All</h6>
     </div>
 
@@ -9,9 +9,9 @@
     @forelse ($grup_items as $gr_item )
           
         <div class="block">
-        <div class="bg-white rounded-lg shadow-md p-4 mb-2 pb-15">
+        <div class="bg-white dark:bg-slate-600 rounded-lg shadow-md p-4 mb-2 pb-15">
           <div class="flex justify-between">
-          <h2 class="mb-2"><span style=" margin-right:0.5rem;" class="fa fa-map-marker text-green-600"></span>{{ $branches->where('id',$gr_item['branch_id'])->value('name')  }}</h2>
+          <h2 class="mb-2 dark:text-lime-300"><span style=" margin-right:0.5rem;" class="fa fa-map-marker text-green-600 dark:text-lime-300"></span>{{ $branches->where('id',$gr_item['branch_id'])->value('name')  }}</h2>
           <h6 wire:click='clearItemByBranch({{ $gr_item['branch_id'] }})' class="cursor-pointer text-red-500 text-sm underline underline-offset-2 font-semibold text-right">Clear</h6>
           </div>
           <hr>
@@ -35,9 +35,9 @@
                   </td>
                       <td class="py-3">
                       <div class="">
-                        <div class="font-semibold"><a href="/products/{{ $item['slug'] }}">{{ $item['name'] }} {{ $item['variant'] }}</a></div>
+                        <div class="font-semibold dark:text-white"><a href="/products/{{ $item['slug'] }}">{{ $item['name'] }} {{ $item['variant'] }}</a></div>
                         
-                        <div class="text-xs">
+                        <div class="text-xs dark:text-white">
                           <span class="mr-3"><span>@</span>{{ number_format($item['unit_amount']) }}</span>
                           <span style=" margin-right:0.5rem;" class="fa fa-tag text-green-600"></span>{{ $item['unit_name'] }}
                         </div>
@@ -45,9 +45,9 @@
                           @php
                             $contains = Str::of($item['contain'])->explode(',')
                           @endphp
-                          <div class="mr-1">
+                          <div class="mr-1 dark:text-white">
                           @foreach ($contains as $contain)
-                            <span class="text-xs bg-slate-100">{{ $contain }}</span>
+                            <span class="text-xs dark:text-white bg-slate-100">{{ $contain }}</span>
                           @endforeach
                           </div>
                         @endif
@@ -101,9 +101,9 @@
                       </div>
 
                   </td>
-                  <td class="block text-end py-[12.6px]">
-                    <div>total</div>
-                    <div class="font-semibold">{{ number_format($item['total_amount']) }}</div>
+                  <td class="block text-end py-[12.6px] ">
+                    <div class="dark:text-white">total</div>
+                    <div class="font-semibold dark:text-white">{{ number_format($item['total_amount']) }}</div>
                     <button wire:click='removeItem({{ $item['product_id'] }})' class="text-sm bg-slate-200 border-2 border-red-400 rounded-md px-[0.35rem] hover:bg-red-500 hover:text-white hover:border-red-700 mt-1">
                       <span wire:loading.remove wire:target='removeItem({{ $item['product_id'] }})'>X</span><span wire:loading wire:target='removeItem({{ $item['product_id'] }})'>...</span>   
                     </button>

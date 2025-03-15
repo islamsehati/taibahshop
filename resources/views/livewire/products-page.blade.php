@@ -106,14 +106,14 @@
         </div>
     </div>
 
-    <section class="mt-2 py-1 max-md:bg-slate-100 bg-white font-poppins dark:bg-gray-800 rounded-lg">
+    <section class="mt-2 py-1 max-md:bg-slate-100 bg-white font-poppins dark:bg-slate-700 max-md:dark:bg-gray-700 rounded-lg">
         <div class="-px-1 py-1 mx-auto max-w-7xl md:py-4 md:px-6">
             <div class="flex flex-wrap mb-10 -mx-3">
 
                 <div class="w-full">
 
                     <div class="px-3 mb-4 ">
-                        <div class="items-center justify-between px-3 py-2 bg-gray-50 md:flex dark:bg-gray-900 ">
+                        <div class="items-center justify-between px-3 py-2 bg-gray-50 md:flex dark:bg-gray-700 ">
 
                             <div class="hidden md:block relative max-md:mb-4">
                                 <div class="flex justify-between">
@@ -121,7 +121,7 @@
                                     <div
                                         class="hs-dropdown [--strategy:fixed] [--adaptive:none] [--trigger:hover] hover:lg:text-yellow-500">
                                         <summary
-                                            class="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600">
+                                            class="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 dark:text-gray-200 transition hover:border-gray-600">
                                             <span class="text-sm font-medium"> Filters </span>
 
                                             <span class="transition group-open:-rotate-180">
@@ -135,15 +135,15 @@
                                         </summary>
 
                                         <div
-                                            class="text-start hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-48 hidden z-10 bg-white p-2 rounded-md shadow-lg before:absolute top-full before:-top-5 before:-start-0 before:w-full before:h-5">
+                                            class="text-start hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:max-w-80 hidden z-10 bg-white dark:bg-slate-800 p-2 rounded-md shadow-lg before:absolute top-full before:-top-5 before:-start-0 before:w-full before:h-5">
 
-                                            <div class="w-80 rounded border border-gray-200 bg-white">
+                                            <div class="w-80 rounded border border-gray-200 bg-white dark:bg-slate-800">
                                                 <header class="flex items-center justify-between p-4">
-                                                    <span class="text-sm font-bold text-gray-700"> Categories </span>
+                                                    <span class="text-sm font-bold text-gray-700 dark:text-gray-100"> Categories </span>
                                                 </header>
                                                 <ul
-                                                    class="inline-flex flex-wrap space-y-1 border-t border-gray-200 p-4">
-                                                    @foreach ($categories as $category)
+                                                class="inline-flex flex-wrap space-y-1 border-t border-gray-200 p-4">
+                                                @foreach ($categories as $category)
                                                         <li wire:key="{{ $category->id }}" class="mr-1 mt-1 mb-1">
                                                             <input type="checkbox" wire:model.live="selected_categories"
                                                                 id="{{ $category->slug }}" value="{{ $category->id }}"
@@ -158,9 +158,8 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="w-80 rounded border border-gray-200 bg-white">
-                                                <header class="flex items-center justify-between p-4">
-                                                    <span class="text-sm font-bold text-gray-700"> Brand </span>
+                                            <div class="w-80 rounded border border-gray-200 bg-white dark:bg-slate-800">                                                <header class="flex items-center justify-between p-4">
+                                                    <span class="text-sm font-bold text-gray-700 dark:text-gray-100"> Brand </span>
                                                 </header>
                                                 <ul
                                                     class="inline-flex flex-wrap space-y-1 border-t border-gray-200 p-4">
@@ -179,9 +178,8 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="w-80 rounded border border-gray-200 bg-white">
-                                                <header class="flex items-center justify-between p-4">
-                                                    <span class="text-sm font-bold text-gray-700"> Status </span>
+                                            <div class="w-80 rounded border border-gray-200 bg-white dark:bg-slate-800">                                                <header class="flex items-center justify-between p-4">
+                                                    <span class="text-sm font-bold text-gray-700 dark:text-gray-100"> Status </span>
                                                 </header>
                                                 <ul class="space-y-1 border-t border-gray-200 p-4">
                                                     <li>
@@ -204,9 +202,8 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="w-80 rounded border border-gray-200 bg-white">
-                                                <header class="flex items-center justify-between p-4">
-                                                    <span class="text-sm font-bold text-gray-700"> Price </span>
+                                            <div class="w-80 rounded border border-gray-200 bg-white dark:bg-slate-800">                                                <header class="flex items-center justify-between p-4">
+                                                    <span class="text-sm font-bold text-gray-700 dark:text-gray-100"> Price </span>
                                                 </header>
                                                 <ul class="space-y-1 border-t border-gray-200 p-4">
 
@@ -235,7 +232,7 @@
 
 
                                     <select wire:model.live="sort"
-                                        class="block w-30 ml-5 text-sm bg-gray-50 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600 cursor-pointer dark:text-gray-400 dark:bg-gray-900">
+                                        class="block w-30 ml-5 text-sm bg-transparent border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600 cursor-pointer dark:text-gray-200">
                                         <option value="latest">Sort by latest</option>
                                         <option value="price">Sort by Price</option>
                                     </select>
@@ -275,8 +272,8 @@
 
                             <label class="relative block max-md:mt-4 max-md:mb-2">
                                 <span class="sr-only">Search</span>
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-2 dark:text-slate-400">
+                                    <svg  fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
                                         height="20" viewBox="0 0 30 30">
                                         <path
                                             d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
@@ -284,7 +281,7 @@
                                     </svg>
                                 </span>
                                 <input wire:model.live="cari"
-                                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-20 shadow-sm focus:outline-none focus:border-yellow-400 focus:ring-yellow-400 focus:ring-1 sm:text-sm"
+                                    class="placeholder:italic placeholder:text-slate-400 block bg-white dark:bg-neutral-900 w-full border border-slate-300 dark:border-slate-800 rounded-md py-2 pl-9 pr-20 shadow-sm focus:outline-none focus:border-yellow-400 focus:ring-yellow-400 focus:ring-1 sm:text-sm"
                                     placeholder="Search for menu..." type="text" name="search" />
                             </label>
 
@@ -302,9 +299,9 @@
                             <div wire:key="{{ $product->id }}"
                                 class="md:px-2 md:mb-3 px-1 mb-2 xs:w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/5 w-1/2">
                                 <div
-                                    class="border rounded-xl hover:shadow-md border-gray-300 bg-white dark:border-gray-700">
+                                    class="border rounded-xl hover:shadow-md border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <div
-                                        class="relative {{ $product->is_active == 1 ? 'bg-yellow-300' : 'bg-green-500' }} border rounded-lg scale-90">
+                                        class="relative {{ $product->is_active == 1 ? 'bg-yellow-300' : 'bg-green-500' }} rounded-lg scale-90">
                                         <a href="/products/{{ $product->slug }}" class="">
                                             @if ($product->images != null)
                                                 <img src="{{ url('storage', $product->images[0]) }}"
@@ -320,7 +317,7 @@
                                     </div>
                                     <div class="px-3 pb-3">
                                         <div class="flex items-center justify-between gap-2">
-                                            <h3 class="truncate text-xl max-lg:text-lg font-medium dark:text-gray-400">
+                                            <h3 class="truncate text-xl max-lg:text-lg font-medium dark:text-gray-200">
                                                 @if ($product->variant != null)
                                                     {{ $product->variant }}
                                                 @else
@@ -331,13 +328,13 @@
                                         <div class="flex items-center justify-between">
                                             <p class="text-lg max-lg:text-base">
                                                 <span
-                                                    class="text-green-600 dark:text-green-600">@currency($product->price)</span>
+                                                    class="text-green-600 dark:text-lime-300">@currency($product->price)</span>
                                                 @if ($product->strikethroughprice != null && $product->strikethroughprice >= 0)
                                                     <span
                                                         class="pr-2 text-xs font-normal text-gray-500 line-through dark:text-green-600">@currency($product->strikethroughprice)</span>
                                                 @endif
                                             </p>
-                                            <p class="text-nowrap"><i class="fa fa-star text-yellow-400"
+                                            <p class="text-nowrap dark:text-gray-300"><i class="fa fa-star text-yellow-400"
                                                     aria-hidden="true"></i> {{ $product->rating }}</p>
                                         </div>
                                     </div>

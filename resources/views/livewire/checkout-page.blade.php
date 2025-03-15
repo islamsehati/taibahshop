@@ -99,7 +99,7 @@
 						<div class="text-xl font-bold underline text-gray-700 dark:text-white mb-2">
 							TOTAL RINCIAN
 						</div>
-						<div class="flex justify-between mb-2 font-bold">
+						<div class="flex justify-between mb-2 font-bold text-gray-400">
 							<span>
 								Subtotal
 							</span>
@@ -124,7 +124,7 @@
 							</span>
 						</div>
 						<hr class="bg-slate-400 my-4 h-1 rounded">
-						<div class="flex justify-between mb-2 font-bold">
+						<div class="flex justify-between mb-2 font-bold text-gray-400">
 							<span>
 								Grand Total
 							</span>
@@ -151,7 +151,7 @@
 					
 					<div class="mb-6">
 						<div>
-							<div class="text-lg font-semibold mt-4 {{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}}">
+							<div class="dark:text-white text-lg font-semibold mt-4 {{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}}">
 								Detail Order
 							</div>
 							<div  class="grid sm:grid-cols-2 gap-4 {{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}}">
@@ -280,7 +280,7 @@
 						
 						
 						
-					<div class="text-lg font-semibold mt-4 mb-4">
+					<div class="text-lg font-semibold mt-4 mb-4 dark:text-white">
 						Metode Pembayaran
 					</div>
 					<ul class="grid w-full gap-6 grid-cols-2 max-md:grid-cols-2"">
@@ -523,7 +523,7 @@
 
 				
 			
-					<div class="text-lg font-semibold mt-4 mb-4">
+					<div class="text-lg font-semibold mt-4 mb-4 dark:text-white">
 						Notes
 					</div>
 					<div class="grid grid-cols gap-4 mt-4">

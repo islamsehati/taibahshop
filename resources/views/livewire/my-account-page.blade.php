@@ -10,26 +10,26 @@
                 </div>
             </div> 
             <div class="mt-10 flex flex-col items-center">
-                <h4 class="text-xl font-bold text-navy-700 dark:text-white">
+                <h4 class="text-xl font-bold text-navy-700 dark:text-gray-800">
                   {{ auth()->user()->name }}
                 </h4>
                 <p class="text-base font-normal text-gray-600">{{ auth()->user()->email }}</p>
             </div> 
             <div class="mt-6 mb-8 flex justify-between gap-14 md:!gap-14">
                 <div class="flex flex-col items-center justify-center">
-                <p class="text-2xl font-bold text-navy-700 dark:text-white">
+                <p class="text-2xl font-bold text-navy-700 dark:text-gray-800">
                     {{ $orderscount }}
                 </p>
                 <p class="text-sm font-normal text-gray-600">Orders</p>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                <p class="text-2xl font-bold text-navy-700 dark:text-white">
+                <p class="text-2xl font-bold text-navy-700 dark:text-gray-800">
                     @currency($ordersamount)
                 </p>
                 <p class="text-sm font-normal text-gray-600">Spend</p>
                 </div>
                 <div class="flex flex-col items-center justify-center">
-                <p class="text-2xl font-bold text-navy-700 dark:text-white">
+                <p class="text-2xl font-bold text-navy-700 dark:text-gray-800">
                     @formatNumber(auth()->user()->poin)
                 </p>
                 <p class="text-sm font-normal text-gray-600">Poin</p>
@@ -37,22 +37,22 @@
             </div>
 
             <a href="/my-account-edit">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-gray-800 dark:!shadow-none">
                 <i class="text-red-500 fa fa-pencil-square-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Edit My Account<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a href="/my-orders">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-gray-800 dark:!shadow-none">
                 <i class="text-red-500 fa fa-envelope-o relative -left-6 scale-[200%]" aria-hidden="true"></i>My Orders<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-x" data-hs-overlay="#hs-focus-management-modal-x">
-              <div class="cursor-pointer block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="cursor-pointer block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-gray-800 dark:!shadow-none">
                 <i class="text-red-500 fa fa-file-text-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Syarat dan Ketentuan<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
             <a href="https://wa.me/6287881231119">
-              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+              <div class="block items-center rounded-lg mx-auto my-2 pl-12 p-4 w-full hover:bg-red-300 bg-gray-100 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-gray-800 dark:!shadow-none">
                 <i class="text-red-500 fa fa-question-circle-o relative -left-6 scale-[200%]" aria-hidden="true"></i>Bantuan<span class="fa fa-arrow-circle-right text-gray-500" style="float:right;margin-top:4px" aria-hidden="true"></span>
               </div>
             </a>
@@ -60,7 +60,7 @@
             <div id="hs-focus-management-modal-x" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="hs-focus-management-modal-label">
               <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
                 {{-- <form > --}}
-                  <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto">
+                  <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:text-gray-800">
                     <div class="flex justify-between items-center py-3 px-4 border-b">
                       <h3 id="hs-focus-management-modal-label" class="font-bold text-gray-800">
                         Syarat & Ketentuan

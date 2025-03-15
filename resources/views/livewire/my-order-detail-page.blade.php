@@ -453,7 +453,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col bg-white p-5 rounded mt-4 shadow-md">
+    <div class="flex flex-col bg-white dark:bg-neutral-800 p-5 rounded mt-4 shadow-md">
         <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
