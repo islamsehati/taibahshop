@@ -188,7 +188,7 @@
             <input wire:keyup.enter='addToCart({{ $product->id }}); soundBeep.play();' autofocus required
                 type="number" wire:model='quantity' value="" min=1
                 onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black">
+                class="flex items-center w-full font-semibold text-center text-gray-700 dark:text-gray-100 placeholder-gray-700 bg-gray-300 outline-none dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black">
 
             <button wire:click='increaseQty'
                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
