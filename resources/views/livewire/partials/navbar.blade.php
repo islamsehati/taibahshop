@@ -6,7 +6,18 @@
       md:flex md:items-center md:justify-between">
       <div class="flex items-center justify-between">
 
-        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/" aria-label="Brand">TaibahShop</a>
+      
+
+        @if (auth()->check() && auth()->user()->is_admin == 1 && strpos(url()->full(),'products/') != false)
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400" aria-label="Brand">TaibahShop</a>
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 ml-3" href="/pos" wire:navigate><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>       
+        @elseif (auth()->check() && auth()->user()->is_admin == 0 && strpos(url()->full(),'products/') != false)
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400" aria-label="Brand">TaibahShop</a>
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 ml-3" href="/products" wire:navigate><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>       
+        @else
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400" href="/" aria-label="Brand">TaibahShop</a>
+        @endif
+        
         
         <div class="px-5 md:hidden font-medium flex items-center hover:text-gray-800 hover:lg:bg-yellow-500 hover:lg:h-2 hover:lg:pt-6 hover:lg:my-[0.68rem] hover:lg:px-3 hover:lg:-mx-3 hover:rounded-lg py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             <label class="relative block text-center">

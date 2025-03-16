@@ -50,7 +50,7 @@
       <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
         <i class="fa fa-search" aria-hidden="true"></i>
       </span>
-      <input wire:model.live="cariCat" class="placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" type="text" name="search"/>
+      <input wire:model.live="cariCat" class="dark:text-white text-black placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" type="text" name="search"/>
     </label>
   </div>
 
@@ -111,7 +111,7 @@
       <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
         <i class="fa fa-search" aria-hidden="true"></i>
       </span>
-      <input wire:model.live="cariBrn" class="placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" type="text" name="search"/>
+      <input wire:model.live="cariBrn" class="dark:text-white text-black placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" type="text" name="search"/>
     </label>
   </div>
 

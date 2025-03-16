@@ -281,7 +281,7 @@
                                     </svg>
                                 </span>
                                 <input wire:model.live="cari"
-                                    class="placeholder:italic placeholder:text-slate-400 block bg-white dark:bg-neutral-900 w-full border border-slate-300 dark:border-slate-800 rounded-md py-2 pl-9 pr-20 shadow-sm focus:outline-none focus:border-yellow-400 focus:ring-yellow-400 focus:ring-1 sm:text-sm"
+                                    class="placeholder:italic placeholder:text-slate-400 block bg-white dark:text-white text-black  dark:bg-neutral-900 w-full border border-slate-300 dark:border-slate-800 rounded-md py-2 pl-9 pr-20 shadow-sm focus:outline-none focus:border-yellow-400 focus:ring-yellow-400 focus:ring-1 sm:text-sm"
                                     placeholder="Search for menu..." type="text" name="search" />
                             </label>
 
