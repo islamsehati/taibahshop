@@ -226,7 +226,7 @@
                         </div>
                     </div>
 
-                    <button wire:click='resetProductsTile()' class="w-full sticky top-0 z-10 {{ $url == 0 ? ' hidden' : 'flex' }} py-1 mb-2 mx-auto justify-center items-center bg-slate-100">
+                    <button wire:click='resetProductsTile()' class="dark:text-gray-200 w-full sticky top-0 z-10 {{ $url == 0 ? ' hidden' : 'flex' }} py-1 mb-2 mx-auto justify-center items-center bg-slate-100 dark:bg-slate-700">
                         reset
                     </button>
 

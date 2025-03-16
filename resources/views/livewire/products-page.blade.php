@@ -289,7 +289,7 @@
                     </div>
 
                     <a href="/products"
-                        class="@if ($url == 0) hidden @else flex @endif mb-2 mx-auto justify-center items-center">reset</a>
+                        class="@if ($url == 0) hidden @else flex @endif dark:text-gray-200 mb-2 mx-auto justify-center items-center">reset</a>
 
                     {{-- Product Card Start --}}
 
