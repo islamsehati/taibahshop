@@ -10,7 +10,7 @@
 
         @if (auth()->check() && auth()->user()->is_admin == 1 && strpos(url()->full(),'products/') != false)
         <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400" aria-label="Brand">TaibahShop</a>
-        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 ml-3" href="/pos" wire:navigate><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>       
+        <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 ml-3" onclick="location.href='javascript:history.back();'" wire:navigate><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>       
         @elseif (auth()->check() && auth()->user()->is_admin == 0 && strpos(url()->full(),'products/') != false)
         <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400" aria-label="Brand">TaibahShop</a>
         <a class="flex-none text-xl font-lobster text-yellow-400 dark:text-yellow-400 ml-3" href="/products" wire:navigate><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></a>       

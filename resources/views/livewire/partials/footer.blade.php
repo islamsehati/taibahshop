@@ -54,7 +54,7 @@
                         class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-gray-800">
                         <div class="w-full">
                             <input id="pesanWA" type="text" name="pesanWA"
-                                class="py-3 px-4 block w-full border-transparent rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
+                                class="py-3 px-4 block w-full border-transparent rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
                                 placeholder="Kirim pesan...">
                         </div>
                         <a onclick="sendWA()"
