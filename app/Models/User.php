@@ -98,6 +98,13 @@ class User extends Authenticatable implements FilamentUser # fungsi agar tidak d
         // return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
         // return $this->name == 'Mangun Wirayuda';
         // return $this->hasVerifiedEmail();
-        return $this->is_admin == 1;
+
+        if ($panel->getId() === 'admin' && $this->is_admin == 1) {
+            return true;
+        } elseif ($panel->getId() === 'customer' && $this->is_admin == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
