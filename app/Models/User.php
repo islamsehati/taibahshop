@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Filament\Models\Contracts\FilamentUser; # fungsi agar tidak dapat masuk ke /admin panel
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Filament\Panel; # fungsi agar tidak dapat masuk ke /admin panel
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser # fungsi agar tidak dapat masuk ke /admin panel
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName # fungsi agar tidak dapat masuk ke /admin panel
 // class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -106,5 +108,17 @@ class User extends Authenticatable implements FilamentUser # fungsi agar tidak d
         } else {
             return false;
         }
+    }
+    public function getFilamentAvatarUrl(): ?string
+    {
+        if (isset($this->image)) {
+            return url('storage/' . $this->image);
+        } else {
+            return url('storage/users/avatar/user.png');
+        }
+    }
+    public function getFilamentName(): string
+    {
+        return "{$this->name} ~ {$this->branch->name}";
     }
 }
