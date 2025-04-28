@@ -25,7 +25,7 @@
               <span class="text-red-400 absolute inset-y-0 right-0 flex items-center pl-2">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </span>
-              <input wire:keyup.enter='cariProduk()' wire:model="cari" class="placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" placeholder="Search menu..." type="search" name="search"/>
+              <input wire:keyup.enter='cariProduk()' wire:model="cari" class="placeholder:italic placeholder:text-red-400 block bg-transparent w-full pl-0 pr-0 shadow-sm border-0 focus:outline-none focus:border-transparent focus:ring-transparent focus:ring-1 sm:text-sm" placeholder="Search menu..." type="search" name="search"/>
             </label>
         </div>
 
@@ -197,7 +197,7 @@
                 </div>
                 <!-- End Header -->
 
-                <a wire:navigate href="/admin" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <a href="/admin" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                   Admin Panel <i class="fa fa-shield" aria-hidden="true"></i>
                 </a>
                 <a wire:navigate href="/pos" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
@@ -319,7 +319,7 @@
         <!-- End Header -->
         
         <div class="p-1 space-y-0.5">
-          <a wire:navigate class=" @auth {{ auth()->user()->is_admin == 1 ?'flex' : 'hidden'}} @endauth @guest hidden @endguest items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+          <a class=" @auth {{ auth()->user()->is_admin == 1 ?'flex' : 'hidden'}} @endauth @guest hidden @endguest items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
           href="/admin">
             Admin Panel <i class="fa fa-shield" aria-hidden="true"></i>
           </a>

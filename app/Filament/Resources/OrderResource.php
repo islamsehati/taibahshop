@@ -589,6 +589,12 @@ class OrderResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('date_order', 'desc')
+            // ->persistSortInSession()
+            ->persistFiltersInSession()
+            ->persistSearchInSession()
+            ->deselectAllRecordsWhenFiltered(false)
+            ->paginated([10, 25, 50, 100, 500, 1000, 'all'])
+            ->defaultPaginationPageOption(100)
 
             ->filters([
 
