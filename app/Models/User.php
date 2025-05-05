@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName # fungsi agar tidak dapat masuk ke /admin panel
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName # fungsi agar tidak dapat masuk ke /admin panel, beserta custom Foto Avatar dan Username
 // class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
