@@ -123,7 +123,8 @@ class PaymentResource extends Resource
                             $kembali = 0;
                         }
                         return $kembali;
-                    }),
+                    })
+                    ->summarize(Sum::make('order.total_cashback')->numeric(locale: 'nl')->prefix('Rp ')->label('Total-')),
                 Tables\Columns\TextColumn::make('nominal_mins')
                     ->numeric(locale: 'nl')->prefix('Rp ')
                     ->alignRight()
@@ -145,7 +146,8 @@ class PaymentResource extends Resource
                             $kembali = 0;
                         }
                         return $kembali;
-                    }),
+                    })
+                    ->summarize(Sum::make('porder.total_cashback')->numeric(locale: 'nl')->prefix('Rp ')->label('Total-')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
