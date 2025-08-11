@@ -5,7 +5,7 @@
 
 
                 @if ($product->images != null)
-                    <div class="w-full mb-0 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{ url('storage', $product->images[0]) }}' }">
+                    <div class="w-full mb-0 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{ Str::replace('%2F', '/',url('storage', $product->images[0])) }}' }">
                     @else
                         <div class="w-full mb-0 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{ url('storage/food-packaging.png') }}' }">
                 @endif
