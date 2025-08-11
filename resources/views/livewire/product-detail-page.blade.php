@@ -25,7 +25,7 @@
                             @endforeach
                         @else
                             <div class="w-1/5 p-2 sm:w-1/4"
-                                x-on:click="mainImage='{{ url('storage/food-packaging.png')) }}'">
+                                x-on:click="mainImage='{{ url('storage/food-packaging.png') }}'">
                                 <img src="{{ Str::replace('%2F', '/',url('storage/food-packaging.png') }}" alt="produk tanpa gambar"
                                     class="object-cover w-full aspect-square cursor-pointer hover:border hover:border-blue-500">
                             </div>
