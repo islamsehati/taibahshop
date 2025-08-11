@@ -261,7 +261,7 @@
                                         <option value="{{ $branch->id }}"
 
                                           data-hs-select-option='{
-                                          "icon" : "<img src=\" @if ($branch->image != null) {{url('storage', $branch->image)}} @else {{ url('storage/kios.png') }} @endif \" class=\"object-cover object-center w-5 h-5\" />"
+                                          "icon" : "<img src=\" @if ($branch->image != null) {{Str::replace('%2F', '/',url('storage', $branch->image))}} @else {{ Str::replace('%2F', '/',url('storage/kios.png')) }} @endif \" class=\"object-cover object-center w-5 h-5\" />"
                                           }'>
                                           
                                              {{ $branch->name }} - {{ $branch->phone }}
@@ -304,11 +304,11 @@
                                         class="relative {{ $product->is_active == 1 ? 'bg-yellow-300' : 'bg-green-500' }} rounded-lg scale-90">
                                         <a href="/products/{{ $product->slug }}" class="">
                                             @if ($product->images != null)
-                                                <img src="{{ url('storage', $product->images[0]) }}"
+                                                <img src="{{ Str::replace('%2F', '/',url('storage', $product->images[0])) }}"
                                                     alt="{{ $product->name }}"
                                                     class="object-cover w-full aspect-square mx-auto rounded-lg">
                                             @else
-                                                <img src="{{ url('storage/food-packaging.png') }}"
+                                                <img src="{{ Str::replace('%2F', '/',url('storage/food-packaging.png')) }}"
                                                     alt="{{ $product->name }}"
                                                     class="object-cover w-full aspect-square mx-auto rounded-lg">
                                             @endif
