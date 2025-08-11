@@ -192,7 +192,7 @@
                                     <div class="flex items-center">
                                         @if ($item->product->images != null)
                                             <img class="h-auto w-16 mr-4"
-                                                src="{{ url('storage', $item->product->images[0]) }}"
+                                                src="{{ Str::replace('%2F', '/',url('storage', $item->product->images[0])) }}"
                                                 alt="{{ $item->product->name }}">
                                         @else
                                             <img class="h-auto w-16 mr-4" src="{{ url('storage/food-packaging.png') }}"

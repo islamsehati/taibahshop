@@ -14,7 +14,7 @@
       @foreach ($jumbotrons as $jumbotron)
       <div class="hs-carousel-slide">
         <a wire:key="{{ $jumbotron->id }}" href='{{ $jumbotron->link }}'>
-          <img src="{{ url('storage', $jumbotron->image) }}" alt="{{ $jumbotron->name }}" class="object-cover object-center w-full aspect-[2/1]">
+          <img src="{{ Str::replace('%2F', '/',url('storage', $jumbotron->image)) }}" alt="{{ $jumbotron->name }}" class="object-cover object-center w-full aspect-[2/1]">
         </a>
       </div>
       @endforeach
@@ -90,7 +90,7 @@
             <a wire:key="{{ $category->id }}" href="products?selected_categories[0]={{ $category->id }}" class="text-center mx-auto">
               <div class="h-16 w-16 mx-2 bg-white hover:bg-yellow-200 dark:hover:bg-yellow-200 border-white rounded-full dark:bg-yellow-900 dark:text-yellow-300 text-grey-500">
                 <div class="">
-                  <img class="relative -bottom-2 h-12 w-12 mx-auto" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
+                  <img class="relative -bottom-2 h-12 w-12 mx-auto" src="{{ Str::replace('%2F', '/',url('storage', $category->image)) }}" alt="{{ $category->name }}">
                 </div>
                 <div class="mt-5">
                   <p class="leading-none line-clamp-2 text-xs pb-2">{{ $category->name }}</p> 
@@ -121,7 +121,7 @@
       <div class="p-4 md:p-5">
         <div class="flex justify-between items-center">
           <div class="flex items-center">
-            <img class="h-[5rem] w-[5rem] object-contain" src="{{ url('storage', $brand->image) }}" alt="{{ $brand->name }}">
+            <img class="h-[5rem] w-[5rem] object-contain" src="{{ Str::replace('%2F', '/',url('storage', $brand->image)) }}" alt="{{ $brand->name }}">
             <div class="ms-3">
               <h3 class="group-hover:text-yellow-400 text-xl font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
                 {{ $brand->name }}

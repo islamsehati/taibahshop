@@ -163,7 +163,7 @@
                     <img class="w-10 h-10 shrink-0 inline-block size-10 rounded-full ring-2 ring-white dark:ring-neutral-900" 
                     @auth
                     @if (auth()->user()->image != null)
-                    src="{{ url('storage/'.auth()->user()->image) }}" 
+                    src="{{ Str::replace('%2F', '/',url('storage/'.auth()->user()->image)) }}" 
                     @else
                     src="{{ url('storage/users/avatar/user.png') }}" 
                     @endif     
@@ -283,7 +283,7 @@
             <a wire:navigate href="/my-account"><img class="w-10 h-10 shrink-0 inline-block size-10 rounded-full ring-2 ring-white dark:ring-neutral-900" 
             @auth
             @if (auth()->user()->image != null)
-            src="{{ url('storage/'.auth()->user()->image) }}" 
+            src="{{ Str::replace('%2F', '/',url('storage/'.auth()->user()->image)) }}" 
             @else
             src="{{ url('storage/users/avatar/user.png') }}" 
             @endif     

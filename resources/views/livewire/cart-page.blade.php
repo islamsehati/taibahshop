@@ -26,7 +26,7 @@
                       <div class="mr-2">
                         <a href="/products/{{ $item['slug'] }}">
                           @if ( $item['image'] != null)
-                            <img class="object-cover h-auto w-16" src="{{ url('storage', $item['image']) }}" alt="{{ $item['name'] }}">                          
+                            <img class="object-cover h-auto w-16" src="{{ Str::replace('%2F', '/',url('storage', $item['image'])) }}" alt="{{ $item['name'] }}">                          
                           @else
                             <img class="object-cover h-auto w-16" src="{{ url('storage/food-packaging.png') }}" alt="{{ $item['name'] }}">
                           @endif

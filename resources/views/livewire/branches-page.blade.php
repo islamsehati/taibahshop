@@ -24,7 +24,7 @@
         <div class="flex justify-between items-center">
           <div class="flex items-center">
             @if ($branch->image != null)
-            <img class="h-[5rem] w-[5rem] object-contain" src="{{ url('storage', $branch->image) }}" alt="{{ $branch->name }}">
+            <img class="h-[5rem] w-[5rem] object-contain" src="{{ Str::replace('%2F', '/',url('storage', $branch->image)) }}" alt="{{ $branch->name }}">
             @else
             <img class="h-[5rem] w-[5rem] object-contain" src="{{ url('storage/kios.png') }}" alt="{{ $branch->name }}">
             @endif

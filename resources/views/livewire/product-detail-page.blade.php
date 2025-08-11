@@ -19,14 +19,14 @@
                         @if ($product->images != null)
                             @foreach ($product->images as $image)
                                 <div class="w-1/5 p-2 sm:w-1/4" x-on:click="mainImage='{{ url('storage', $image) }}'">
-                                    <img src="{{ url('storage', $image) }}" alt="{{ $product->name }}"
+                                    <img src="{{ Str::replace('%2F', '/',url('storage', $image)) }}" alt="{{ $product->name }}"
                                         class="object-cover w-full aspect-square cursor-pointer hover:border hover:border-blue-500">
                                 </div>
                             @endforeach
                         @else
                             <div class="w-1/5 p-2 sm:w-1/4"
-                                x-on:click="mainImage='{{ url('storage/food-packaging.png') }}'">
-                                <img src="{{ url('storage/food-packaging.png') }}" alt="produk tanpa gambar"
+                                x-on:click="mainImage='{{ url('storage/food-packaging.png')) }}'">
+                                <img src="{{ Str::replace('%2F', '/',url('storage/food-packaging.png') }}" alt="produk tanpa gambar"
                                     class="object-cover w-full aspect-square cursor-pointer hover:border hover:border-blue-500">
                             </div>
                         @endif

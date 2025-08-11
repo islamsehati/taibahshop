@@ -26,7 +26,7 @@
                   <img src="{{ $photo->temporaryUrl() }}" alt="avatar" class="object-cover text-center mx-auto size-[200px] rounded-full" width="200" height="200">
               @else
                 @if (auth()->user()->image != null)
-                    <img src="{{ url('storage/'.auth()->user()->image) }}" alt="avatar" class="object-cover text-center mx-auto size-[200px] rounded-full" width="200" height="200">
+                    <img src="{{ Str::replace('%2F', '/',url('storage/'.auth()->user()->image)) }}" alt="avatar" class="object-cover text-center mx-auto size-[200px] rounded-full" width="200" height="200">
                 @else
                     <img src="{{ url('storage/users/avatar/user.png') }}" alt="avatar" class="object-cover text-center mx-auto size-[200px] rounded-full" width="200" height="200">
                 @endif

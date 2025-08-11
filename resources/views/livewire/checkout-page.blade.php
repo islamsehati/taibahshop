@@ -49,7 +49,7 @@
 								<div class="flex items-center">
 									<div class="flex-shrink-0">
 										@if ($ci['image'] != null)
-											<img alt="{{ $ci['name'] }}" class="w-12 h-12 rounded-full" src="{{ url('storage', $ci['image'] ) }}">
+											<img alt="{{ $ci['name'] }}" class="w-12 h-12 rounded-full" src="{{ Str::replace('%2F', '/',url('storage', $ci['image'] )) }}">
 										@else
 											<img alt="{{ $ci['name'] }}" class="w-12 h-12 rounded-full" src="{{ url('storage/food-packaging.png') }}">
 										@endif

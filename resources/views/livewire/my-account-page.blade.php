@@ -6,7 +6,7 @@
             <div class="flex h-32 w-full justify-center rounded-xl bg-cover" >
                 <img src="{{ url('storage/Wallpaper-Hitam-Taibah.png') }}" class=" flex h-32 w-full justify-center rounded-xl object-cover"> 
                 <div class="absolute mt-20 h-20 w-20 items-center rounded-full border-4 border-white bg-white dark:!border-navy-700" style="border-width: 3px;border-style: solid;">
-                    <img class="h-full w-full rounded-full" @if (auth()->user()->image != null) src="{{ url('storage/'.auth()->user()->image) }}" @else src="{{ url('storage/users/avatar/user.png') }}" @endif alt="" />
+                    <img class="h-full w-full rounded-full" @if (auth()->user()->image != null) src="{{ Str::replace('%2F', '/',url('storage/'.auth()->user()->image)) }}" @else src="{{ url('storage/users/avatar/user.png') }}" @endif alt="" />
                 </div>
             </div> 
             <div class="mt-10 flex flex-col items-center">

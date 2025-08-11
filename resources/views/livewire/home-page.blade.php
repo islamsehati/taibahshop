@@ -181,7 +181,7 @@
             @foreach ($brands as $brand)
             <div wire:key="{{ $brand->id }}" class="group/brand bg-white rounded-lg shadow-sm hover:shadow-lg dark:bg-gray-800">
               <a href="/products?selected_brands[0]={{ $brand->id }}" class="">
-                <img src="{{ url('storage', $brand->image) }}" alt="{{ $brand->name }}" class="object-contain aspect-square w-full mx-auto rounded-t-lg scale-90">
+                <img src="{{ Str::replace('%2F', '/',url('storage', $brand->image)) }}" alt="{{ $brand->name }}" class="object-contain aspect-square w-full mx-auto rounded-t-lg scale-90">
               </a>
               <div class="px-2 pt-0 pb-3 text-center truncate">
                 <a href="" class="tracking-tight md:text-xl text-md font-bold group-hover/brand:text-yellow-400  text-gray-900 dark:text-gray-300">
@@ -227,7 +227,7 @@
               <div class="p-4 md:p-5">
                 <div class="flex justify-between items-center">
                   <div class="flex items-center">
-                    <img src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}" class="h-[2.375rem] w-[2.375rem] rounded-full">
+                    <img src="{{ Str::replace('%2F', '/',url('storage', $category->image)) }}" alt="{{ $category->name }}" class="h-[2.375rem] w-[2.375rem] rounded-full">
                     <div class="ms-3 truncate">
                       <h3 class="group-hover/category:text-yellow-400 font-semibold text-gray-800 dark:group-hover/category:text-gray-400 dark:text-gray-200">
                         {{ $category->name }}
