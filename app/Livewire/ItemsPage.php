@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Url;
 
 #[Title('Items')]
@@ -23,7 +24,7 @@ class ItemsPage extends Component
 
     public function mount()
     {
-        $isadmin = auth()->user()->is_admin;
+        $isadmin = Auth::user()->is_admin;
         if ($isadmin == 0) {
             return redirect('/my-orders');
         }
@@ -45,7 +46,7 @@ class ItemsPage extends Component
         }
 
         $products = Product::all();
-        $orderitems = OrderItem::where('branch_id', auth()->user()->branch_id)
+        $orderitems = OrderItem::where('branch_id', Auth::user()->branch_id)
             ->whereBetween('updated_at', [$this->date_awal . ' 00-00-00', $this->date_akhir . ' 23-59-59'])
             ->whereNull('deleted_at')
             ->orderBy('product_id', 'asc')->get()

@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -24,7 +25,7 @@ class PaymentsPage extends Component
 
     public function mount()
     {
-        $isadmin = auth()->user()->is_admin;
+        $isadmin = Auth::user()->is_admin;
         if ($isadmin == 0) {
             return redirect('/my-orders');
         }

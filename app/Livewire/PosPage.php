@@ -204,7 +204,7 @@ class PosPage extends Component
 
         return view('livewire.pos-page', [
             'productsAllModal' => $productsAllModal,
-            'products' => $productQuery->paginate(1000000000)->withQueryString(),
+            'products' => $productQuery->paginate(20)->withQueryString(),
             'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),
             'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug']),
             'branches' => $branches,
