@@ -200,7 +200,7 @@
                 <a href="/admin" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                   Admin Panel <i class="fa fa-shield" aria-hidden="true"></i>
                 </a>
-                <a wire:navigate href="/mypos" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <a href="/mypos" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                   POS <i class="fa fa-fax" aria-hidden="true"></i>
                 </a>
                 <a wire:navigate href="/items" class="{{ auth()->user()->is_admin == 1 ?'block' : 'hidden'}} flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
@@ -323,7 +323,7 @@
           href="/admin">
             Admin Panel <i class="fa fa-shield" aria-hidden="true"></i>
           </a>
-          <a wire:navigate class=" @auth {{ auth()->user()->is_admin == 1 ?'flex' : 'hidden'}} @endauth @guest hidden @endguest items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+          <a class=" @auth {{ auth()->user()->is_admin == 1 ?'flex' : 'hidden'}} @endauth @guest hidden @endguest items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
           href="/mypos">
             POS <i class="fa fa-fax" aria-hidden="true"></i>
           </a>
