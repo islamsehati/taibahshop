@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\UsersEditController;
@@ -19,6 +21,7 @@ use App\Livewire\MyAccountPage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\MyOrdersPage;
 use App\Livewire\MyOrdersUnpaidPage;
+use App\Livewire\MyPos;
 use App\Livewire\PaymentsPage;
 use App\Livewire\PosPage;
 use App\Livewire\ProductDetailPage;
@@ -69,6 +72,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/items', ItemsPage::class);
     Route::get('/payments', PaymentsPage::class);
     Route::get('/pos', PosPage::class);
+
+    Route::get('/api/products', [ProductController::class, 'index']);
+    Route::get('/api/products/{id}', [ProductController::class, 'show']);
+    Route::post('/api/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/mypos', MyPos::class);
 
     Route::get('/prinprview/{id}', [PrintController::class, 'prinprview'])->name('printid');
     Route::get('/prinprviewkitchen/{id}', [PrintController::class, 'prinprviewkitchen'])->name('printkitchen');
