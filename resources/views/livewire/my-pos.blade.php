@@ -318,8 +318,8 @@
 
       <!-- Badge toggle kategori -->
       <div class="relative m-3 -mt-1">
-        <div class="absolute left-0 top-0 h-full w-8 md:hidden bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-        <div class="absolute right-0 top-0 h-full w-8 md:hidden bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+        <div class="absolute left-0 top-0 h-full w-8 md:hidden bg-gradient-to-r from-white to-transparent pointer-events-none z-5"></div>
+        <div class="absolute right-0 top-0 h-full w-8 md:hidden bg-gradient-to-l from-white to-transparent pointer-events-none z-5"></div>
 
         <div
           class="flex gap-2 overflow-x-auto scrollbar-hide md:px-0 px-1"
