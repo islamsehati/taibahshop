@@ -68,10 +68,10 @@
         x-show="showProductModal" 
         x-transition.opacity 
         x-cloak
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 overflow-y-auto"
         @click.self="showProductModal = false"
     >
-      <div class="bg-white p-4 rounded-lg shadow-lg w-11/12 md:w-1/3">
+      <div class="bg-white p-4 md:shadow-lg md:w-2/3 lg:w-1/2 md:my-10 md:max-h-[90vh] overflow-y-auto w-screen max-h-[100vh]">
           <div class="flex gap-2">
             <h2 class="text-lg font-bold mb-2" x-text="productDetail.name"></h2>
             <h2 class="text-lg font-bold mb-2 text-green-500" x-text="productDetail.variant ? `${productDetail.variant}` : ``"></h2>
@@ -276,7 +276,7 @@
     <div class="col-span-2 bg-white h-full">
       <div class="flex items-center gap-2 mb-4 sticky top-0 p-2 border-b border-gray-200" style="background-color: white; z-index: 10;">
         <button @click="showCart = true" class="md:hidden">
-            <div x-text="`${(qtybyqty)}`" x-show="qtybyqty > 0" class="absolute px-1 rounded-full -mt-1 -ml-1 text-white bg-red-500 "></div>
+            <div x-text="`${(qtybyqty)}`" x-show="qtybyqty > 0" class="absolute px-1 rounded-full -mt-1 -ml-1 text-white bg-gray-800 "></div>
             <div class="p-2 bg-amber-400 text-white rounded">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="25" height="25">
                 <path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clip-rule="evenodd" />
@@ -299,7 +299,7 @@
         <!-- Tombol ikon filter -->
         <button 
             @click="showSidebar = true" 
-            class="flex items-center gap-1 p-2 border rounded-lg hover:bg-gray-100 transition">
+            class="flex items-center gap-1 p-2 border border-gray-200 rounded-lg hover:bg-gray-100 transition">
             <!-- Heroicon filter -->
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
               class="size-5 text-gray-700">
@@ -314,7 +314,7 @@
             x-show="showSidebar"
             @click="showSidebar = false"
             x-transition.opacity
-            class="fixed inset-0 bg-black bg-opacity-50 z-40"
+            class="fixed inset-0 bg-black/50 z-40"
             style="display: none;">
         </div>
 
@@ -331,7 +331,7 @@
             style="display: none;">
 
             <!-- Header sidebar -->
-            <div class="flex items-center justify-between px-4 py-3 border-b">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
                 <h2 class="text-lg font-semibold">Filter</h2>
                 <button @click="showSidebar = false" class="p-2 rounded hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -358,7 +358,7 @@
                     </select>
                 </div>
 
-                <div class="pt-4 border-t">
+                <div class="pt-4 border-t border-gray-200">
 
                   <label class="block text-sm font-medium text-gray-700 mb-2">Brand</label>
 
@@ -387,7 +387,7 @@
 
                 </div>
 
-                <div class="pt-4 border-t">
+                <div class="pt-4 border-t border-gray-200">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Sortir berdasarkan</label>
                     <div class="flex items-center justify-between bg-gray-100 rounded-lg p-1">
                         <label 
@@ -415,7 +415,7 @@
                 </div>
 
                 <!-- Sort Order -->
-                <div class="pt-4 border-t">
+                <div class="pt-4 border-t border-gray-200">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Urutan</label>
                     <div class="flex items-center justify-between bg-gray-100 rounded-lg p-1">
                         <label 
@@ -435,7 +435,7 @@
             </div>
 
             <!-- Footer (opsional) -->
-            <div class="p-4 border-t">
+            <div class="p-4 border-t border-gray-200">
                 <button 
                     @click="showSidebar = false" 
                     class="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition">
