@@ -5,6 +5,7 @@
  {{ request()->is('my-account') ? ' hidden' : '' }}
  {{ request()->is('pos') ? ' hidden' : '' }}
  {{ request()->is('mypos') ? ' hidden' : '' }}
+ {{ request()->is('produk') ? ' hidden' : '' }}
    ">
     <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auto">
         <!-- Grid -->

@@ -80,7 +80,11 @@
               </div>
             </form>
             <!-- End Form -->
+
+            
           </div>
         </div>
+          <hr size="3" class="border border-gray-300 dark:border-gray-500 my-5" >
+          <a href="/produk"><button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-gray-800 bg-gray-50 hover:bg-gray-200 dark:text-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Pesan tanpa Login</button></a>
     </div>
   </div>

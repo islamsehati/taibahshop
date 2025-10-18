@@ -1,4 +1,4 @@
-<header class="{{ request()->is('pos') || request()->is('mypos')  ?'hidden' : 'flex'}} {{ request()->is('checkout')?'hidden' : 'flex'}}   
+<header class="{{ request()->is('pos') || request()->is('mypos') || request()->is('produk')  ?'hidden' : 'flex'}} {{ request()->is('checkout')?'hidden' : 'flex'}}   
   z-50 sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-red-500 text-sm md:py-0 py-0 dark:bg-gray-800 shadow-md">
   <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
     <div class="
@@ -233,7 +233,7 @@
     </div>
   </nav>
 
-  <nav class="md:hidden fixed bottom-0 left-0 z-50 w-full h-10 bg-gray-800 dark:bg-gray-700 dark:border-gray-600">
+  <nav class="{{ request()->is('produk')? 'hidden' : 'fixed '}} md:hidden bottom-0 left-0 z-50 w-full h-10 bg-gray-800 dark:bg-gray-700 dark:border-gray-600">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
       
       <a wire:navigate href="/" class="inline-flex flex-col items-center justify-center px-5 pr-3.5 hover:bg-gray-50 dark:hover:bg-gray-800 group">

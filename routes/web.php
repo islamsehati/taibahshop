@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProdukController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\UsersEditController;
@@ -26,6 +27,7 @@ use App\Livewire\PaymentsPage;
 use App\Livewire\PosPage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
+use App\Livewire\Produk;
 use App\Livewire\SuccessPage;
 use App\Livewire\UsersEditPage;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +50,10 @@ Route::get('/reset', ResetPasswordPage::class);
 
 Route::get('/success', SuccessPage::class);
 Route::get('/cancel', CancelPage::class);
+
+Route::get('/api/produk', [ProdukController::class, 'index']);
+Route::get('/api/produk/{id}', [ProdukController::class, 'show']);
+Route::get('/produk', Produk::class);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', LoginPage::class)->name('login');
