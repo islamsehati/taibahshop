@@ -562,7 +562,7 @@
                 <div :class="cart.some(item => item.id === p.id) ? '': 'hidden' " class="w-full flex flex-nowrap justify-between bg-gray-50 rounded-md mt-1 h-8">
                       <!-- Tombol - -->
                       <button 
-                          class="w-14 rounded-s-md flex items-center justify-center bg-yellow-300 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-red-400 focus:bg-red-400" onmouseup="setTimeout(() => this.blur(), 200)"
+                          class="w-14 rounded-s-md flex items-center justify-center bg-yellow-300 text-gray-700 font-bold transition-colors duration-300 active:bg-red-400 focus:bg-red-400" onmouseup="setTimeout(() => this.blur(), 200)"
                           @click.stop="
                               let item = cart.find(i => i.id === p.id);
                               if (item) {
@@ -598,7 +598,7 @@
 
                       <!-- Tombol + -->
                       <button 
-                          class="w-14 rounded-e-md flex items-center justify-center bg-yellow-300 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-blue-400 focus:bg-blue-400" onmouseup="setTimeout(() => this.blur(), 200)"
+                          class="w-14 rounded-e-md flex items-center justify-center bg-yellow-300 text-gray-700 font-bold transition-colors duration-300 active:bg-blue-400 focus:bg-blue-400" onmouseup="setTimeout(() => this.blur(), 200)"
                           @click.stop="
                               let item = cart.find(i => i.id === p.id);
                               if (item) {
