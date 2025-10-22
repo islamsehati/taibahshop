@@ -11,10 +11,83 @@
     <script>
         window.initialCart = @json($initialCart ?? []);
     </script>
-  <div x-data="{ showCart: false, showModalMenu: false, showModal: false, showSidebar: false }" 
+  <div x-data="{ showCart: false, showModalCheckout: false, showModalMenu: false, showModal: false, showSidebar: false }" 
         class="grid md:grid-cols-3 grid-cols-1 md:gap-x-2 gap-y-2 gap-0">
 
-    <!-- Modal Checkout -->
+    <!-- Modal Menu Checkout-->
+    <div 
+        x-show="showModalCheckout" 
+        x-transition.opacity 
+        x-cloak
+        class="fixed inset-0 flex items-center justify-center z-50 bg-black/50 bg-opacity-50"
+        @click.self="showModalCheckout = false">
+
+        <div 
+            class="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3"
+            x-transition.scale>
+            
+            <div class="text-xl font-bold border-b border-gray-200 p-3 text-center">Checkout</div>
+
+            <p class="m-4">Setelah checkout, anda akan diarahkan ke Whatsapp. Harap isi pesanan atas nama siapa, layanan pesan antar / ambil sendiri / makan di tempat.</p>            
+
+            <div class="flex justify-end gap-2 p-3 border-t border-gray-200">
+                <button @click="showModalCheckout = false" class="px-2 py-1 bg-gray-300 rounded">Batal</button>
+                <button x-show="cart.length > 0" 
+                  x-transition.delay.1000ms
+                  wire:click="triggerLoadCartDesktop"  
+                  {{-- @click="checkout()"  --}}
+                  @click="hiddenBtmCo()" 
+                  onmouseup="setTimeout(() => this.blur(), 200);"
+                  wire:loading.attr="disabled"
+                  class="hidden md:flex justify-center px-3 py-2 bg-green-600 text-white rounded w-full transition-colors duration-300 active:bg-green-800 focus:bg-green-800">
+                    <!-- Normal Text -->
+                    <span wire:loading.remove>
+                        Checkout Sekarang
+                    </span>
+
+                    <!-- Loading Spinner -->
+                    <span wire:loading class="flex items-center">
+                        <span class="flex flex-nowrap gap-2 justify-center">
+                          <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                          <span class="text-sm">
+                            Loading...
+                          </span>
+                        </span>
+                    </span>
+                </button>
+                <button x-show="cart.length > 0" 
+                  x-transition.delay.1000ms
+                  wire:click="triggerLoadCart"  
+                  {{-- @click="checkout()"  --}}
+                  @click="hiddenBtmCo()" 
+                  onmouseup="setTimeout(() => this.blur(), 200);"
+                  wire:loading.attr="disabled"
+                  class="md:hidden flex justify-center px-3 py-2 bg-green-600 text-white rounded w-full transition-colors duration-300 active:bg-green-800 focus:bg-green-800">
+                    <!-- Normal Text -->
+                    <span wire:loading.remove>
+                        Checkout Sekarang
+                    </span>
+
+                    <!-- Loading Spinner -->
+                    <span wire:loading class="flex items-center">
+                        <span class="flex flex-nowrap gap-2 justify-center">
+                          <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                          </svg>
+                          <span class="text-sm">
+                            Loading...
+                          </span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Menu -->
     <div 
         x-show="showModalMenu" 
         x-transition.opacity 
@@ -26,15 +99,17 @@
             class="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3"
             x-transition.scale>
             
-            <div class="text-xl font-bold border-b border-gray-200 p-3 text-center">MENU</div>
-            <div class="flex flex-wrap p-3 gap-2">
-              <a href="/" class="px-2 py-1 text-white bg-blue-500 rounded cursor-pointer">Beranda</a>
-              <a href="/register" class="px-2 py-1 text-white bg-blue-500 rounded cursor-pointer">Daftar Member</a>
-              <a href="/login" class="px-2 py-1 text-white bg-blue-500 rounded cursor-pointer">Login sbg Member</a>
+            <div class="text-xl font-bold border-b border-gray-200 p-3 text-center">Go to...</div>
+
+            <div class="flex flex-wrap divide-y">
+              <a href="/" class="w-full  dark:text-white hover:bg-gray-200 cursor-pointer py-3 px-3">Beranda</a>
+              <a href="/register" class="w-full  dark:text-white hover:bg-gray-200 cursor-pointer py-3 px-3">Daftar Member</a>
+              <a href="/login" class="w-full  dark:text-white hover:bg-gray-200 cursor-pointer py-3 px-3">Login sbg Member</a>
             </div>
 
             <div class="flex justify-end gap-2 p-3 border-t border-gray-200">
-                <button @click="showModalMenu = false" class="px-2 py-1 bg-gray-300 rounded">Batal</button>
+                <button @click="showModalMenu = false" class="px-2 py-1 bg-gray-300 rounded">tutup</button>
+
             </div>
         </div>
     </div>
@@ -201,8 +276,8 @@
                             if (numeric === '') return '0';   // tampilkan 0 jika kosong
                             return Number(numeric).toLocaleString('id-ID');
                             }"
-                            x-model="item.price_display"
-                            @input="updatePrice(item)">
+                            x-model="item.price_display"  :disabled="{{ Auth::check() ? 'false' : 'true' }}"
+                            @input="updatePrice(item)" >
                         </div>
                         <div class="w-1/3 flex justify-center gap-1">
                             <button @click="decrementQty(item)" onmouseup="setTimeout(() => this.blur(), 200)" class="items-center text-red-400 transition-colors duration-300 active:text-black focus:text-black">
@@ -240,32 +315,12 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                     </svg>
                 </button>
-                <button x-show="cart.length > 0" 
-                  x-transition.delay.1000ms
-                  wire:click="triggerLoadCart"  
-                  {{-- @click="checkout()"  --}}
-                  @click="hiddenBtmCo()" 
-                  onmouseup="setTimeout(() => this.blur(), 200);"
-                  wire:loading.attr="disabled"
-                  class="px-3 py-2 bg-green-600 text-white rounded w-full transition-colors duration-300 active:bg-green-800 focus:bg-green-800">
-                    <!-- Normal Text -->
-                    <span wire:loading.remove>
-                        Checkout
-                    </span>
-
-                    <!-- Loading Spinner -->
-                    <span wire:loading class="flex items-center">
-                        <span class="flex flex-nowrap gap-2 justify-center">
-                          <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                          </svg>
-                          <span class="text-sm">
-                            Loading...
-                          </span>
-                        </span>
-                    </span>
+                <button @click="showModalCheckout = true" 
+                    {{-- @click="clearCart()"  --}}
+                    class="w-full px-3 py-2 text-white rounded bg-green-600">
+                    Checkout
                 </button>
+
                 </div>
             </div>
         </div>
@@ -485,20 +540,29 @@
       <div>
         <template x-for="p in col" :key="p.id">
           <div class="relative ">
-          <div class="absolute top-2.5 left-2 bg-white p-1 rounded-full" @click="showProduct(p.id)"> 
+          {{-- <div class="absolute top-2.5 left-2 bg-white p-1 rounded-full" > 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
-          </div>
-              <!-- 🔵 Badge jumlah produk di cart -->
-              <template x-if="cart.some(item => item.id === p.id)">
-                  <div 
-                      x-transition.scale.origin.top.right
-                      class="absolute top-2.5 right-2 bg-white border border-gray-300 rounded-full flex items-center justify-between h-6 shadow-md text-xs select-none"
-                  >
+          </div> --}}
+              
+              <div 
+                :class="p.is_active == 0 ? 'bg-green-400': 'bg-white'" 
+                {{-- :class="cart.some(item => item.id === p.id) ? 'bg-yellow-300': 'bg-white'"  --}}
+                {{-- :class="p.is_active == 0 ? 'bg-green-200': 'bg-white'"  --}}
+                class="w-full my-2 p-3 block rounded border border-gray-200 ">
+                <img @click="showProduct(p.id)" :src="p.images && p.images.length > 0 
+                ? '/storage/' + p.images[0] 
+                : '/storage/foto-produk.png'" alt="" class="rounded aspect-square object-cover cursor-pointer">
+                <div x-text="p.name" class="font-semibold text-sm/4 mt-1 text-start line-clamp-2"></div>
+                <div class="flex flex-wrap justify-between gap-1">
+                    <em class="text-xs pe-1 line-clamp-2" x-text="p.variant"></em>
+                    <div class="flex ms-auto"><span class="text-xs" x-text="`Rp${formatMoney(p.price)}`"></span></div>       
+                </div> 
+                <div :class="cart.some(item => item.id === p.id) ? '': 'hidden' " class="w-full flex flex-nowrap justify-between bg-gray-50 rounded-md mt-1 h-8">
                       <!-- Tombol - -->
                       <button 
-                          class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-red-400 focus:bg-red-400" onmouseup="setTimeout(() => this.blur(), 200)"
+                          class="w-14 rounded-s-md flex items-center justify-center bg-yellow-300 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-red-400 focus:bg-red-400" onmouseup="setTimeout(() => this.blur(), 200)"
                           @click.stop="
                               let item = cart.find(i => i.id === p.id);
                               if (item) {
@@ -510,39 +574,46 @@
                                   }
                               }
                           "
-                      >−</button>
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                        </svg>                      
+                      </button>
 
                       <!-- Angka quantity -->
-                      <span class="text-gray-800 font-semibold mx-1" 
-                            x-text="(cart.find(i => i.id === p.id) || {}).quantity || ''">
-                      </span>
+                      <input 
+                          type="number" 
+                          min="1"
+                          class="w-full text-center text-gray-800 font-semibold m-1 border rounded outline-0 border-none bg-transparent"
+                          x-model.number="(cart.find(i => i.id === p.id) || {}).quantity"
+                          @input="
+                              let item = cart.find(i => i.id === p.id);
+                              if (item) {
+                                  item.quantity = parseInt($event.target.value) || 1;
+                                  recalcItem(item);
+                              }
+                          "
+                          :value="(cart.find(i => i.id === p.id) || {}).quantity || ''"
+                      />
 
                       <!-- Tombol + -->
                       <button 
-                          class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-blue-400 focus:bg-blue-400" onmouseup="setTimeout(() => this.blur(), 200)"
+                          class="w-14 rounded-e-md flex items-center justify-center bg-yellow-300 hover:bg-gray-300 text-gray-700 font-bold transition-colors duration-300 active:bg-blue-400 focus:bg-blue-400" onmouseup="setTimeout(() => this.blur(), 200)"
                           @click.stop="
                               let item = cart.find(i => i.id === p.id);
                               if (item) {
                                   incrementQty(item);
                               }
                           "
-                      >+</button>
-                  </div>
-              </template>
-              <button @click="addToCart(p)"  onmouseup="setTimeout(() => this.blur(), 300)" 
-                :class="cart.some(item => item.id === p.id) ? 'bg-yellow-300': p.is_active == 0 ? 'bg-green-400': 'bg-white'" 
-                {{-- :class="cart.some(item => item.id === p.id) ? 'bg-yellow-300': 'bg-white'"  --}}
-                {{-- :class="p.is_active == 0 ? 'bg-green-200': 'bg-white'"  --}}
-                class="w-full my-2 p-3 block rounded border border-gray-200 transition-colors duration-300 active:bg-blue-400 focus:bg-blue-400">
-                <img :src="p.images && p.images.length > 0 
-                ? '/storage/' + p.images[0] 
-                : '/storage/foto-produk.png'" alt="" class="rounded aspect-square object-cover">
-                <div x-text="p.name" class="font-semibold text-sm/4 mt-1 text-start line-clamp-2"></div>
-                <div class="flex flex-wrap justify-between gap-1">
-                    <em class="text-xs pe-1 line-clamp-2" x-text="p.variant"></em>
-                    <div class="flex ms-auto"><span class="text-xs" x-text="`Rp${formatMoney(p.price)}`"></span></div>       
-                </div>            
-              </button>
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                      </button>                  
+                </div>           
+                <button @click="addToCart(p)" :class="cart.some(item => item.id === p.id) ? 'hidden': '' " class="w-full bg-yellow-400 rounded-md p-1 mt-1">+Cart</button>           
+                
+              </div>
           </div>
         </template>
       </div>
@@ -865,6 +936,15 @@ function posApp() {
             const posComponent = Livewire.find('{{ $this->getId() }}');
 
             // Memuat data dari localStorage saat halaman dimuat
+            posComponent.on('loadCartDesktop', () => {
+                const storedCart = localStorage.getItem('pos_cart');
+                if (storedCart) {
+                    const parsedCart = JSON.parse(storedCart);
+                    posComponent.call('saveCartDesktop', parsedCart );
+                    localStorage.removeItem('pos_cart');
+                }
+
+            });
             posComponent.on('loadCart', () => {
                 const storedCart = localStorage.getItem('pos_cart');
                 if (storedCart) {
