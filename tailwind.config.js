@@ -1,4 +1,7 @@
+import preline from 'preline';
+
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -54,7 +57,7 @@ export default {
     },
   },
   plugins: [
-    require('preline/plugin'),
+    preline,
   ],
 }
 

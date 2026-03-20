@@ -224,10 +224,9 @@
 										<option value="">Pilih Kurir</option>
 										<option value="dine_in">Makan di Tempat</option>
 										<option value="self_pickup">Ambil Sendiri</option>
-										<option value="kurir_taibah">Kurir Taibah</option>
-										<option value="grabfood">GrabFood</option>
-										<option value="gofood">GoFood</option>
-										<option value="shopeefood">ShopeeFood</option>
+										<option value="delivery">Kurir Taibah</option>
+										<option value="self_pickup_online">Ambil Sendiri (Online)</option>
+										<option value="delivery_online">Kurir (Online)</option>
 									</select>
 								</div>
         						@error('shipping_method')
