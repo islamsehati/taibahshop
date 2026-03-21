@@ -99,8 +99,12 @@ class CheckoutPage extends Component
             $this->sales_type = 'dine_in';
         } elseif ($this->shipping_method == 'self_pickup') {
             $this->sales_type = 'self_pickup';
-        } elseif ($this->shipping_method != 'dine_in' || $this->shipping_method != 'self_pickup') {
+        } elseif ($this->shipping_method == 'delivery') {
             $this->sales_type = 'delivery';
+        } elseif ($this->shipping_method == 'self_pickup_online') {
+            $this->sales_type = 'self_pickup_online';
+        } elseif ($this->shipping_method == 'delivery_online') {
+            $this->sales_type = 'delivery_online';
         } else {
             $this->sales_type = '';
         }
@@ -108,6 +112,7 @@ class CheckoutPage extends Component
         $this->validate([
             'sales_type' => 'required',
         ]);
+
     }
 
     public function placeOrder()
@@ -122,7 +127,7 @@ class CheckoutPage extends Component
         ]);
 
         if ($isadmin == 1) {
-            if ($this->sales_type == 'self_pickup' || $this->sales_type == 'delivery') {
+            if ($this->sales_type == 'self_pickup' || $this->sales_type == 'delivery' || $this->sales_type == 'self_pickup_online' || $this->sales_type == 'delivery_online') {
                 $this->validate([
                     'user_id' => 'required',
                     'discount' => 'required|min:0',
@@ -144,7 +149,7 @@ class CheckoutPage extends Component
 
         if ($isadmin == 0) {
 
-            if ($this->sales_type == 'delivery') {
+            if ($this->sales_type == 'delivery' || $this->sales_type == 'delivery_online') {
                 $this->validate([
                     'first_name' => 'required',
                     'last_name' => 'required',
@@ -158,7 +163,7 @@ class CheckoutPage extends Component
                 ]);
             }
 
-            if ($this->sales_type == 'self_pickup') {
+            if ($this->sales_type == 'self_pickup' || $this->sales_type == 'self_pickup_online') {
                 $this->validate([
                     'first_name' => 'required',
                     'last_name' => 'required',
@@ -211,12 +216,14 @@ class CheckoutPage extends Component
             $order->total_cashback = $order->total_payment - $order->grand_total;
         } else {
             $order->user_id = auth()->user()->id;
-            $order->shipping_method = 'kurir_taibah';
+            $order->shipping_method = 'delivery';
             $order->shipping_amount = 0;
             $order->discount = 0;
             $order->total_payment = 0;
             $order->total_cashback = $order->total_payment - $order->grand_total;
         }
+
+       
 
         $payment = new Payment();
         $payment->date_payment = date('Y-m-d H:i:s');
