@@ -2,68 +2,54 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderItem extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
-        'porder_id',
-        'order_id',
-        'production_id',
-        'adj_item_id',
         'product_id',
-        'unit_name',
-        'contain',
-        'p_quantity',
-        'quantity',
-        'p_unit_amount',
-        'unit_amount',
-        'p_total_amount',
-        'total_amount',
-        'notes',
-        'mutation_type',
-        'stock_before',
-        'stock_after',
+        'name',
+        'cost',
+        'quantity_plus',
+        'price',
+        'quantity_mins',
+        'subtotal',        
+        'totalcost',        
+        'totalweight',        
+        'status',        
+        'user_id',
         'created_by',
         'updated_by',
-        'updated_at',
+        'deleted_by',
         'branch_id',
+        'date',
+        'notes',
     ];
 
-    public function order()
+    public function itemable(): MorphTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->morphTo();
     }
-    public function porder()
+    
+    public function product()
     {
-        return $this->belongsTo(Porder::class);
+        return $this->belongsTo(Product::class);
     }
-    public function production()
+
+    public function userCre(): BelongsTo
     {
-        return $this->belongsTo(Production::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
-    public function adjItem()
+    public function userUpd(): BelongsTo
     {
-        return $this->belongsTo(AdjItem::class);
+        return $this->belongsTo(User::class, 'updated_by');
     }
     public function branch()
     {
         return $this->belongsTo(Branch::class);
-    }
-    public function trStkOut()
-    {
-        return $this->belongsTo(TrStkOut::class);
-    }
-    public function trStkIn()
-    {
-        return $this->belongsTo(TrStkIn::class);
-    }
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
     }
 }

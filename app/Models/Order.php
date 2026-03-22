@@ -2,66 +2,69 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
-        'code_tr',
-        'user_id',
-        'sales_type',
-        'is_paid',
+        'q',
+        'code',
         'status',
-        'shipping_amount',
-        'shipping_method',
-        'discount',
-        'grand_total',
-        'total_payment',
-        'total_cashback',
+        'type',
         'notes',
-        'date_order',
-        'paid_at',
+        'payment_method',
+        'sub_total',
+        'discount',
+        'charge',
+        'tax',
+        'grand_total',
+        'paid_amount',
+        'change_amount',
+        'meta',
+        'user_alias',
+        'user_id',
         'created_by',
         'updated_by',
-        'updated_at',
+        'deleted_by',
         'branch_id',
+        'date',
     ];
 
+    protected $casts = [
+        'meta' => 'array',
+    ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
+    }
+    public function items()
+    {
+        return $this->morphMany(OrderItem::class, 'itemable');
+    }
+    public function payments(): MorphMany
+    {
+        return $this->morphMany(Payment::class, 'paymentable');
+    }
+    public function returns()
+    {
+        return $this->morphMany(ReturnItem::class, 'returnable');
+    }
+
+    public function userCre(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+    public function userUpd(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
     public function branch()
     {
         return $this->belongsTo(Branch::class);
-    }
-    public function items()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-    public function payments()
-    {
-        return $this->hasMany(Payment::class);
-    }
-    public function address()
-    {
-        return $this->hasOne(Address::class);
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleted(function ($model) {
-            $model->items()->delete();
-            $model->payments()->delete();
-        });
-        static::restored(function ($model) {
-            $model->items()->restore();
-            $model->payments()->restore();
-        });
-    }
+    }    
 }

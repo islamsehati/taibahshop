@@ -2,37 +2,41 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use Filament\Models\Contracts\FilamentUser; # fungsi agar tidak dapat masuk ke /admin panel
-use Filament\Models\Contracts\HasAvatar;
-use Filament\Models\Contracts\HasName;
-use Filament\Panel; # fungsi agar tidak dapat masuk ke /admin panel
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Village;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName # fungsi agar tidak dapat masuk ke /admin panel, beserta custom Foto Avatar dan Username
-// class User extends Authenticatable
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
-        'image',
+        'avatar',
+        'cover',
         'name',
+        'username',
         'email',
         'email_verified_at',
         'password',
+        'is_active',
+        'class',
         'is_admin',
         'level',
+
         'phone',
         'street_address',
         'village',
@@ -40,85 +44,113 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName #
         'city',
         'state',
         'zip_code',
-        'branch_id',
+        'rute',
+        
         'created_oleh',
         'updated_oleh',
+        'deleted_oleh',
+        'branch_id',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',     
+        'is_admin' => 'boolean',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $hidden = [
         'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
         'remember_token',
     ];
 
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'two_factor_confirmed_at' => 'datetime',
+        ];
+    }
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-    public function payments()
-    {
-        return $this->hasMany(Payment::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function branch()
-    {
+    public function branch() {
         return $this->belongsTo(Branch::class);
     }
-
-    // fungsi hapus image
-    protected static function boot()
+    
+    public function notificationReads()
     {
-        parent::boot();
-        static::updating(function ($model) {
-            if ($model->isDirty('image') && ($model->getOriginal('image') !== null)) {
-                Storage::disk('public')->delete($model->getOriginal('image'));
-            }
-        });
+        return $this->hasMany(NotificationRead::class);
     }
 
-    // fungsi agar tidak dapat masuk ke /admin panel
-    public function canAccessPanel(Panel $panel): bool
+    public function province()
     {
-        // return $this->email == 'mangunwirayuda@gmail.com' || $this->email == 'shills@example.com';
-        // return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
-        // return $this->name == 'Mangun Wirayuda';
-        // return $this->hasVerifiedEmail();
+        return $this->belongsTo(
+            Province::class,
+            'state',     // kolom di users
+            'code'       // kolom di provinces
+        );
+    }
+    public function cityRelation()
+    {
+        return $this->belongsTo(
+            City::class,
+            'city',
+            'code'
+        );
+    }
+    public function districtRelation()
+    {
+        return $this->belongsTo(
+            District::class,
+            'district',
+            'code'
+        );
+    }
+    public function villageRelation()
+    {
+        return $this->belongsTo(
+            Village::class,
+            'village',
+            'code'
+        );
+    }    
 
-        if ($panel->getId() === 'admin' && $this->is_admin == 1) {
-            return true;
-        } elseif ($panel->getId() === 'customer' && $this->is_admin == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function getFilamentAvatarUrl(): ?string
+
+    public function canAccessControlPanel(): bool
     {
-        if (isset($this->image)) {
-            return url('storage/' . $this->image);
-        } else {
-            return url('storage/users/avatar/user.png');
-        }
+        return $this->is_admin && !is_null($this->level);
     }
-    public function getFilamentName(): string
+
+    public function isSuperAdmin(): bool
     {
-        return "{$this->name} ~ {$this->branch->name}";
+        return $this->is_admin && $this->level === 'Super Admin';
     }
+
+
+
+    public function isProfileComplete(): bool
+    {
+        return
+            !empty($this->name) &&
+            !empty($this->username) &&
+            !empty($this->phone) &&
+            !empty($this->email) &&
+            !empty($this->state) &&
+            !empty($this->city) &&
+            !empty($this->district) &&
+            !empty($this->village) &&
+            !empty($this->street_address);
+    }
+
+
 }

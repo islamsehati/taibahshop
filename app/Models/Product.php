@@ -2,102 +2,85 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
-        'sku',
         'name',
+        'group',
         'variant',
-        'alias',
-        'slug',
         'unit_name',
         'contain',
+
         'description',
         'images',
+        'embed_videos',
+        
+        'sku',
+        'barcode',
+        'hscode',
+        'slug',
+        
         'category_id',
         'brand_id',
-        'tags',
-        'cogs',
+        
+        'cost',
         'price',
         'strikethroughprice',
-        'low_alert',
+        'poin',
+        'rating',
+        'weight',
+        'low_stock_alert',
+        'overstock_alert',
+        'stock',
+
         'is_active',
         'in_stock',
         'is_featured',
-        'promo',
-        'rating',
+        'is_promo',
+        
+        'branch_id',
         'created_by',
         'updated_by',
-        'updated_at',
-        'branch_id',
+        'deleted_by',
     ];
 
     protected $casts = [
         'images' => 'array',
+        'is_active' => 'boolean',
+        'in_stock' => 'boolean',
+        'is_featured' => 'boolean',
+        'is_promo' => 'boolean',        
     ];
 
-    public function user()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(User::class);
+        return 'slug';
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
     public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
-
-    public function category()
+    public function payments(): MorphMany
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function brand()
+        return $this->morphMany(Payment::class, 'paymentable');
+    }    
+    public function items()
     {
-        return $this->belongsTo(Brand::class);
-    }
-
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    // public function pquantities()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');
-    // }
-    // public function quantities()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');
-    // }
-
-    // public function ptquantities()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');
-    // }
-    // public function tquantities()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'product_id', 'id');
-    // }
-
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::updating(function ($model) {
-            $imagesBefore = Product::where('id', $model->id)->value('images');
-            if ($model->isDirty('images') && ($model->getOriginal('images') !== null)) {
-                $imagesAfter = $model->images;
-                $imagesDIFF = array_diff($imagesBefore, $imagesAfter);
-                foreach ($imagesDIFF as $img) {
-                    Storage::disk('public')->delete($img);
-                }
-            }
-        });
-    }
+        return $this->morphMany(OrderItem::class, 'itemable');
+    }    
 }

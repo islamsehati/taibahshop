@@ -1,91 +1,219 @@
 <?php
 
-use App\Http\Controllers\Api\CheckoutController;
-use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\ProdukController;
-use App\Http\Controllers\ExportController;
-use App\Http\Controllers\PrintController;
-use App\Http\Controllers\UsersEditController;
-use App\Livewire\Auth\ForgotPasswordPage;
-use App\Livewire\Auth\LoginPage;
-use App\Livewire\Auth\RegisterPage;
-use App\Livewire\Auth\ResetPasswordPage;
-use App\Livewire\BranchesPage;
-use App\Livewire\CancelPage;
-use App\Livewire\CartPage;
-use App\Livewire\HomePage;
-use App\Livewire\CategoriesPage;
-use App\Livewire\CheckoutPage;
-use App\Livewire\ItemsPage;
-use App\Livewire\MyAccountEditPage;
-use App\Livewire\MyAccountPage;
-use App\Livewire\MyOrderDetailPage;
-use App\Livewire\MyOrdersPage;
-use App\Livewire\MyOrdersUnpaidPage;
-use App\Livewire\MyPos;
-use App\Livewire\PaymentsPage;
-use App\Livewire\PosPage;
-use App\Livewire\ProductDetailPage;
-use App\Livewire\ProductsPage;
-use App\Livewire\Produk;
-use App\Livewire\SuccessPage;
-use App\Livewire\UsersEditPage;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use App\Models\Partner;
 
-Route::get('/', HomePage::class);
-Route::get('/branches', BranchesPage::class);
-Route::get('/categories', CategoriesPage::class);
-Route::get('/products', ProductsPage::class);
-Route::get('/cart', CartPage::class);
-Route::get('/products/{slug}', ProductDetailPage::class);
+use App\Http\Controllers\Admin\PartnerAdminController;
+use App\Http\Controllers\Admin\BranchAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\QuestionerController;
 
-Route::get('/checkout', CheckoutPage::class);
-Route::get('/my-orders', MyOrdersPage::class);
-Route::get('/my-orders/{order}', MyOrderDetailPage::class);
+use App\Http\Controllers\CabangController;
+use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\ProfitLossController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\StokController;
 
-Route::get('/login', LoginPage::class);
-Route::get('/register', RegisterPage::class);
-Route::get('/forgot', ForgotPasswordPage::class);
-Route::get('/reset', ResetPasswordPage::class);
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MerkController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\POSController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PenyesuaianStokController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderNowController;
+use App\Http\Controllers\ReturController;
+use App\Http\Controllers\TransaksiController;
 
-Route::get('/success', SuccessPage::class);
-Route::get('/cancel', CancelPage::class);
+Route::get('/', function () {
+    return Inertia::render('Welcome');
+})->name('home');
 
-Route::get('/api/produk', [ProdukController::class, 'index']);
-Route::get('/api/produk/{id}', [ProdukController::class, 'show']);
-Route::get('/produk', Produk::class);
+Route::get('@{branch:slug}', [OrderNowController::class, 'index'])->name('ordernow.store');
+Route::get('product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', LoginPage::class)->name('login');
-    Route::get('/register', RegisterPage::class)->name('register');
-    Route::get('/forgot', ForgotPasswordPage::class)->name('password.request');
-    Route::get('/reset/{token}', ResetPasswordPage::class)->name('password.reset');
-});
+Route::get('partners', function () {
+    return Inertia::render('Partner/Index', [
+        'partners' => Partner::where('is_active', true)
+        ->select('id', 'slug', 'name', 'logo', 'image', 'is_open')
+        ->orderBy('name')
+        ->get(),
+    ]);
+})->name('partner.index');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/logout', function () {
-        auth()->logout();
-        return redirect('/');
+Route::get('questioner', [QuestionerController::class, 'index'])->name('questioner.index');
+
+Route::group(['middleware' => ['auth', 'verified', 'is_active', 'profile.complete']], function () {
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+        
+    // NOTIFIKASI
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::patch('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+
+    Route::middleware(['admin', 'partner.subscription'])->group(function () {
+        
+        // KASIR AREA
+        Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
+        Route::get('merk', [MerkController::class, 'index'])->name('merk.index');
+
+        Route::get('produk', [ProdukController::class, 'index'])->name('produk.index');
+        Route::get('produk/{produk}/show', [ProdukController::class, 'show'])->name('produk.show');
+        Route::get('produk/{produk}/preview', [ProdukController::class, 'preview'])->name('produk.preview');
+        Route::get('produk/buat/baru', [ProdukController::class, 'create'])->name('produk.create');
+        Route::post('produk/store', [ProdukController::class, 'store'])->name('produk.store');
+        Route::get('produk/{produk}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
+        Route::put('produk/{produk}/update', [ProdukController::class, 'update'])->name('produk.update');
+        Route::put('produk/{produk}/toggle-active', [ProdukController::class, 'toggleActive'])->name('produk.toggleActive');
+
+        ////// PENJUALAN ////////
+        Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+        Route::get('penjualan/buat/baru', [PenjualanController::class, 'create'])->name('penjualan.create');
+        Route::post('penjualan/store', [PenjualanController::class, 'store'])->name('penjualan.store');
+        Route::get('penjualan/{order}/print', [PenjualanController::class, 'print'])->name('penjualan.print');
+        Route::get('penjualan/{order}', [PenjualanController::class, 'show'])->name('penjualan.show');
+        Route::put('penjualan/{order}/editinfo', [PenjualanController::class, 'editInfo']);
+        Route::delete('/penjualan/{order}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
+
+        Route::post('penjualan/{order}/item', [PenjualanController::class, 'storeItem']);
+        Route::put('item-penjualan/{item}', [PenjualanController::class, 'updateItem']);
+        Route::delete('/item-penjualan/{item}', [PenjualanController::class, 'destroyItem']);
+
+        Route::put('penjualan/{order}/biayalain', [PenjualanController::class, 'biayaLain']);
+
+        Route::post('penjualan/{order}/pembayaran', [PenjualanController::class, 'storePayment']);
+        Route::put('pembayaran-penjualan/{payment}', [PenjualanController::class, 'updatePayment']);
+        Route::delete('/pembayaran-penjualan/{payment}', [PenjualanController::class, 'destroyPayment']);
+        
+        ////// PEMBELIAN ////////
+        Route::get('pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
+        Route::get('pembelian/buat/baru', [PembelianController::class, 'create'])->name('pembelian.create');
+        Route::post('pembelian/store', [PembelianController::class, 'store'])->name('pembelian.store');
+        Route::get('/pembelian/{purchaseOrder}/print', [PembelianController::class, 'print'])->name('pembelian.print');
+        Route::get('pembelian/{purchaseOrder}', [PembelianController::class, 'show'])->name('pembelian.show');
+        Route::put('pembelian/{purchaseOrder}/editinfo', [PembelianController::class, 'editInfo']);
+        Route::delete('pembelian/{purchaseOrder}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
+
+        Route::post('pembelian/{purchaseOrder}/item', [PembelianController::class, 'storeItem']);
+        Route::put('item-pembelian/{item}', [PembelianController::class, 'updateItem']);
+        Route::delete('item-pembelian/{item}', [PembelianController::class, 'destroyItem']);
+
+        Route::put('pembelian/{purchaseOrder}/biayalain', [PembelianController::class, 'biayaLain']);
+
+        Route::post('pembelian/{purchaseOrder}/pembayaran', [PembelianController::class, 'storePayment']);
+        Route::put('pembayaran-pembelian/{payment}', [PembelianController::class, 'updatePayment']);
+        Route::delete('/pembayaran-pembelian/{payment}', [PembelianController::class, 'destroyPayment']);
+
+        ////// PENYESUAIAN ////////
+        Route::get('penyesuaian-stok', [PenyesuaianStokController::class, 'index'])->name('penyesuaian-stok.index');
+        Route::get('penyesuaian-stok/create', [PenyesuaianStokController::class, 'create'])->name('penyesuaian-stok.create');
+        Route::get('/penyesuaian-stok/{adjustmentStock}/print', [PenyesuaianStokController::class, 'print'])->name('penyesuaian-stok.print');
+        Route::get('/penyesuaian-stok/{adjustmentStock}/print-surat-jalan', [PenyesuaianStokController::class, 'printSuratJalan'])->name('penyesuaian-stok.print-surat-jalan');
+        Route::post('penyesuaian-stok', [PenyesuaianStokController::class, 'store'])->name('penyesuaian-stok.store');
+        Route::get('penyesuaian-stok/{adjustmentStock}/edit', [PenyesuaianStokController::class, 'edit'])->name('penyesuaian-stok.edit');
+        Route::put('penyesuaian-stok/{adjustmentStock}', [PenyesuaianStokController::class, 'update'])->name('penyesuaian-stok.update');
+        Route::delete('penyesuaian-stok/{adjustmentStock}', [PenyesuaianStokController::class, 'destroy'])->name('penyesuaian-stok.destroy');
+        Route::put('penyesuaian-stok/{adjustmentStock}/editinfo', [PenyesuaianStokController::class, 'editInfo']);
+        Route::get('/penyesuaian-stok/transfer-token/{token}', [PenyesuaianStokController::class, 'getTransferToken']);
+
+
+        ////// POS atau HALAMAN KASIR ////////
+        Route::get('pos', [POSController::class, 'index'])->name('pos.index');
+        Route::post('pos/checkout', [POSController::class, 'checkout'])->name('pos.checkout');
+
+        Route::get('stok', [StokController::class, 'index'])->name('stok.index');
+        Route::get('retur', [ReturController::class, 'index'])->name('stok.index');
+        Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+
+        Route::get('jurnal', [JournalController::class, 'index'])->name('jurnal.index');
+        Route::get('jurnal/create', [JournalController::class, 'create'])->name('jurnal.create');
+        Route::post('jurnal/store', [JournalController::class, 'store'])->name('jurnal.store');
+        Route::get('jurnal/{journal}/edit', [JournalController::class, 'edit'])->name('jurnal.edit');
+        Route::put('jurnal/{journal}', [JournalController::class, 'update'])->name('jurnal.update');
+        Route::delete('jurnal/{journal}', [JournalController::class, 'destroy'])->name('jurnal.destroy');
+        
+        Route::get('jurnal-transfer', [JournalController::class, 'transfer'])->name('jurnal.transfer');
+        Route::post('jurnal-transfer/store', [JournalController::class, 'createTransfer'])->name('jurnal.transfer.store');
+        Route::get('jurnal-transfer/{journal}/edit', [JournalController::class, 'editTransfer'])->name('jurnal.transfer.edit');
+        Route::put('jurnal-transfer/{journal}', [JournalController::class, 'updateTransfer'])->name('jurnal.transfer.update');
+        Route::delete('jurnal-transfer/{journal}', [JournalController::class, 'destroyTransfer'])->name('jurnal.transfer.destroy');
+
+        Route::middleware('control.panel')->group(function () {
+            // OWNER / ADMIN CABANG
+            Route::get('laba-rugi', [ProfitLossController::class, 'index'])->name('laba-rugi.index');
+            Route::get('neraca', [BalanceController::class, 'index'])->name('neraca.index');
+
+            Route::get('cabang-saya', [CabangController::class, 'index'])->name('cabang-saya.index');
+            Route::put('cabang-saya/switch', [CabangController::class, 'switch'])->name('cabang-saya.switch');
+
+            Route::get('admin/cabang', [BranchAdminController::class, 'index'])->name('admin.cabang.index');
+            Route::get('admin/cabang/{branch}/edit', [BranchAdminController::class, 'edit'])->name('admin.cabang.edit');
+            Route::put('admin/cabang/{branch}', [BranchAdminController::class, 'update'])->name('admin.cabang.update');
+            
+            Route::middleware('super.admin')->group(function () {
+                // SUPER ADMIN AREA
+                        Route::get('kategori/buat/baru', [KategoriController::class, 'create'])->name('kategori.create');
+                        Route::post('kategori', [KategoriController::class, 'store'])->name('kategori.store');
+                        Route::get('kategori/{category}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+                        Route::put('kategori/{category}', [KategoriController::class, 'update'])->name('kategori.update');
+                        Route::delete('kategori/{category}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+
+                        Route::get('merk/buat/baru', [MerkController::class, 'create'])->name('merk.create');
+                        Route::post('merk', [MerkController::class, 'store'])->name('merk.store');
+                        Route::get('merk/{brand}/edit', [MerkController::class, 'edit'])->name('merk.edit');
+                        Route::put('merk/{brand}', [MerkController::class, 'update'])->name('merk.update');
+                        Route::delete('merk/{brand}', [MerkController::class, 'destroy'])->name('merk.destroy');
+
+                        Route::get('admin/cabang/create', [BranchAdminController::class, 'create'])->name('admin.cabang.create');
+                        Route::post('admin/cabang', [BranchAdminController::class, 'store'])->name('admin.cabang.store');
+                        Route::delete('admin/cabang/{branch}', [BranchAdminController::class, 'destroy'])->name('admin.cabang.destroy');    
+
+                        Route::get('admin/mitra', [PartnerAdminController::class, 'index'])->name('admin.mitra.index');
+                        Route::get('admin/mitra/create', [PartnerAdminController::class, 'create'])->name('admin.mitra.create');
+                        Route::post('admin/mitra', [PartnerAdminController::class, 'store'])->name('admin.mitra.store');
+                        Route::get('admin/mitra/{partner}/edit', [PartnerAdminController::class, 'edit'])->name('admin.mitra.edit');
+                        Route::put('admin/mitra/{partner}', [PartnerAdminController::class, 'update'])->name('admin.mitra.update');
+                        Route::delete('admin/mitra/{partner}', [PartnerAdminController::class, 'destroy'])->name('admin.mitra.destroy');
+
+                        Route::get('admin/pengguna', [UserAdminController::class, 'index'])->name('admin.pengguna.index');
+                        Route::get('admin/pengguna/create', [UserAdminController::class, 'create'])->name('admin.pengguna.create');
+                        Route::post('admin/pengguna', [UserAdminController::class, 'store'])->name('admin.pengguna.store');
+                        Route::get('admin/pengguna/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.pengguna.edit');
+                        Route::put('admin/pengguna/{user}', [UserAdminController::class, 'update'])->name('admin.pengguna.update');
+                });
+        });
     });
-    Route::get('/checkout', CheckoutPage::class);
-    Route::get('/my-orders-unpaid', MyOrdersUnpaidPage::class);
-    Route::get('/my-orders', MyOrdersPage::class);
-    Route::get('/my-orders/{order_id}', [MyOrderDetailPage::class, 'mount'])->name('my-orders.show');
-    Route::get('/success', SuccessPage::class)->name('success');
-    Route::get('/cancel', CancelPage::class);
-    Route::get('/my-account', MyAccountPage::class);
-    Route::get('/my-account-edit', MyAccountEditPage::class);
-    Route::get('/items', ItemsPage::class);
-    Route::get('/payments', PaymentsPage::class);
-    Route::get('/pos', PosPage::class);
-
-    Route::get('/api/products', [ProductController::class, 'index']);
-    Route::get('/api/products/{id}', [ProductController::class, 'show']);
-    Route::post('/api/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
-    Route::get('/mypos', MyPos::class);
-
-    Route::get('/prinprview/{id}', [PrintController::class, 'prinprview'])->name('printid');
-    Route::get('/prinprviewkitchen/{id}', [PrintController::class, 'prinprviewkitchen'])->name('printkitchen');
-    Route::get('/exportproducts', [ExportController::class, 'exportProduct']);
-    Route::get('/exportbrands', [ExportController::class, 'exportBrand']);
 });
+
+
+// Route::get('@{partner:slug}', function (Partner $partner) { // tampilkan halaman partner berdasarkan slug
+//     return Inertia::render('Partner', [ // tampilkan halaman partner berdasarkan slug
+//         'partner' => $partner, // tampilkan halaman partner berdasarkan slug
+//     ]); // tampilkan halaman partner berdasarkan slug
+// })->name('store'); // tampilkan halaman partner berdasarkan slug
+Route::fallback(function () {
+    $path = request()->path(); // ambil 'lapak-zahara'
+
+    // Cek apakah path cocok dengan slug partner
+    $partner = Partner::where('slug', $path)->first();
+
+    if ($partner) {
+        return Inertia::render('Partner/PartnerDetail', [
+            'partner' => $partner,
+            'branches' => $partner->branches()->where('is_active', true)->get(),
+        ]);
+    }
+
+    // Jika bukan slug partner → tampilkan 404 Laravel
+    abort(404);
+});
+
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';

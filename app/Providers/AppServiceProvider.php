@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Blade;
+use App\Models\AdjustmentStock;
+use App\Models\Journal;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Payment;
+use App\Models\PurchaseOrder;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,11 +27,56 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::directive('currency', function ($expression) {
-            return "Rp<?php echo number_format($expression,0,',','.'); ?>";
+        Route::bind('produk', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return Product::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
         });
-        Blade::directive('formatNumber', function ($expression) {
-            return "<?php echo number_format($expression,0,',','.'); ?>";
+
+        Route::bind('order', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return Order::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
+        });
+        Route::bind('purchaseOrder', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return PurchaseOrder::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
+        });
+        Route::bind('adjustmentStock', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return AdjustmentStock::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
+        });
+        Route::bind('journal', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return Journal::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
+        });
+
+        Route::bind('item', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return OrderItem::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
+        });
+        Route::bind('payment', function ($value) {
+            abort_if(!auth()->check(), 404);
+
+            return Payment::where('id', $value)
+                ->where('branch_id', auth()->user()->branch_id)
+                ->firstOrFail();
         });
     }
 }

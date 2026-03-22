@@ -2,41 +2,67 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
-        'porder_code',
-        'order_code',
+        'image',
+        'notes',
         'mutation_type',
-        'date_payment',
+        'debit_akun',
+        'kredit_akun',
         'currency',
         'payment_method',
         'nominal_plus',
         'nominal_mins',
+        'nominal',
+        'rekening',
+        'user_id',
         'created_by',
         'updated_by',
-        'updated_at',
+        'deleted_by',
         'branch_id',
+        'date',
+        'target_branch_id',
     ];
-    public function order()
+
+    protected $casts = [
+        'date_payment' => 'datetime', // or 'date' if only date is needed
+    ];
+
+    public function paymentable(): MorphTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->morphTo();
     }
-    public function porder()
+    public function journal()
     {
-        return $this->belongsTo(Porder::class);
+        return $this->belongsTo(Journal::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    public function userCre(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+    public function userUpd(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
     public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function targetBranch()
+    {
+        return $this->belongsTo(Branch::class, 'target_branch_id');
+    }
+
 }

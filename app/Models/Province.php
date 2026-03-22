@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Address;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
@@ -14,7 +14,7 @@ class Province extends Model
      *
      * @var string
      */
-    protected $table = 'provincies';
+    protected $table = 'provinces';
 
     /**
      * Model Constructor

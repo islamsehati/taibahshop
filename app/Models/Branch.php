@@ -4,43 +4,45 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+
 
 class Branch extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
+        'logo',
         'name',
         'slug',
         'image',
         'phone',
         'street_address',
+        'type',
+        'is_open',
         'is_active',
+        'partner_id',
         'created_by',
         'updated_by',
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean',     
+        'is_open' => 'boolean',
+    ];    
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
-
-    public function orderitems()
+    
+    public function partner()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Partner::class);
     }
-    public function payments()
+    
+    public function notifications()
     {
-        return $this->hasMany(Payment::class);
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::updating(function ($model) {
-            if ($model->isDirty('image') && ($model->getOriginal('image') !== null)) {
-                Storage::disk('public')->delete($model->getOriginal('image'));
-            }
-        });
+        return $this->hasMany(Notification::class);
     }
 }
