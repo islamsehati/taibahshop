@@ -44,12 +44,15 @@ onMounted(() => {
 
     <header class="flex flex-col items-center gap-2 pt-8">
 
-
-      <div v-if="props.qrSvg" class="size-20 flex justify-center">
+      <div v-if="props.qrSvg" class="size-20 flex justify-center mb-14">
         <div v-html="props.qrSvg"></div>
       </div>
 
-      <h2 class="text-xl font-bold text-center mt-20">
+      <div v-if="props.barcodeSvg" class="w-full">
+        <div v-html="props.barcodeSvg" class="scale-75"></div>
+      </div>
+
+      <h2 class="text-xl font-bold text-center">
         {{ props.order.code }}
       </h2>
     </header>
@@ -65,77 +68,66 @@ onMounted(() => {
       </div>
     </section>
 
-    <div class="flex flex-row">
 
-      <div class="flex-1">
+    <table class=" w-full text-sm border-b border-dashed">
+      <tbody class="divide-y divide-dotted">
+        <tr v-for="item in props.order.items" :key="item.id">
+          <td class="py-2">
+            <div class="font-bold">{{ item.product?.name }}</div>
+            <div class="text-xs text-gray-600">
+              {{ item.quantity_mins }} × Rp{{ Number(item.price).toLocaleString() }}
+            </div>
+          </td>
+          <td class="py-2 text-right align-top">
+            Rp{{ Number(item.subtotal).toLocaleString() }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <table class=" w-full text-sm border-b border-dashed">
-          <tbody class="divide-y divide-dotted">
-            <tr v-for="item in props.order.items" :key="item.id">
-              <td class="py-2">
-                <div class="font-bold">{{ item.product?.name }}</div>
-                <div class="text-xs text-gray-600">
-                  {{ item.quantity_mins }} × Rp{{ Number(item.price).toLocaleString() }}
-                </div>
-              </td>
-              <td class="py-2 text-right align-top">
-                Rp{{ Number(item.subtotal).toLocaleString() }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <section class="flex flex-col gap-1 text-sm border-b border-dashed pb-4">
-          <div class="flex justify-between italic">
-            <span>Total Weight:</span>
-            <span>{{ totalWeight.toLocaleString() }} kg</span>
-          </div>
-          
-          <div v-if="Number(props.order.sub_total) != Number(props.order.grand_total)" class="flex justify-between">
-            <span>Subtotal:</span>
-            <span>Rp{{ Number(props.order.sub_total).toLocaleString() }}</span>
-          </div>
-
-          <div v-if="Number(props.order.discount) != 0" class="flex justify-between">
-            <span>Discount:</span>
-            <span>-Rp{{ Number(props.order.discount).toLocaleString() }}</span>
-          </div>
-
-          <div v-if="Number(props.order.charge) != 0" class="flex justify-between">
-            <span>Charge:</span>
-            <span>+Rp{{ Number(props.order.charge).toLocaleString() }}</span>
-          </div>
-
-          <div v-if="Number(props.order.tax) != 0" class="flex justify-between">
-            <span>Tax:</span>
-            <span>+Rp{{ Number(props.order.tax).toLocaleString() }}</span>
-          </div>
-
-          <div class="flex justify-between text-lg font-bold mt-1 pt-1 border-t border-dotted">
-            <span>GRAND TOTAL:</span>
-            <span>Rp{{ Number(props.order.grand_total).toLocaleString() }}</span>
-          </div>
-        </section>
-
-        <footer class="flex flex-col gap-1 text-right">
-          <div class="text-base text-gray-700">
-            Bayar: <strong>Rp{{ Number(props.order.paid_amount).toLocaleString() }}</strong>
-          </div>
-          <div class="text-base">
-            Status: 
-            <span :class="Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'text-black font-bold' : 'text-gray-500 italic'">
-              {{ Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'LUNAS' : 'BELUM LUNAS' }}
-            </span>
-          </div>
-        </footer>
-
+    <section class="flex flex-col gap-1 text-sm border-b border-dashed pb-4">
+      <!-- <div class="flex justify-between italic">
+        <span>Total Weight:</span>
+        <span>{{ totalWeight.toLocaleString() }} kg</span>
+      </div> -->
+      
+      <div v-if="Number(props.order.sub_total) != Number(props.order.grand_total)" class="flex justify-between">
+        <span>Subtotal:</span>
+        <span>Rp{{ Number(props.order.sub_total).toLocaleString() }}</span>
       </div>
 
-      <div v-if="props.barcodeSvg" class="block w-12 shrink-0">
-        <div v-html="props.barcodeSvg" class="rotate-90"></div>
+      <div v-if="Number(props.order.discount) != 0" class="flex justify-between">
+        <span>Discount:</span>
+        <span>-Rp{{ Number(props.order.discount).toLocaleString() }}</span>
       </div>
 
-    </div>
+      <div v-if="Number(props.order.charge) != 0" class="flex justify-between">
+        <span>Charge:</span>
+        <span>+Rp{{ Number(props.order.charge).toLocaleString() }}</span>
+      </div>
+
+      <div v-if="Number(props.order.tax) != 0" class="flex justify-between">
+        <span>Tax:</span>
+        <span>+Rp{{ Number(props.order.tax).toLocaleString() }}</span>
+      </div>
+
+      <div class="flex justify-between text-lg font-bold mt-1 pt-1 border-t border-dotted">
+        <span>GRAND TOTAL:</span>
+        <span>Rp{{ Number(props.order.grand_total).toLocaleString() }}</span>
+      </div>
+    </section>
+
+    <footer class="flex flex-col gap-1 text-right">
+      <div class="text-base text-gray-700">
+        Bayar: <strong>Rp{{ Number(props.order.paid_amount).toLocaleString() }}</strong>
+      </div>
+      <div class="text-base">
+        Status: 
+        <span :class="Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'text-black font-bold' : 'text-gray-500 italic'">
+          {{ Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'LUNAS' : 'BELUM LUNAS' }}
+        </span>
+      </div>
+    </footer>
 
   </div>
 </template>

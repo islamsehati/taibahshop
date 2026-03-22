@@ -277,7 +277,7 @@ onUnmounted(() => {
 
       <!-- ========= IMAGE AREA ========= -->
       <div>
-        <div class="relative w-full aspect-square bg-black overflow-hidden">
+        <div class="relative w-full aspect-square bg-accent overflow-hidden">
 
           <!-- Back button -->
           <a
@@ -541,7 +541,7 @@ onUnmounted(() => {
         
       </div>
 
-      <p v-else class="text-sm text-gray-500 dark:text-gray-400">
+      <p v-else class="text-sm text-gray-500 dark:text-gray-400 px-4">
         Tidak ada produk terkait.
       </p>
     </div>

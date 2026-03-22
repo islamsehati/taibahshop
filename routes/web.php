@@ -46,7 +46,7 @@ Route::get('partners', function () {
     ]);
 })->name('partner.index');
 
-Route::get('questioner', [QuestionerController::class, 'index'])->name('questioner.index');
+// Route::get('questioner', [QuestionerController::class, 'index'])->name('questioner.index');
 
 Route::group(['middleware' => ['auth', 'verified', 'is_active', 'profile.complete']], function () {
 

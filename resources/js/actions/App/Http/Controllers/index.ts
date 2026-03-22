@@ -1,7 +1,6 @@
 import Api from './Api'
 import OrderNowController from './OrderNowController'
 import ProductController from './ProductController'
-import QuestionerController from './QuestionerController'
 import DashboardController from './DashboardController'
 import TransaksiController from './TransaksiController'
 import NotificationController from './NotificationController'
@@ -27,7 +26,6 @@ const Controllers = {
     Api: Object.assign(Api, Api),
     OrderNowController: Object.assign(OrderNowController, OrderNowController),
     ProductController: Object.assign(ProductController, ProductController),
-    QuestionerController: Object.assign(QuestionerController, QuestionerController),
     DashboardController: Object.assign(DashboardController, DashboardController),
     TransaksiController: Object.assign(TransaksiController, TransaksiController),
     NotificationController: Object.assign(NotificationController, NotificationController),

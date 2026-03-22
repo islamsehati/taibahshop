@@ -10,7 +10,7 @@ const { appearance, updateAppearance } = useAppearance();
 
 const shopUrl = computed(() => {
   const slug = localStorage.getItem('ordernow_selected_store_slug');
-  return slug ? `/@${slug}` : '/@dapatin-pusat';
+  return slug ? `/@${slug}` : '/@taibah-pusat';
 });
 
 
@@ -85,11 +85,11 @@ function toggleFaq(index: number) {
 
 // --- HERO AUTOPLAY TEXT ---
 const heroTexts = [
+  // {
+  //   html: `<span class="text-blue-500">TaibahShop</span> satuan pelayanan makanan siap antar`,
+  // },
   {
-    html: `<span class="text-blue-500">TaibahShop</span> satuan pelayanan makanan siap antar`,
-  },
-  {
-    html: `Mager? <span class="text-blue-500">TaibahShop</span> aja`,
+    html: `Mager? <span class="text-blue-600">TaibahShop</span> solusinya`,
   },
 ]
 
@@ -126,7 +126,7 @@ onUnmounted(() => {
     <!-- NAVBAR -->
     <header class="w-full px-6 py-4 flex justify-between items-center">
       <div class="flex flex-nowrap items-center">
-        <span class="size-10 -mt-2"><AppLogoIcon /></span>
+        <span class="size-10 -mt-2 -ms-3"><AppLogoIcon /></span>
         <h1 class="text-2xl font-extrabold tracking-tight text-white drop-shadow">
           TaibahShop
         </h1>
@@ -204,7 +204,7 @@ onUnmounted(() => {
 
 
       <p class="mt-4 text-lg md:text-xl text-white/90 max-w-xl">
-        Siap dine in, self pickup dan delivery order. Tinggal klik taibahshop.com
+        Melayani delivery order, support sistem pelipur laper dalam kondisi mager. Tinggal klik taibahshop.com
       </p>
 
       <div class="mt-8 flex md:flex-nowrap flex-wrap gap-4">
@@ -225,11 +225,11 @@ onUnmounted(() => {
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="bg-white dark:bg-black text-black dark:text-white px-6 py-16 rounded-t-3xl">
+    <section class="bg-white dark:bg-black text-black dark:text-white px-6 py-16">
       <div class="max-w-4xl mx-auto text-center">
         <h3 class="text-3xl font-bold mb-4">Tentang Kami</h3>
 
-        <p class="text-gray-700 dark:text-gray-300 mb-10">
+        <p class="text-gray-700 dark:text-gray-300">
           Hadir sebagai oase kuliner yang memadukan kebaikan rasa dengan ketulusan layanan, menyajikan hidangan pilihan yang diolah dari bahan-bahan segar dan berkualitas. Nama "Taibah" yang bermakna kebaikan menjadi komitmen kami untuk memastikan setiap sajian tidak hanya memanjakan lidah, tetapi juga memberikan ketenangan dan keberkahan bagi setiap pelanggan yang menikmatinya. Dengan suasana yang hangat dan penuh keramahan, kami berupaya menjadi tempat singgah terpercaya bagi Anda yang menghargai cita rasa autentik dalam balutan profesionalisme dan dedikasi yang sepenuh hati.
         </p>
 
@@ -239,8 +239,7 @@ onUnmounted(() => {
 
 
     <!-- FOOTER -->
-    <footer class="text-center py-2 px-2 text-white/80 text-sm">
-      Order yuk, klik
+    <footer class="text-center py-2 px-2 text-white/80 text-sm"> 
       <a
         href="https://wa.me/62081370100057?text=Halo%20TaibahShop%2C%20saya%20mau%20order."
         target="_blank"
@@ -248,7 +247,7 @@ onUnmounted(() => {
       >
         0813-7010-0057
       </a>
-      • 2026 taibahshop.com
+      • taibahshop.com • 2026
     </footer>
 
   </div>
