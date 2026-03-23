@@ -48,11 +48,11 @@ onMounted(() => {
         <div v-html="props.qrSvg"></div>
       </div>
 
-      <div v-if="props.barcodeSvg" class="w-full">
+      <!-- <div v-if="props.barcodeSvg" class="w-full">
         <div v-html="props.barcodeSvg" class="scale-75"></div>
-      </div>
+      </div> -->
 
-      <h2 class="text-xl font-bold text-center">
+      <h2 class="text-lg font-bold text-center">
         {{ props.order.code }}
       </h2>
     </header>

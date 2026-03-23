@@ -49,11 +49,11 @@ onMounted(() => {
         <div v-html="props.qrSvg"></div>
       </div>
 
-      <div v-if="props.barcodeSvg" class="w-full">
+      <!-- <div v-if="props.barcodeSvg" class="w-full">
         <div v-html="props.barcodeSvg" class="scale-75"></div>
-      </div>
+      </div> -->
 
-      <h2 class="text-xl font-bold text-center">
+      <h2 class="text-lg font-bold text-center">
         {{ props.purchaseOrder.code }}
       </h2>
     </header>
@@ -76,7 +76,7 @@ onMounted(() => {
           <td class="py-2">
             <div class="font-bold">{{ item.product?.name }}</div>
             <div class="text-xs text-gray-600">
-              {{ item.quantity_mins }} × Rp{{ Number(item.price).toLocaleString() }}
+              {{ item.quantity_plus }} × Rp{{ Number(item.cost).toLocaleString() }}
             </div>
           </td>
           <td class="py-2 text-right align-top">
