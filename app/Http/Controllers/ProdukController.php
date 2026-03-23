@@ -300,7 +300,9 @@ public function update(Request $request, Product $product)
     }
 
     // 6️⃣ FINAL ARRAY IMAGES
-    $finalImages = array_values(array_merge($imagesKeep, $uploaded));
+    $merged = array_merge($imagesKeep, $uploaded);
+    // Jika hasil gabungan kosong, set ke null, jika ada isinya baru di-array_values
+    $finalImages = count($merged) > 0 ? array_values($merged) : null;    
 
     // 7️⃣ UPDATE PRODUK
     $categoryIds = $data['category_ids'];
@@ -477,8 +479,9 @@ public function update(Request $request, Product $product)
         }            
 
         // 5️⃣ Upload gambar baru jika ada
-        $uploaded = [];
+        $uploaded = null; // Ubah default dari [] menjadi null
         if ($request->hasFile('images_new')) {
+            $uploaded = []; // Inisialisasi jadi array hanya jika ada file
             foreach ($request->file('images_new') as $file) {
                 $path = $file->store('products', 'public');
                 $uploaded[] = '/storage/' . $path;

@@ -513,7 +513,7 @@ onUnmounted(() => {
       >
         <template v-for="item in relatedProducts" :key="item.id">
           <div
-            class="min-w-[175px] bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
+            class="w-[175px] bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
           >
             <img
               v-if="item.images"
@@ -659,7 +659,7 @@ onUnmounted(() => {
 
           <!-- Laporkan Produk -->
           <a
-            :href="`https://wa.me/6289684561000?text=Saya%20ingin%20melaporkan%20produk%20berikut:%0A${product.name}%20milik%20store%20${product.branch.name}%0Adapatin.id/product/${product.slug}`"
+            :href="`https://wa.me/6287881231119?text=Saya%20ingin%20melaporkan%20produk%20berikut:%0A${product.name}%20milik%20store%20${product.branch.name}%0Adapatin.id/product/${product.slug}`"
             target="_blank"
             @click="closeWaMenu"
             class="flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"

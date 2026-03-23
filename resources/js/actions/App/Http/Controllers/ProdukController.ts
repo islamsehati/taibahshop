@@ -367,7 +367,7 @@ create.form = createForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:423
+* @see app/Http/Controllers/ProdukController.php:425
 * @route '/produk/store'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -382,7 +382,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:423
+* @see app/Http/Controllers/ProdukController.php:425
 * @route '/produk/store'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -391,7 +391,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:423
+* @see app/Http/Controllers/ProdukController.php:425
 * @route '/produk/store'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -401,7 +401,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:423
+* @see app/Http/Controllers/ProdukController.php:425
 * @route '/produk/store'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -411,7 +411,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:423
+* @see app/Http/Controllers/ProdukController.php:425
 * @route '/produk/store'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -606,7 +606,7 @@ update.form = updateForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:509
+* @see app/Http/Controllers/ProdukController.php:512
 * @route '/produk/{produk}/toggle-active'
 */
 export const toggleActive = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -621,7 +621,7 @@ toggleActive.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:509
+* @see app/Http/Controllers/ProdukController.php:512
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActive.url = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -648,7 +648,7 @@ toggleActive.url = (args: { produk: string | number } | [produk: string | number
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:509
+* @see app/Http/Controllers/ProdukController.php:512
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActive.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -658,7 +658,7 @@ toggleActive.put = (args: { produk: string | number } | [produk: string | number
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:509
+* @see app/Http/Controllers/ProdukController.php:512
 * @route '/produk/{produk}/toggle-active'
 */
 const toggleActiveForm = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -673,7 +673,7 @@ const toggleActiveForm = (args: { produk: string | number } | [produk: string | 
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:509
+* @see app/Http/Controllers/ProdukController.php:512
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActiveForm.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
