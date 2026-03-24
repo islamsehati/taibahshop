@@ -149,7 +149,7 @@ class POSController extends Controller
                     'change_amount' => $payload['change_amount'],
                     'meta' => [],                    
                     'user_id' => $payload['user_id'],
-                    'user_alias' => $payload['user_alias'] ?? null,
+                    'user_alias' => $payload['user_alias'] ?? 'Cust',
                     'created_by' => Auth::id(),
                     'updated_by' => Auth::id(),
                     'branch_id' => Auth::user()->branch_id,
