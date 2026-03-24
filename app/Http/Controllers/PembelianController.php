@@ -35,7 +35,7 @@ public function store(Request $request)
 {
     $data = $request->validate([
         'date'       => 'required|date',
-        'type'       => 'required|in:dine_in,self_pickup,delivery',
+        'type'       => 'required|in:dine_in,self_pickup,delivery,dine_in_m,self_pickup_m,delivery_m',
         'notes'      => 'nullable|string',
         'user_id'    => 'required|exists:users,id',
         'user_alias' => 'nullable|string|max:255',
@@ -454,7 +454,7 @@ public function destroy(PurchaseOrder $purchaseOrder)
         $request->validate([
             'date'   => 'required|date',
             'status' => 'required|in:new,processing,shipped,delivered,canceled',
-            'type' => 'required|in:dine_in,self_pickup,delivery',
+            'type' => 'required|in:dine_in,self_pickup,delivery,dine_in_m,self_pickup_m,delivery_m',
         ]);
 
         $purchaseOrder->update([

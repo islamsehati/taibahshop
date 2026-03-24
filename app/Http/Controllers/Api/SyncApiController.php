@@ -82,7 +82,7 @@ class SyncApiController extends Controller
                 'user_id' => 'required|integer|exists:users,id',
                 'user_alias'  => 'nullable|string|max:255',
                 'date' => 'required|date',
-                'type' => 'required|in:dine_in,self_pickup,delivery',
+                'type' => 'required|in:dine_in,self_pickup,delivery,dine_in_m,self_pickup_m,delivery_m',
                 'notes' => 'nullable|string',
                 'payment_method' => 'required|string',
                 'sub_total' => 'required|numeric',

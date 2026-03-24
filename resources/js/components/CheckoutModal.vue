@@ -340,6 +340,9 @@ const orderTypeOptions = [
   { value: "dine_in", title: "Dine In", desc: "Makan di tempat (F&B)", icon: Soup },
   { value: "self_pickup", title: "Self Pickup", desc: "Ambil sendiri sesuai jadwal", icon: ShoppingBag },
   { value: "delivery", title: "Delivery", desc: "Diantarkan oleh penjual", icon: Truck },
+  { value: "dine_in_m", title: "D-In bM", desc: "by Marketplace", icon: Soup },
+  { value: "self_pickup_m", title: "SPickup bM", desc: "by Marketplace", icon: ShoppingBag },
+  { value: "delivery_m", title: "Dlvr bM", desc: "by Marketplace", icon: Truck },
 ];
 
 // --- Helpers ---

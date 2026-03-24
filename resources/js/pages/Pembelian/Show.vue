@@ -417,6 +417,9 @@ const saveInfoEdited = () => {
                         <option value="dine_in">Dine In</option>
                         <option value="self_pickup">Self Pickup</option>
                         <option value="delivery">Delivery</option>
+                        <option value="dine_in_m">Dine In by Marketplace</option>
+                        <option value="self_pickup_m">Self Pickup by Marketplace</option>
+                        <option value="delivery_m">Delivery by Marketplace</option>
                       </select>
 
                       <button @click="saveInfoEdited('type')">
@@ -426,11 +429,17 @@ const saveInfoEdited = () => {
 
                     <!-- VIEW MODE -->
                     <span v-else :class="{
+                      'text-teal-500': order.type === 'dine_in_m',
+                      'text-lime-500': order.type === 'self_pickup_m',
+                      'text-amber-500': order.type === 'delivery_m',
                       'text-blue-500': order.type === 'dine_in',
                       'text-green-500': order.type === 'self_pickup',
                       'text-orange-500': order.type === 'delivery'
                     }">
                       {{ 
+                        order.type === 'dine_in_m' ? 'Dine In by Marketplace' : 
+                        order.type === 'self_pickup_m' ? 'Self Pickup by Marketplace' : 
+                        order.type === 'delivery_m' ? 'Delivery by Marketplace' : 
                         order.type === 'dine_in' ? 'Dine In' : 
                         order.type === 'self_pickup' ? 'Self Pickup' : 
                         order.type === 'delivery' ? 'Delivery' : order.type 
