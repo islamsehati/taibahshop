@@ -59,10 +59,10 @@ onMounted(() => {
 
     <section class="text-sm border-b border-dashed pb-2">
       <div class="flex justify-center">
-        <span class="text-right font-bold">{{ props.order.user_alias ? props.order.user?.name + ` (an) ` + props.order.user_alias : props.order.user?.name }}</span>
+        <span class="text-center font-bold">{{ props.order.user_alias ? props.order.user?.name + ` (an) ` + props.order.user_alias : props.order.user?.name }}</span>
       </div>
       <div class="flex justify-center">
-        <span class="text-right">{{ formatTanggal(props.order.created_at) }}</span>
+        <span class="text-center">{{ formatTanggal(props.order.created_at) }}</span>
       </div>
     </section>
 
@@ -115,7 +115,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <footer class="flex flex-col gap-1 text-right mb-5">
+    <footer class="flex flex-col gap-1 text-right">
       <div class="text-base text-gray-700">
         Bayar: <strong>Rp{{ Number(props.order.paid_amount).toLocaleString() }}</strong>
       </div>
@@ -124,6 +124,12 @@ onMounted(() => {
         <span :class="Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'text-black font-bold' : 'text-gray-500 italic'">
           {{ Number(props.order.paid_amount) >= Number(props.order.grand_total) ? 'LUNAS' : 'BELUM LUNAS' }}
         </span>
+      </div>
+      <div class="text-base text-gray-700">
+        _
+      </div>
+      <div class="text-base text-gray-700">
+        _
       </div>
     </footer>
 

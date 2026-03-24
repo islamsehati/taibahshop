@@ -60,10 +60,10 @@ onMounted(() => {
 
     <section class="text-sm border-b border-dashed pb-2">
       <div class="flex justify-center">
-        <span class="text-right font-bold">{{ props.purchaseOrder.user_alias ? props.purchaseOrder.user?.name + ` (an) ` + props.purchaseOrder.user_alias : props.purchaseOrder.user?.name }}</span>
+        <span class="text-center font-bold">{{ props.purchaseOrder.user_alias ? props.purchaseOrder.user?.name + ` (an) ` + props.purchaseOrder.user_alias : props.purchaseOrder.user?.name }}</span>
       </div>
       <div class="flex justify-center">
-        <span class="text-right">{{ formatTanggal(props.purchaseOrder.created_at) }}</span>
+        <span class="text-center">{{ formatTanggal(props.purchaseOrder.created_at) }}</span>
       </div>
     </section>
 
@@ -116,7 +116,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <footer class="flex flex-col gap-1 text-right mb-5">
+    <footer class="flex flex-col gap-1 text-right">
       <div class="text-base text-gray-700">
         Bayar: <strong>Rp{{ Number(props.purchaseOrder.paid_amount).toLocaleString() }}</strong>
       </div>
@@ -125,6 +125,12 @@ onMounted(() => {
         <span :class="Number(props.purchaseOrder.paid_amount) >= Number(props.purchaseOrder.grand_total) ? 'text-black font-bold' : 'text-gray-500 italic'">
           {{ Number(props.purchaseOrder.paid_amount) >= Number(props.purchaseOrder.grand_total) ? 'LUNAS' : 'BELUM LUNAS' }}
         </span>
+      </div>
+      <div class="text-base text-gray-700">
+        _
+      </div>
+      <div class="text-base text-gray-700">
+        _
       </div>
     </footer>
 
