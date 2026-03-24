@@ -363,10 +363,10 @@ const isGeneralCustomer = computed(() => {
 
 // --- Submit Checkout ---
 async function submitCheckout() {
-  if (isGeneralCustomer.value && !userAlias.value.trim()) {
-    toast.error("Kolom Atas Nama wajib diisi.");
-    return;
-  }
+  // if (isGeneralCustomer.value && !userAlias.value.trim()) {
+  //  toast.error("Kolom Atas Nama wajib diisi.");
+  //  return;
+  // }
   if (!orderType.value) { toast("Pilih tipe pesanan."); return; }
   if (!props.items || !props.items.length) { toast("Keranjang kosong."); return; }
   if (gTotal.value <= 0) { toast("Total harus > 0."); return; }
