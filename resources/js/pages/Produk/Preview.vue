@@ -197,6 +197,13 @@ function previewUrl(path?: string) {
             </span>
 
             <span
+              v-if="product?.is_public"
+              class="px-2 py-0.5 rounded-full text-xs bg-teal-100 text-teal-700"
+            >
+              Publik
+            </span>
+
+            <span
               v-if="product?.is_promo"
               class="px-2 py-0.5 rounded-full text-xs bg-red-100 text-red-700"
             >

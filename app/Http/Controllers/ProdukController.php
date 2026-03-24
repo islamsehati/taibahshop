@@ -219,6 +219,7 @@ public function update(Request $request, Product $product)
         'brand_id' => 'required|integer',
         'description' => 'nullable|string',
         'is_active' => 'required|boolean',
+        'is_public' => 'required|boolean',
         'in_stock' => 'required|boolean',
         'is_featured' => 'required|boolean',
         'is_promo' => 'required|boolean',
@@ -316,6 +317,7 @@ public function update(Request $request, Product $product)
         'images'      => $finalImages,
         'updated_by'  => Auth::id(),
         'is_active'   => (bool) $request->input('is_active'),
+        'is_public'   => (bool) $request->input('is_public'),
         'in_stock'    => (bool) $request->input('in_stock'),
         'is_featured' => (bool) $request->input('is_featured'),
         'is_promo'    => (bool) $request->input('is_promo'),
@@ -447,6 +449,7 @@ public function update(Request $request, Product $product)
             'brand_id' => 'required|integer',
             'description' => 'nullable|string',
             'is_active' => 'required|boolean',
+            'is_public' => 'required|boolean',
             'in_stock' => 'required|boolean',
             'is_featured' => 'required|boolean',
             'is_promo' => 'required|boolean',
@@ -489,6 +492,7 @@ public function update(Request $request, Product $product)
         }
 
         $data['is_active']    = (bool) $request->input('is_active');
+        $data['is_public']    = (bool) $request->input('is_public');
         $data['in_stock']     = (bool) $request->input('in_stock');
         $data['is_featured']  = (bool) $request->input('is_featured');
         $data['is_promo']     = (bool) $request->input('is_promo');

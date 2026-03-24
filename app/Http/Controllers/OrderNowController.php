@@ -15,7 +15,7 @@ class OrderNowController extends Controller
 {
     public function index(Request $request, Branch $branch = null)
     {
-        $query = Product::query();
+        $query = Product::query()->where('is_active', true)->where('is_public', true);
 
         $perpage = (int) $request->get('per_page', 100);
         $sortBy = $request->get('sort_by', 'updated_at');

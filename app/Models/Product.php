@@ -40,6 +40,7 @@ class Product extends Model
         'stock',
 
         'is_active',
+        'is_public',
         'in_stock',
         'is_featured',
         'is_promo',
@@ -53,6 +54,7 @@ class Product extends Model
     protected $casts = [
         'images' => 'array',
         'is_active' => 'boolean',
+        'is_public' => 'boolean',
         'in_stock' => 'boolean',
         'is_featured' => 'boolean',
         'is_promo' => 'boolean',        

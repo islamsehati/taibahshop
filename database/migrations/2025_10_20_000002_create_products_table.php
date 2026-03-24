@@ -36,6 +36,7 @@ return new class extends Migration
             $table->decimal('weight', 10, 3)->default(0);
 
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_public')->default(true);
             $table->boolean('in_stock')->default(true);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_promo')->default(false);

@@ -60,7 +60,7 @@ onMounted(() => {
     <section class="text-sm border-b border-dashed pb-2">
       <div class="flex justify-between">
         <span class="pe-2">Pelanggan:</span>
-        <span class="text-right font-bold">{{ props.order.user_alias ? props.order.user_alias + ` (an)` : props.order.user?.name }}</span>
+        <span class="text-right font-bold">{{ props.order.user_alias ? props.order.user?.name + ` (an) ` + props.order.user_alias : props.order.user?.name }}</span>
       </div>
       <div class="flex justify-between">
         <span class="pe-2">Tanggal:</span>

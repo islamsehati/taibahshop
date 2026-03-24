@@ -49,6 +49,7 @@ const form = ref({
   brand_id: '',
   description: '',
   is_active: true,
+  is_public: true,
   in_stock: true,
   is_featured: true,
   is_promo: true,
@@ -358,6 +359,30 @@ function storeProduct() {
                   @click="form.is_active = true"
                 >
                   Aktif
+                </button>
+              </div>
+            </div>
+
+            <!-- Pakah Pulic -->
+            <div class="w-full">
+              <div class="bg-gray-100 dark:bg-gray-950 flex rounded-lg p-2 gap-1 w-full select-none">
+                <button
+                  class="flex-1 py-1 px-2 rounded-md text-center transition-all"
+                  :class="!form.is_public
+                    ? 'bg-white text-gray-700 shadow'
+                    : 'text-gray-500 bg-transparent'"
+                  @click="form.is_public = false"
+                >
+                  Privat
+                </button>
+                <button
+                  class="flex-1 py-1 px-2 rounded-md text-center transition-all"
+                  :class="form.is_public
+                    ? 'bg-green-500 text-white shadow'
+                    : 'text-gray-500 bg-transparent'"
+                  @click="form.is_public = true"
+                >
+                  Publik
                 </button>
               </div>
             </div>

@@ -58,6 +58,7 @@ const form = ref({
   brand_id: props.product.brand_id ?? '',
   description: props.product.description ?? '',
   is_active: Boolean(props.product.is_active),
+  is_public: Boolean(props.product.is_public),
   in_stock: Boolean(props.product.in_stock),
   is_featured: Boolean(props.product.is_featured),
   is_promo: Boolean(props.product.is_promo),
@@ -477,6 +478,33 @@ const existingImagesPreview = computed(() =>
                 @click="form.is_active = true"
               >
                 Aktif
+              </button>
+
+            </div>
+          </div>
+          <div class="w-full">
+            <div class="bg-gray-100 dark:bg-gray-950 flex rounded-lg p-2 gap-1 w-full select-none">
+              
+              <!-- Public -->
+              <button
+                class="flex-1 py-1 px-2 rounded-md text-center transition-all"
+                :class="!form.is_public
+                  ? 'bg-white text-gray-700 shadow'
+                  : 'text-gray-500 bg-transparent'"
+                @click="form.is_public = false"
+              >
+                Privat
+              </button>
+
+              <!-- ON / Aktif -->
+              <button
+                class="flex-1 py-1 px-2 rounded-md text-center transition-all"
+                :class="form.is_public
+                  ? 'bg-green-500 text-white shadow'
+                  : 'text-gray-500 bg-transparent'"
+                @click="form.is_public = true"
+              >
+                Publik
               </button>
 
             </div>
