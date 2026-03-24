@@ -498,7 +498,7 @@ onUnmounted(() => {
     <div class="space-y-2 border-b-4 dark:border-gray-800 my-4 pb-4 px-4">
       <h2 class="font-semibold">Deskripsi</h2>
       <p class="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">
-        {{ product.description || "-" }} {{ produk.contain || "" }}
+        {{ product.description || "" }} {{ product.contain || "" }}
       </p>
     </div>
 

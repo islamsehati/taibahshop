@@ -519,7 +519,7 @@ function deleteOrder() {
                       <div class="font-semibold">{{ o.code }}</div>
                       
                       <div v-if="o.user.id == 2 || o.user.id == 3 || o.user.id == 4" class="text-sm text-gray-500">
-                        {{ `${o.user_alias} (an)` }}
+                        {{ `${o.user_alias}` }}
                       </div>
                       
                       <div v-else class="text-sm text-gray-500">
