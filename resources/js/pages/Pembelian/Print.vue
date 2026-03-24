@@ -45,26 +45,24 @@ onMounted(() => {
 
     <header class="flex flex-col items-center gap-2 pt-8">
 
-      <div v-if="props.qrSvg" class="size-20 flex justify-center mb-14">
+      <!-- <div v-if="props.qrSvg" class="size-20 flex justify-center mb-14">
         <div v-html="props.qrSvg"></div>
-      </div>
+      </div> -->
 
       <!-- <div v-if="props.barcodeSvg" class="w-full">
         <div v-html="props.barcodeSvg" class="scale-75"></div>
       </div> -->
 
-      <h2 class="text-lg font-bold text-center">
+      <h2 class="text-sm font-bold text-center">
         {{ props.purchaseOrder.code }}
       </h2>
     </header>
 
     <section class="text-sm border-b border-dashed pb-2">
-      <div class="flex justify-between">
-        <span class="pe-2">Pelanggan:</span>
+      <div class="flex justify-center">
         <span class="text-right font-bold">{{ props.purchaseOrder.user_alias ? props.purchaseOrder.user?.name + ` (an) ` + props.purchaseOrder.user_alias : props.purchaseOrder.user?.name }}</span>
       </div>
-      <div class="flex justify-between">
-        <span class="pe-2">Tanggal:</span>
+      <div class="flex justify-center">
         <span class="text-right">{{ formatTanggal(props.purchaseOrder.created_at) }}</span>
       </div>
     </section>
@@ -112,13 +110,13 @@ onMounted(() => {
         <span>+Rp{{ Number(props.purchaseOrder.tax).toLocaleString() }}</span>
       </div>
 
-      <div class="flex justify-between text-lg font-bold mt-1 pt-1 border-t border-dotted">
+      <div class="flex justify-between font-bold mt-1 pt-1 border-t border-dotted">
         <span>GRAND TOTAL:</span>
         <span>Rp{{ Number(props.purchaseOrder.grand_total).toLocaleString() }}</span>
       </div>
     </section>
 
-    <footer class="flex flex-col gap-1 text-right">
+    <footer class="flex flex-col gap-1 text-right mb-5">
       <div class="text-base text-gray-700">
         Bayar: <strong>Rp{{ Number(props.purchaseOrder.paid_amount).toLocaleString() }}</strong>
       </div>

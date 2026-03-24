@@ -16,8 +16,9 @@
         <!-- Tombol Cart (mobile) -->
         <button
           class="relative flex items-center gap-2 px-2 py-1.5 bg-accent rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-500"
-          @click="() => { cartOpen = true; toggleFullscreen() }"
-        >
+          @click="() => { cartOpen = true; }"
+          >
+          <!-- @click="() => { cartOpen = true; toggleFullscreen() }" -->
           <span
             v-if="totalItems > 0"
             class="bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full absolute -top-2 -left-2"
