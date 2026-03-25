@@ -505,7 +505,7 @@ onUnmounted(() => {
       >
         <template v-for="item in relatedproduks" :key="item.id">
           <div
-            class="bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
+            class="w-44 bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
           >
             <img
               v-if="item.images"
