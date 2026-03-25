@@ -68,7 +68,6 @@
           <button
             class="-ml-[45px] px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm flex items-center gap-1 scale-95"
             @click="filterOpen = true"
-            @dblclick="toggleScanMode"
             title="Filter produk"
           >
             <SlidersHorizontal class="size-5" />
@@ -177,6 +176,7 @@
         <Link href="/jurnal" class="px-3 py-1 rounded-md text-xs text-nowrap font-semibold flex items-center gap-1 select-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">Jurnal</Link>
         <Link href="/stok" class="px-3 py-1 rounded-md text-xs text-nowrap font-semibold flex items-center gap-1 select-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">Mutasi Stok</Link>
         <Link href="/produk" class="px-3 py-1 rounded-md text-xs text-nowrap font-semibold flex items-center gap-1 select-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">Atur Produk</Link>
+        <button @click="toggleScanMode" class="px-3 py-1 rounded-md text-xs text-nowrap font-semibold flex items-center gap-1 select-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">Mode</button>
       </div>
 
 
