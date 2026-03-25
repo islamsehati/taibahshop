@@ -67,8 +67,8 @@
           <!-- Tombol Filter -->
           <button
             class="-ml-[45px] px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm flex items-center gap-1 scale-95"
-            @dblclick="filterOpen = true"
-            @click="toggleScanMode"
+            @click="filterOpen = true"
+            @dblclick="toggleScanMode"
             title="Filter produk"
           >
             <SlidersHorizontal class="size-5" />
