@@ -43,7 +43,6 @@
             v-model="searchInput"
             @input="!isScanMode && debouncedSearch()"
             @keydown.enter.prevent="isScanMode && handleScanEnter()"
-            @dblclick="toggleScanMode"
             type="text"
             :placeholder="isScanMode ? 'Inputkan Kode' : 'Cari produk...'"
             :class="[
@@ -68,7 +67,8 @@
           <!-- Tombol Filter -->
           <button
             class="-ml-[45px] px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm flex items-center gap-1 scale-95"
-            @click="filterOpen = true"
+            @dblclick="filterOpen = true"
+            @click="toggleScanMode"
             title="Filter produk"
           >
             <SlidersHorizontal class="size-5" />
