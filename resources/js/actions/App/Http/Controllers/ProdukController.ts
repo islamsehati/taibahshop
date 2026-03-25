@@ -187,7 +187,7 @@ show.form = showForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 export const preview = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -202,7 +202,7 @@ preview.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 preview.url = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -229,7 +229,7 @@ preview.url = (args: { produk: string | number } | [produk: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 preview.get = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -239,7 +239,7 @@ preview.get = (args: { produk: string | number } | [produk: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 preview.head = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -249,7 +249,7 @@ preview.head = (args: { produk: string | number } | [produk: string | number ] |
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 const previewForm = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -259,7 +259,7 @@ const previewForm = (args: { produk: string | number } | [produk: string | numbe
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 previewForm.get = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -269,7 +269,7 @@ previewForm.get = (args: { produk: string | number } | [produk: string | number 
 
 /**
 * @see \App\Http\Controllers\ProdukController::preview
-* @see app/Http/Controllers/ProdukController.php:153
+* @see app/Http/Controllers/ProdukController.php:155
 * @route '/produk/{produk}/preview'
 */
 previewForm.head = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -286,7 +286,7 @@ preview.form = previewForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -301,7 +301,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -310,7 +310,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -320,7 +320,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -330,7 +330,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -340,7 +340,7 @@ const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -350,7 +350,7 @@ createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\ProdukController::create
-* @see app/Http/Controllers/ProdukController.php:173
+* @see app/Http/Controllers/ProdukController.php:175
 * @route '/produk/buat/baru'
 */
 createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -367,7 +367,7 @@ create.form = createForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:427
+* @see app/Http/Controllers/ProdukController.php:429
 * @route '/produk/store'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -382,7 +382,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:427
+* @see app/Http/Controllers/ProdukController.php:429
 * @route '/produk/store'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -391,7 +391,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:427
+* @see app/Http/Controllers/ProdukController.php:429
 * @route '/produk/store'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -401,7 +401,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:427
+* @see app/Http/Controllers/ProdukController.php:429
 * @route '/produk/store'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -411,7 +411,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\ProdukController::store
-* @see app/Http/Controllers/ProdukController.php:427
+* @see app/Http/Controllers/ProdukController.php:429
 * @route '/produk/store'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -423,7 +423,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 export const edit = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -438,7 +438,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 edit.url = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -465,7 +465,7 @@ edit.url = (args: { produk: string | number } | [produk: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 edit.get = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -475,7 +475,7 @@ edit.get = (args: { produk: string | number } | [produk: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 edit.head = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -485,7 +485,7 @@ edit.head = (args: { produk: string | number } | [produk: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 const editForm = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -495,7 +495,7 @@ const editForm = (args: { produk: string | number } | [produk: string | number ]
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 editForm.get = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -505,7 +505,7 @@ editForm.get = (args: { produk: string | number } | [produk: string | number ] |
 
 /**
 * @see \App\Http\Controllers\ProdukController::edit
-* @see app/Http/Controllers/ProdukController.php:181
+* @see app/Http/Controllers/ProdukController.php:183
 * @route '/produk/{produk}/edit'
 */
 editForm.head = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -522,7 +522,7 @@ edit.form = editForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::update
-* @see app/Http/Controllers/ProdukController.php:193
+* @see app/Http/Controllers/ProdukController.php:195
 * @route '/produk/{produk}/update'
 */
 export const update = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -537,7 +537,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::update
-* @see app/Http/Controllers/ProdukController.php:193
+* @see app/Http/Controllers/ProdukController.php:195
 * @route '/produk/{produk}/update'
 */
 update.url = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -564,7 +564,7 @@ update.url = (args: { produk: string | number } | [produk: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\ProdukController::update
-* @see app/Http/Controllers/ProdukController.php:193
+* @see app/Http/Controllers/ProdukController.php:195
 * @route '/produk/{produk}/update'
 */
 update.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -574,7 +574,7 @@ update.put = (args: { produk: string | number } | [produk: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\ProdukController::update
-* @see app/Http/Controllers/ProdukController.php:193
+* @see app/Http/Controllers/ProdukController.php:195
 * @route '/produk/{produk}/update'
 */
 const updateForm = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -589,7 +589,7 @@ const updateForm = (args: { produk: string | number } | [produk: string | number
 
 /**
 * @see \App\Http\Controllers\ProdukController::update
-* @see app/Http/Controllers/ProdukController.php:193
+* @see app/Http/Controllers/ProdukController.php:195
 * @route '/produk/{produk}/update'
 */
 updateForm.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -606,7 +606,7 @@ update.form = updateForm
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:516
+* @see app/Http/Controllers/ProdukController.php:518
 * @route '/produk/{produk}/toggle-active'
 */
 export const toggleActive = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -621,7 +621,7 @@ toggleActive.definition = {
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:516
+* @see app/Http/Controllers/ProdukController.php:518
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActive.url = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -648,7 +648,7 @@ toggleActive.url = (args: { produk: string | number } | [produk: string | number
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:516
+* @see app/Http/Controllers/ProdukController.php:518
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActive.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -658,7 +658,7 @@ toggleActive.put = (args: { produk: string | number } | [produk: string | number
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:516
+* @see app/Http/Controllers/ProdukController.php:518
 * @route '/produk/{produk}/toggle-active'
 */
 const toggleActiveForm = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -673,7 +673,7 @@ const toggleActiveForm = (args: { produk: string | number } | [produk: string | 
 
 /**
 * @see \App\Http\Controllers\ProdukController::toggleActive
-* @see app/Http/Controllers/ProdukController.php:516
+* @see app/Http/Controllers/ProdukController.php:518
 * @route '/produk/{produk}/toggle-active'
 */
 toggleActiveForm.put = (args: { produk: string | number } | [produk: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

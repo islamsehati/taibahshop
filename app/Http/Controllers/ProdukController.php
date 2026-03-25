@@ -114,6 +114,8 @@ class ProdukController extends Controller
     {
         $produk->load(['categories', 'brand', 'branch']); // pastikan relasi sudah diset di model
         $variants = Product::where('group', $produk->group)
+            ->whereNotNull('group')        // Pastikan tidak NULL
+            ->where('group', '!=', '')     // Pastikan bukan string kosong
             ->where('branch_id', $produk->branch_id)
             ->orderBy('name')
             ->get();
