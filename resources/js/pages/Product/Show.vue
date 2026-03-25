@@ -514,17 +514,17 @@ onUnmounted(() => {
       >
         <template v-for="item in relatedProducts" :key="item.id">
           <div
-            class="w-44 bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
+            class="w-44 flex-none min-w-[11rem] bg-white dark:bg-gray-900 rounded-lg shadow-sm border dark:border-gray-700 flex flex-col"
           >
             <img
-              v-if="item.images"
+              v-if="item.images && item.images.length"
               :src="previewUrl(item.images[0])"
-              class="w-44 aspect-square object-cover rounded-t-lg"
+              class="w-full aspect-square object-cover rounded-t-lg"
             />
 
             <div
               v-else
-              class="w-44 aspect-square flex items-center justify-center text-slate-400 text-sm"
+              class="w-full aspect-square flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-slate-400 text-sm rounded-t-lg"
             >
               No Image
             </div>
