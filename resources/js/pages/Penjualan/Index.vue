@@ -37,6 +37,9 @@ import PaymentFormModal from '@/components/PaymentFormModal.vue';
 import { ref, computed, watch } from 'vue';
 import { toast } from "vue-sonner";
 
+import QrScannerModal from '@/components/QrScannerModal.vue';
+
+
 
 function todayISO() {
   return toISODateLocal(new Date())
@@ -312,6 +315,13 @@ function bulkLunaskan(order: any) {
   savePayment(paymentForm.value)
 }
 
+// SCANNER MODE
+const showQrScanner = ref(false);
+ 
+function onQrScanned(code: string) {
+  searchQuery.value = code;
+  // Tidak perlu router.get manual — watcher searchQuery akan trigger otomatis
+}
 
 
 </script>
@@ -390,6 +400,30 @@ function bulkLunaskan(order: any) {
       <!-- DATE RANGE -->
       <div class="mx-3 mt-2 overflow-y-auto no-scrollbar">
         <div class="flex flex-nowrap gap-2 items-center">
+
+          <!-- TOMBOL QR SCANNER -->
+          <button
+            @click="showQrScanner = true"
+            class="flex-shrink-0 flex items-center justify-center size-9 rounded-lg
+                  bg-blue-600 hover:bg-blue-700 active:scale-95
+                  text-white shadow transition"
+            title="Scan QR / Barcode"
+          >
+            <!-- QR Code Icon (inline SVG karena lucide tidak punya QrCode di semua versi) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <path d="M14 14h1v1h-1z"/>
+              <path d="M17 14h1v1h-1z"/>
+              <path d="M14 17h1v1h-1z"/>
+              <path d="M17 17h1v1h-1z"/>
+              <path d="M20 14v1"/>
+              <path d="M20 18v3"/>
+              <path d="M14 20h3"/>
+            </svg>
+          </button>
 
         <!-- FILTER TABS -->
         <div class="p-1 space-x-1 font-medium bg-gray-200 dark:bg-gray-800 rounded-lg flex flex-nowrap text-nowrap">
@@ -811,6 +845,11 @@ function bulkLunaskan(order: any) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
+
+    <QrScannerModal
+      v-model="showQrScanner"
+      @scanned="onQrScanned"
+    />
    
   </AppLayout>
 </template>

@@ -44,9 +44,9 @@ onMounted(() => {
 
     <header class="flex flex-col items-center gap-2 pt-8">
 
-      <!-- <div v-if="props.qrSvg" class="size-20 flex justify-center mb-14">
+      <div v-if="props.qrSvg" class="size-20 flex justify-center mb-14">
         <div v-html="props.qrSvg"></div>
-      </div> -->
+      </div>
 
       <!-- <div v-if="props.barcodeSvg" class="w-full">
         <div v-html="props.barcodeSvg" class="scale-75"></div>

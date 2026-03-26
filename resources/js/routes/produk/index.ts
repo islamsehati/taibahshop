@@ -85,7 +85,7 @@ index.form = indexForm
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-export const show = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -100,7 +100,7 @@ show.definition = {
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-show.url = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { produk: args }
     }
@@ -133,7 +133,7 @@ show.url = (args: { produk: string | number | { slug: string | number } } | [pro
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-show.get = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -143,7 +143,7 @@ show.get = (args: { produk: string | number | { slug: string | number } } | [pro
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-show.head = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -153,7 +153,7 @@ show.head = (args: { produk: string | number | { slug: string | number } } | [pr
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-const showForm = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -163,7 +163,7 @@ const showForm = (args: { produk: string | number | { slug: string | number } } 
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-showForm.get = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -173,7 +173,7 @@ showForm.get = (args: { produk: string | number | { slug: string | number } } | 
 * @see app/Http/Controllers/ProdukController.php:113
 * @route '/produk/{produk}/show'
 */
-showForm.head = (args: { produk: string | number | { slug: string | number } } | [produk: string | number | { slug: string | number } ] | string | number | { slug: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { produk: string | { slug: string } } | [produk: string | { slug: string } ] | string | { slug: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',

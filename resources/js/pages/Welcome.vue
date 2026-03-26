@@ -111,7 +111,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Head title="Toko Online, Sistem Kasir, Akuntansi jadi satu">
+  <Head title="Support sistem pelipur laper dalam kondisi mager">
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   </Head>
