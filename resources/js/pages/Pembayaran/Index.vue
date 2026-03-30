@@ -121,6 +121,29 @@ const goToPage = (url: string | null) => {
   )
 }
 
+function todayISO() {
+  return toISODateLocal(new Date())
+}
+function toISODateLocal(d: Date) {
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+}
+
+function minusDaysISO(days: number) {
+  const d = new Date()
+  d.setDate(d.getDate() - days)
+  return toISODateLocal(d)
+}
+
+function setToday() {
+  dateFrom.value = todayISO()
+  dateTo.value = todayISO()
+}
+function setYesterday() {
+  dateFrom.value = minusDaysISO(1)
+  dateTo.value = minusDaysISO(1)
+}
+
 </script>
 
 <template>
@@ -204,6 +227,22 @@ const goToPage = (url: string | null) => {
           {{ u.label }}
         </option>
       </select>
+
+            <!-- KEMARIN -->
+            <button
+              @click="setYesterday"
+              class="ms-auto text-sm px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-blue-300 dark:hover:bg-blue-500 text-nowrap"
+            >
+              Kemarin
+            </button>
+
+            <!-- HARI INI -->
+            <button
+              @click="setToday"
+              class="ms-auto text-sm px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-blue-300 dark:hover:bg-blue-500 text-nowrap"
+            >
+              Hari ini
+            </button>
 
       
         <input type="date" v-model="dateFrom" class="px-3 py-2 rounded-lg text-sm" />

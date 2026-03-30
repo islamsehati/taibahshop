@@ -1047,6 +1047,7 @@ public function createTransfer(Request $request)
             // 🔴 OUT
             'debit_akun'  => 'NR-KR Transfer Antar Cabang',
             'kredit_akun' => $validated['source_cash_account'],
+            'payment_method' => $this->resolveAkunCashBank($validated['source_cash_account']),
 
             'nominal' => $validated['nominal'],
             'branch_id' => $sourceBranch,
@@ -1075,6 +1076,7 @@ public function createTransfer(Request $request)
             // 🟢 IN
             'debit_akun'  => $validated['target_cash_account'],
             'kredit_akun' => 'NR-KR Transfer Antar Cabang',
+            'payment_method' => $this->resolveAkunCashBank($validated['target_cash_account']),
 
             'nominal' => $validated['nominal'],
             'branch_id' => $targetBranch,

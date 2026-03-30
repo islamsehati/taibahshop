@@ -96,6 +96,10 @@ function setToday() {
   startDate.value = todayISO()
   endDate.value = todayISO()
 }
+function setYesterday() {
+  startDate.value = minusDaysISO(1)
+  endDate.value = minusDaysISO(1)
+}
 
 
 
@@ -476,6 +480,14 @@ function onQrScanned(code: string) {
             <option value="delivered">Delivered</option>
             <option value="canceled">Canceled</option>
           </select>
+
+          <!-- KEMARIN -->
+            <button
+              @click="setYesterday"
+              class="ms-auto text-sm px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-blue-300 dark:hover:bg-blue-500 text-nowrap"
+            >
+              Kemarin
+            </button>
 
           <!-- HARI INI -->
           <button

@@ -38,3 +38,10 @@ public/storage
 .env
 .env.backup
 .env.production
+
+# MacOs Files
+.DS_Store
+
+# Windows Files
+Thumbs.db
+Desktop.ini
