@@ -15,7 +15,7 @@ const props = defineProps<{
     search?: string
     brand?: string
     category?: string
-    status?: 'all' | 'active' | 'nonactive'
+    status?: 'all' | 'active' | 'nonactive' | 'public' | 'private'
     stock_status?: 'aman' | 'low' | 'over'
     sort_by?: string
     sort_dir?: string
@@ -181,6 +181,8 @@ const calculateAsset = () => {
                         <option class="dark:bg-gray-800" value="all">All Status</option>
                         <option class="dark:bg-gray-800" value="active">Active</option>
                         <option class="dark:bg-gray-800" value="nonactive">Non Active</option>
+                        <option class="dark:bg-gray-800" value="public">Public</option>
+                        <option class="dark:bg-gray-800" value="private">Private</option>
                       </select>
 
                       <!-- caret -->

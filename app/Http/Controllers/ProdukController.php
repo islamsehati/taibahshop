@@ -44,6 +44,10 @@ class ProdukController extends Controller
             $query->where('is_active', true);
         } elseif ($request->status === 'nonactive') {
             $query->where('is_active', false);
+        } elseif ($request->status === 'public') {
+            $query->where('is_public', true);
+        } elseif ($request->status === 'private') {
+            $query->where('is_public', false);
         }
 
         // 📦 stock status (low | over)
