@@ -326,7 +326,7 @@ public function destroy(Order $order)
             ->selectRaw('
                 COUNT(*) as total_order,
                 SUM(grand_total) as total_grand,
-                SUM(paid_amount) as total_paid,
+                SUM(paid_amount) - SUM(GREATEST(paid_amount - grand_total, 0)) as total_paid,
                 SUM(GREATEST(grand_total - paid_amount, 0)) as total_unpaid
             ')
             ->first();
