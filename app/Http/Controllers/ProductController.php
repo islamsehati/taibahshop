@@ -27,7 +27,7 @@ class ProductController extends Controller
             ->where('branch_id', $product->branch_id)
             ->orderBy('name')
             ->get();
-        $relatedProducts = Product::where('id', '!=', $product->id)
+        $relatedProducts = Product::where('id', '!=', $product->id)->where('is_active', true)->where('is_public', true)
             ->where('branch_id', $product->branch_id)
             ->where(function ($q) use ($product) {
                 $q->whereHas('categories', function ($qc) use ($product) {

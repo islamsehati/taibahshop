@@ -123,7 +123,7 @@ class ProdukController extends Controller
             ->where('branch_id', $produk->branch_id)
             ->orderBy('name')
             ->get();
-        $relatedproduks = Product::where('id', '!=', $produk->id)
+        $relatedproduks = Product::where('id', '!=', $produk->id)->where('is_active', true)->where('is_public', true)
             ->where('branch_id', $produk->branch_id)
             ->where(function ($q) use ($produk) {
                 $q->whereHas('categories', function ($qc) use ($produk) {
