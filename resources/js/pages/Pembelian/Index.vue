@@ -546,7 +546,7 @@ function deleteOrder() {
                   </div>
                   
                   <div class="bg-accent mt-2 py-1 px-2 rounded line-clamp-1">
-                    <div class="font-sm text-gray-500">{{o.notes || 'Tidak ada catatan'}}</div>
+                    <div class="font-sm text-gray-500">{{o.notes || '-'}}</div>
                   </div>
                 </div>
               </ContextMenuTrigger>
