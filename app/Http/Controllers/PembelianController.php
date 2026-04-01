@@ -597,7 +597,7 @@ public function updateItem(Request $request, OrderItem $item)
     $data = $request->validate([
         'product_id'    => 'required|exists:products,id',
         'cost'          => 'required|numeric|min:0',
-        'quantity_plus' => 'required|numeric|min:1',
+        'quantity_plus' => 'required|numeric|min:0',
     ]);
 
     DB::transaction(function () use ($data, $item) {

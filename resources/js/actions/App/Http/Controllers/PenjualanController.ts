@@ -219,7 +219,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 export const print = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -234,7 +234,7 @@ print.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -267,7 +267,7 @@ print.url = (args: { order: number | { id: number } } | [order: number | { id: n
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.get = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -277,7 +277,7 @@ print.get = (args: { order: number | { id: number } } | [order: number | { id: n
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.head = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -287,7 +287,7 @@ print.head = (args: { order: number | { id: number } } | [order: number | { id: 
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 const printForm = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -297,7 +297,7 @@ const printForm = (args: { order: number | { id: number } } | [order: number | {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 printForm.get = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -307,7 +307,7 @@ printForm.get = (args: { order: number | { id: number } } | [order: number | { i
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 printForm.head = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -869,7 +869,7 @@ destroyItem.form = destroyItemForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::biayaLain
-* @see app/Http/Controllers/PenjualanController.php:755
+* @see app/Http/Controllers/PenjualanController.php:753
 * @route '/penjualan/{order}/biayalain'
 */
 export const biayaLain = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -884,7 +884,7 @@ biayaLain.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::biayaLain
-* @see app/Http/Controllers/PenjualanController.php:755
+* @see app/Http/Controllers/PenjualanController.php:753
 * @route '/penjualan/{order}/biayalain'
 */
 biayaLain.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -917,7 +917,7 @@ biayaLain.url = (args: { order: number | { id: number } } | [order: number | { i
 
 /**
 * @see \App\Http\Controllers\PenjualanController::biayaLain
-* @see app/Http/Controllers/PenjualanController.php:755
+* @see app/Http/Controllers/PenjualanController.php:753
 * @route '/penjualan/{order}/biayalain'
 */
 biayaLain.put = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -927,7 +927,7 @@ biayaLain.put = (args: { order: number | { id: number } } | [order: number | { i
 
 /**
 * @see \App\Http\Controllers\PenjualanController::biayaLain
-* @see app/Http/Controllers/PenjualanController.php:755
+* @see app/Http/Controllers/PenjualanController.php:753
 * @route '/penjualan/{order}/biayalain'
 */
 const biayaLainForm = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -942,7 +942,7 @@ const biayaLainForm = (args: { order: number | { id: number } } | [order: number
 
 /**
 * @see \App\Http\Controllers\PenjualanController::biayaLain
-* @see app/Http/Controllers/PenjualanController.php:755
+* @see app/Http/Controllers/PenjualanController.php:753
 * @route '/penjualan/{order}/biayalain'
 */
 biayaLainForm.put = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -959,7 +959,7 @@ biayaLain.form = biayaLainForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::storePayment
-* @see app/Http/Controllers/PenjualanController.php:790
+* @see app/Http/Controllers/PenjualanController.php:788
 * @route '/penjualan/{order}/pembayaran'
 */
 export const storePayment = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -974,7 +974,7 @@ storePayment.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::storePayment
-* @see app/Http/Controllers/PenjualanController.php:790
+* @see app/Http/Controllers/PenjualanController.php:788
 * @route '/penjualan/{order}/pembayaran'
 */
 storePayment.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -1007,7 +1007,7 @@ storePayment.url = (args: { order: number | { id: number } } | [order: number | 
 
 /**
 * @see \App\Http\Controllers\PenjualanController::storePayment
-* @see app/Http/Controllers/PenjualanController.php:790
+* @see app/Http/Controllers/PenjualanController.php:788
 * @route '/penjualan/{order}/pembayaran'
 */
 storePayment.post = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1017,7 +1017,7 @@ storePayment.post = (args: { order: number | { id: number } } | [order: number |
 
 /**
 * @see \App\Http\Controllers\PenjualanController::storePayment
-* @see app/Http/Controllers/PenjualanController.php:790
+* @see app/Http/Controllers/PenjualanController.php:788
 * @route '/penjualan/{order}/pembayaran'
 */
 const storePaymentForm = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1027,7 +1027,7 @@ const storePaymentForm = (args: { order: number | { id: number } } | [order: num
 
 /**
 * @see \App\Http\Controllers\PenjualanController::storePayment
-* @see app/Http/Controllers/PenjualanController.php:790
+* @see app/Http/Controllers/PenjualanController.php:788
 * @route '/penjualan/{order}/pembayaran'
 */
 storePaymentForm.post = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1039,7 +1039,7 @@ storePayment.form = storePaymentForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::updatePayment
-* @see app/Http/Controllers/PenjualanController.php:845
+* @see app/Http/Controllers/PenjualanController.php:843
 * @route '/pembayaran-penjualan/{payment}'
 */
 export const updatePayment = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -1054,7 +1054,7 @@ updatePayment.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::updatePayment
-* @see app/Http/Controllers/PenjualanController.php:845
+* @see app/Http/Controllers/PenjualanController.php:843
 * @route '/pembayaran-penjualan/{payment}'
 */
 updatePayment.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -1087,7 +1087,7 @@ updatePayment.url = (args: { payment: number | { id: number } } | [payment: numb
 
 /**
 * @see \App\Http\Controllers\PenjualanController::updatePayment
-* @see app/Http/Controllers/PenjualanController.php:845
+* @see app/Http/Controllers/PenjualanController.php:843
 * @route '/pembayaran-penjualan/{payment}'
 */
 updatePayment.put = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -1097,7 +1097,7 @@ updatePayment.put = (args: { payment: number | { id: number } } | [payment: numb
 
 /**
 * @see \App\Http\Controllers\PenjualanController::updatePayment
-* @see app/Http/Controllers/PenjualanController.php:845
+* @see app/Http/Controllers/PenjualanController.php:843
 * @route '/pembayaran-penjualan/{payment}'
 */
 const updatePaymentForm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1112,7 +1112,7 @@ const updatePaymentForm = (args: { payment: number | { id: number } } | [payment
 
 /**
 * @see \App\Http\Controllers\PenjualanController::updatePayment
-* @see app/Http/Controllers/PenjualanController.php:845
+* @see app/Http/Controllers/PenjualanController.php:843
 * @route '/pembayaran-penjualan/{payment}'
 */
 updatePaymentForm.put = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1129,7 +1129,7 @@ updatePayment.form = updatePaymentForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::destroyPayment
-* @see app/Http/Controllers/PenjualanController.php:925
+* @see app/Http/Controllers/PenjualanController.php:923
 * @route '/pembayaran-penjualan/{payment}'
 */
 export const destroyPayment = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -1144,7 +1144,7 @@ destroyPayment.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::destroyPayment
-* @see app/Http/Controllers/PenjualanController.php:925
+* @see app/Http/Controllers/PenjualanController.php:923
 * @route '/pembayaran-penjualan/{payment}'
 */
 destroyPayment.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -1177,7 +1177,7 @@ destroyPayment.url = (args: { payment: number | { id: number } } | [payment: num
 
 /**
 * @see \App\Http\Controllers\PenjualanController::destroyPayment
-* @see app/Http/Controllers/PenjualanController.php:925
+* @see app/Http/Controllers/PenjualanController.php:923
 * @route '/pembayaran-penjualan/{payment}'
 */
 destroyPayment.delete = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -1187,7 +1187,7 @@ destroyPayment.delete = (args: { payment: number | { id: number } } | [payment: 
 
 /**
 * @see \App\Http\Controllers\PenjualanController::destroyPayment
-* @see app/Http/Controllers/PenjualanController.php:925
+* @see app/Http/Controllers/PenjualanController.php:923
 * @route '/pembayaran-penjualan/{payment}'
 */
 const destroyPaymentForm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1202,7 +1202,7 @@ const destroyPaymentForm = (args: { payment: number | { id: number } } | [paymen
 
 /**
 * @see \App\Http\Controllers\PenjualanController::destroyPayment
-* @see app/Http/Controllers/PenjualanController.php:925
+* @see app/Http/Controllers/PenjualanController.php:923
 * @route '/pembayaran-penjualan/{payment}'
 */
 destroyPaymentForm.delete = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

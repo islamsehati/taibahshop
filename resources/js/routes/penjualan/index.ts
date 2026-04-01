@@ -219,7 +219,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 export const print = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -234,7 +234,7 @@ print.definition = {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -267,7 +267,7 @@ print.url = (args: { order: number | { id: number } } | [order: number | { id: n
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.get = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -277,7 +277,7 @@ print.get = (args: { order: number | { id: number } } | [order: number | { id: n
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 print.head = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -287,7 +287,7 @@ print.head = (args: { order: number | { id: number } } | [order: number | { id: 
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 const printForm = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -297,7 +297,7 @@ const printForm = (args: { order: number | { id: number } } | [order: number | {
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 printForm.get = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -307,7 +307,7 @@ printForm.get = (args: { order: number | { id: number } } | [order: number | { i
 
 /**
 * @see \App\Http\Controllers\PenjualanController::print
-* @see app/Http/Controllers/PenjualanController.php:1340
+* @see app/Http/Controllers/PenjualanController.php:1338
 * @route '/penjualan/{order}/print'
 */
 printForm.head = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

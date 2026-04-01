@@ -128,7 +128,7 @@ function submit() {
               type="button"
               variant="outline"
               class="px-3"
-              @click="form.quantity_plus = Math.max(1, Number(form.quantity_plus) - 1)"
+              @click="form.quantity_plus = Math.max(0, Number(form.quantity_plus) - 1)"
             >
               <Minus class="size-5"/>
             </Button>
@@ -137,7 +137,7 @@ function submit() {
             <Input
               type="number"
               v-model.number="form.quantity_plus"
-              min="1"
+              min="0"
               class="w-full text-center dark:bg-neutral-900 dark:text-white"
             />
 

@@ -464,7 +464,7 @@ public function destroy(Order $order)
         $data = $request->validate([
             'product_id' => 'required|exists:products,id',
             'price' => 'required|numeric',
-            'quantity_mins' => 'required|numeric|min:1',
+            'quantity_mins' => 'required|numeric|min:0',
         ]);
 
         DB::transaction(function () use ($data, $item) {
@@ -660,9 +660,7 @@ public function destroy(Order $order)
             return back()->with('error', 'Order tidak ditemukan');
         }
 
-        $jumlahItem = $order->items()->count();
-
-        if ($jumlahItem <= 1) {
+        if ($order->items()->count() <= 1) {
             return back()->with('error', 'Minimal harus ada satu item');
         }
 
