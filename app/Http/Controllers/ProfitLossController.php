@@ -76,22 +76,17 @@ class ProfitLossController extends Controller
         // =======================
         // PAGINATION
         // =======================
-        $payments = $baseQuery
-            ->paginate(100)
-            ->through(function ($payment) {
-                // URL untuk frontend
-                $payment->paymentable_url = match ($payment->paymentable_type) {
-                    \App\Models\Order::class => route('penjualan.show', $payment->paymentable_id),
-                    \App\Models\PurchaseOrder::class => route('pembelian.show', $payment->paymentable_id),
-                    \App\Models\AdjustmentStock::class => route('penyesuaian-stok.edit', $payment->paymentable_id),
-                    \App\Models\Journal::class => route('jurnal.edit', $payment->paymentable_id),
-                    default => null,
-                };
-                // pastikan code ada untuk semua paymentable
-                $payment->code = $payment->paymentable?->code ?? '-';
-                return $payment;
-            })
-            ->withQueryString();
+        $payments = $baseQuery->get()->map(function ($payment) {
+            $payment->paymentable_url = match ($payment->paymentable_type) {
+                \App\Models\Order::class => route('penjualan.show', $payment->paymentable_id),
+                \App\Models\PurchaseOrder::class => route('pembelian.show', $payment->paymentable_id),
+                \App\Models\AdjustmentStock::class => route('penyesuaian-stok.edit', $payment->paymentable_id),
+                \App\Models\Journal::class => route('jurnal.edit', $payment->paymentable_id),
+                default => null,
+            };
+            $payment->code = $payment->paymentable?->code ?? '-';
+            return $payment;
+        });
 
         // =======================
         // ACCOUNT BALANCE

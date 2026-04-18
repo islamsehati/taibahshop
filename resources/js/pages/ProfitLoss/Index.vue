@@ -10,7 +10,7 @@ const page = usePage()
 /* =======================
    DATA
 ======================= */
-const payments = computed(() => page.props.payments)
+const payments = computed(() => page.props.payments ?? [])
 const summary = computed(() => page.props.summary)
 const accountBalances = computed(() => page.props.accountBalance ?? [])
 
@@ -18,15 +18,15 @@ const accountBalances = computed(() => page.props.accountBalance ?? [])
    SPLIT DATA (FRONTEND)
 ======================= */
 const paymentsLRKR = computed(() =>
-  payments.value?.data?.filter((p: any) =>
+  payments.value.filter((p: any) =>
     String(p.kredit_akun ?? '').includes('LR-KR')
-  ) ?? []
+  )
 )
 
 const paymentsLRDB = computed(() =>
-  payments.value?.data?.filter((p: any) =>
+  payments.value.filter((p: any) =>
     String(p.debit_akun ?? '').includes('LR-DB')
-  ) ?? []
+  )
 )
 
 /* =======================
